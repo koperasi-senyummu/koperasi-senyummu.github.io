@@ -56,7 +56,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 100% !important; /* Full width */
             width: 100%;
             background: var(--bg-primary);
             border-radius: 16px;
@@ -186,14 +186,14 @@
 
         /* Main Content */
         .main-content {
-            padding: 20px 40px 40px;
+            padding: 20px 0 !important; /* Hanya beri padding atas-bawah */
         }
 
         /* Summary Cards */
         .summary-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+            gap: 16px;
             margin-bottom: 40px;
         }
 
