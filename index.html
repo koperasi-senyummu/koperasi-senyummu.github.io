@@ -186,7 +186,7 @@
 
         /* Main Content */
         .main-content {
-            padding: 20px 0 !important; /* Hanya beri padding atas-bawah */
+            padding: 20px 16px !important; /* Beri padding kiri-kanan 16px */
         }
 
         /* Summary Cards */
@@ -542,8 +542,9 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
+        @media (max-width: 100%) {
             .container {
+                max-width: 100% !important; /* Full width */
                 margin: 10px;
                 border-radius: 12px;
             }
