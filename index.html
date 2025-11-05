@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biaya Perlengkapan Santri - Koperasi Senyummu</title>
+    <meta name="description" content="Informasi biaya perlengkapan santri dan jadwal pembayaran angsuran Koperasi Senyummu tahun ajaran 2026/2027">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -13,26 +16,108 @@
         }
         
         body {
-            background: linear-gradient(to bottom right, #1e3a8a, #1e40af, #2563eb);
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #2563eb 100%);
+            min-height: 100vh;
         }
         
         .card {
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
         
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
-            font-weight: 600;
+        .floating-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .table-wrapper {
+            position: relative;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .table-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .table-wrapper::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+        
+        .table-wrapper::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 10px;
+        }
+        
+        .table-wrapper::-webkit-scrollbar-thumb:hover {
+            background: #2563eb;
+        }
+        
+        .sticky-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: white;
+        }
+        
+        .calculator-input {
+            transition: all 0.3s ease;
+        }
+        
+        .calculator-input:focus {
+            transform: scale(1.02);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .card {
+                box-shadow: none;
+                border: 1px solid #e5e7eb;
+            }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+        
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
     </style>
 </head>
@@ -41,56 +126,98 @@
     <div class="max-w-7xl mx-auto">
         
         <!-- Header -->
-        <div class="bg-white rounded-2xl shadow-lg p-6 md:p-8 mb-6">
+        <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8 mb-6 fade-in">
             <div class="flex items-start gap-4">
-                <div class="flex-shrink-0">
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md">
-                        <i class="fas fa-school text-white text-2xl md:text-3xl"></i>
+                <div class="flex-shrink-0 floating-animation">
+                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <i class="fas fa-school text-white text-2xl md:text-3xl" aria-hidden="true"></i>
                     </div>
                 </div>
                 <div class="flex-1">
-                    <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Biaya Perlengkapan</h1>
+                    <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Biaya Perlengkapan Santri</h1>
                     <p class="text-gray-600 text-sm md:text-base">Koperasi Senyummu - Tahun Ajaran 2026/2027</p>
+                    <div class="mt-3 inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">
+                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                        <span>Sistem Cicilan 4x Tanpa Bunga</span>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Info Cards -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-5 text-white shadow-lg">
+            <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-5 text-white shadow-lg card fade-in" style="animation-delay: 0.1s">
                 <div class="flex items-center gap-3">
-                    <i class="fas fa-book-open text-3xl opacity-90"></i>
+                    <i class="fas fa-box-open text-3xl opacity-90" aria-hidden="true"></i>
                     <div>
-                        <p class="text-sm opacity-90">Perlengkapan</p>
-                        <p class="text-xl font-bold">Lengkap</p>
+                        <p class="text-sm opacity-90">Total Item</p>
+                        <p class="text-2xl font-bold">4 Perlengkapan</p>
                     </div>
                 </div>
             </div>
-            <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-5 text-white shadow-lg">
+            <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-5 text-white shadow-lg card fade-in" style="animation-delay: 0.2s">
                 <div class="flex items-center gap-3">
-                    <i class="fas fa-credit-card text-3xl opacity-90"></i>
+                    <i class="fas fa-credit-card text-3xl opacity-90" aria-hidden="true"></i>
                     <div>
                         <p class="text-sm opacity-90">Sistem Pembayaran</p>
-                        <p class="text-xl font-bold">4x Cicilan</p>
+                        <p class="text-2xl font-bold">4x Cicilan</p>
                     </div>
                 </div>
             </div>
-            <div class="bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl p-5 text-white shadow-lg">
+            <div class="bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl p-5 text-white shadow-lg card fade-in" style="animation-delay: 0.3s">
                 <div class="flex items-center gap-3">
-                    <i class="fas fa-clock text-3xl opacity-90"></i>
+                    <i class="fas fa-calendar-alt text-3xl opacity-90" aria-hidden="true"></i>
                     <div>
-                        <p class="text-sm opacity-90">Proses</p>
-                        <p class="text-xl font-bold">Cepat & Mudah</p>
+                        <p class="text-sm opacity-90">Periode Cicilan</p>
+                        <p class="text-2xl font-bold">Apr - Jul 2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calculator Section -->
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden mb-6 fade-in no-print" style="animation-delay: 0.4s">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-700 p-5 md:p-6">
+                <div class="flex items-center gap-3">
+                    <i class="fas fa-calculator text-white text-2xl" aria-hidden="true"></i>
+                    <div>
+                        <h2 class="text-xl md:text-2xl font-bold text-white">Kalkulator Cicilan</h2>
+                        <p class="text-purple-100 text-sm">Hitung jumlah cicilan yang harus dibayar</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-5 md:p-6">
+                <div class="max-w-md mx-auto">
+                    <label for="programType" class="block text-sm font-semibold text-gray-700 mb-2">Pilih Program:</label>
+                    <select id="programType" class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-purple-500 focus:outline-none calculator-input text-gray-800 font-medium">
+                        <option value="1470000">Boarding Putra - Rp 1.470.000</option>
+                        <option value="1625000">Boarding Putri - Rp 1.625.000</option>
+                        <option value="1327000">Non-Boarding Putra - Rp 1.327.000</option>
+                    </select>
+                    
+                    <div class="mt-6 p-6 bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl border-2 border-purple-200">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-700 font-medium">Total Biaya:</span>
+                                <span id="totalAmount" class="text-2xl font-bold text-purple-700">Rp 1.470.000</span>
+                            </div>
+                            <div class="h-px bg-purple-300"></div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-gray-700 font-medium">Per Cicilan (4x):</span>
+                                <span id="installmentAmount" class="text-2xl font-bold text-green-600">Rp 367.500</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Table Section -->
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-6">
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden mb-6 fade-in" style="animation-delay: 0.5s">
             <div class="bg-gradient-to-r from-blue-600 to-blue-700 p-5 md:p-6">
                 <div class="flex items-center gap-3">
-                    <i class="fas fa-file-invoice-dollar text-white text-2xl"></i>
+                    <i class="fas fa-file-invoice-dollar text-white text-2xl" aria-hidden="true"></i>
                     <div>
                         <h2 class="text-xl md:text-2xl font-bold text-white">Rincian Biaya Per Item</h2>
                         <p class="text-blue-100 text-sm">Detail biaya setiap perlengkapan yang dibutuhkan</p>
@@ -98,35 +225,31 @@
                 </div>
             </div>
             
-            <div class="overflow-x-auto">
-                <table class="w-full">
-                    <thead class="bg-blue-50">
+            <div class="table-wrapper">
+                <table class="w-full" role="table">
+                    <thead class="bg-blue-50 sticky-header">
                         <tr>
-                            <th rowspan="2" class="px-4 py-4 text-center text-xs font-semibold text-gray-700 uppercase border-b-2 border-blue-200">No</th>
-                            <th rowspan="2" class="px-4 py-4 text-left text-xs font-semibold text-gray-700 uppercase border-b-2 border-blue-200">Uraian</th>
-                            <th colspan="2" class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase border-b border-blue-200">
+                            <th rowspan="2" class="px-4 py-4 text-center text-xs font-semibold text-gray-700 uppercase border-b-2 border-blue-200" scope="col">No</th>
+                            <th rowspan="2" class="px-4 py-4 text-left text-xs font-semibold text-gray-700 uppercase border-b-2 border-blue-200" scope="col">Uraian</th>
+                            <th colspan="2" class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase border-b border-blue-200" scope="colgroup">
                                 <div class="flex items-center justify-center gap-2">
-                                    <i class="fas fa-bed"></i>
+                                    <i class="fas fa-bed" aria-hidden="true"></i>
                                     <span>Boarding</span>
                                 </div>
                             </th>
-                            <th colspan="2" class="px-4 py-4 text-center text-xs font-semibold text-gray-700 uppercase border-b-2 border-blue-200">
+                            <th rowspan="2" class="px-4 py-4 text-center text-xs font-semibold text-gray-700 uppercase border-b-2 border-blue-200" scope="col">
                                 <div class="flex items-center justify-center gap-2">
-                                    <i class="fas fa-school"></i>
-                                    <span class="hidden md:inline">Reguler</span>
-                                    <span class="md:hidden">Reguler</span>
+                                    <i class="fas fa-school" aria-hidden="true"></i>
+                                    <span>Non-Boarding</span>
                                 </div>
                             </th>
                         </tr>
-                        <tr class="bg-blue-50">
-                            <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase border-b-2 border-blue-200">
-                                <i class="fas fa-mars text-blue-600"></i> Putra
+                        <tr>
+                            <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase border-b-2 border-blue-200" scope="col">
+                                <i class="fas fa-mars text-blue-600" aria-hidden="true"></i> Putra
                             </th>
-                            <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase border-b-2 border-blue-200">
-                                <i class="fas fa-venus text-pink-600"></i> Putri
-                            </th>
-                            <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase border-b-2 border-blue-200">
-                                <i class="fas fa-mars text-blue-600"></i> Putra
+                            <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase border-b-2 border-blue-200" scope="col">
+                                <i class="fas fa-venus text-pink-600" aria-hidden="true"></i> Putri
                             </th>
                         </tr>
                     </thead>
@@ -135,7 +258,7 @@
                             <td class="px-4 py-4 text-center text-gray-700 font-medium">1</td>
                             <td class="px-4 py-4">
                                 <div class="flex items-center gap-2">
-                                    <i class="fas fa-tshirt text-blue-500"></i>
+                                    <i class="fas fa-tshirt text-blue-500" aria-hidden="true"></i>
                                     <span class="font-medium text-gray-800">Seragam</span>
                                 </div>
                             </td>
@@ -147,7 +270,7 @@
                             <td class="px-4 py-4 text-center text-gray-700 font-medium">2</td>
                             <td class="px-4 py-4">
                                 <div class="flex items-center gap-2">
-                                    <i class="fas fa-book text-cyan-500"></i>
+                                    <i class="fas fa-book text-cyan-500" aria-hidden="true"></i>
                                     <span class="font-medium text-gray-800">Buku Umum</span>
                                 </div>
                             </td>
@@ -159,7 +282,7 @@
                             <td class="px-4 py-4 text-center text-gray-700 font-medium">3</td>
                             <td class="px-4 py-4">
                                 <div class="flex items-center gap-2">
-                                    <i class="fas fa-book-open text-green-500"></i>
+                                    <i class="fas fa-book-open text-green-500" aria-hidden="true"></i>
                                     <span class="font-medium text-gray-800">Buku Ismubaris</span>
                                 </div>
                             </td>
@@ -171,7 +294,7 @@
                             <td class="px-4 py-4 text-center text-gray-700 font-medium">4</td>
                             <td class="px-4 py-4">
                                 <div class="flex items-center gap-2">
-                                    <i class="fas fa-book-quran text-amber-500"></i>
+                                    <i class="fas fa-book-quran text-amber-500" aria-hidden="true"></i>
                                     <span class="font-medium text-gray-800">Kitab Pondok</span>
                                 </div>
                             </td>
@@ -182,7 +305,7 @@
                         <tr class="bg-gradient-to-r from-blue-50 to-green-50 font-bold">
                             <td colspan="2" class="px-4 py-5">
                                 <div class="flex items-center gap-2 text-gray-900">
-                                    <i class="fas fa-wallet text-blue-600"></i>
+                                    <i class="fas fa-wallet text-blue-600" aria-hidden="true"></i>
                                     <span class="text-base md:text-lg">TOTAL BIAYA</span>
                                 </div>
                             </td>
@@ -193,13 +316,20 @@
                     </tbody>
                 </table>
             </div>
+            
+            <div class="p-4 bg-amber-50 border-t-2 border-amber-200">
+                <div class="flex items-start gap-2 text-amber-800">
+                    <i class="fas fa-info-circle mt-1 flex-shrink-0" aria-hidden="true"></i>
+                    <p class="text-sm"><strong>Catatan:</strong> Program Non-Boarding hanya tersedia untuk putra. Untuk santri putri, program yang tersedia adalah Boarding.</p>
+                </div>
+            </div>
         </div>
 
         <!-- Installment Section -->
-        <div class="bg-white rounded-2xl shadow-lg overflow-hidden mb-6">
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden mb-6 fade-in" style="animation-delay: 0.6s">
             <div class="bg-gradient-to-r from-green-600 to-green-700 p-5 md:p-6">
                 <div class="flex items-center gap-3">
-                    <i class="fas fa-calendar-days text-white text-2xl"></i>
+                    <i class="fas fa-calendar-days text-white text-2xl" aria-hidden="true"></i>
                     <div>
                         <h2 class="text-xl md:text-2xl font-bold text-white">Jadwal Pembayaran Angsuran</h2>
                         <p class="text-green-100 text-sm">Cicilan dapat dibayarkan mulai bulan April hingga Juli 2026</p>
@@ -207,15 +337,15 @@
                 </div>
             </div>
 
-            <div class="p-5 md:p-6 bg-gray-50">
+            <div class="p-5 md:p-6 bg-gradient-to-br from-gray-50 to-blue-50">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     
                     <!-- Angsuran 1 -->
-                    <div class="bg-white rounded-xl border-2 border-blue-200 overflow-hidden card">
+                    <div class="bg-white rounded-xl border-2 border-blue-200 overflow-hidden card shadow-md">
                         <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-4">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
                                         <span class="text-2xl font-bold text-white">1</span>
                                     </div>
                                     <div>
@@ -223,31 +353,40 @@
                                         <p class="text-blue-100 text-sm">April 2026</p>
                                     </div>
                                 </div>
-                                <i class="fas fa-calendar-check text-white text-2xl"></i>
+                                <i class="fas fa-calendar-check text-white text-2xl" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div class="p-4 space-y-2">
                             <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600 text-sm">Boarding Putra</span>
+                                <span class="text-gray-600 text-sm flex items-center gap-2">
+                                    <i class="fas fa-mars text-blue-500 text-xs" aria-hidden="true"></i>
+                                    Boarding Putra
+                                </span>
                                 <span class="font-bold text-blue-700">Rp 367.500</span>
                             </div>
                             <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600 text-sm">Boarding Putri</span>
+                                <span class="text-gray-600 text-sm flex items-center gap-2">
+                                    <i class="fas fa-venus text-pink-500 text-xs" aria-hidden="true"></i>
+                                    Boarding Putri
+                                </span>
                                 <span class="font-bold text-blue-700">Rp 407.000</span>
                             </div>
                             <div class="flex justify-between items-center py-2">
-                                <span class="text-gray-600 text-sm">Non-Boarding Putra</span>
+                                <span class="text-gray-600 text-sm flex items-center gap-2">
+                                    <i class="fas fa-mars text-blue-500 text-xs" aria-hidden="true"></i>
+                                    Non-Boarding Putra
+                                </span>
                                 <span class="font-bold text-blue-700">Rp 332.000</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Angsuran 2 -->
-                    <div class="bg-white rounded-xl border-2 border-green-200 overflow-hidden card">
+                    <div class="bg-white rounded-xl border-2 border-green-200 overflow-hidden card shadow-md">
                         <div class="bg-gradient-to-r from-green-500 to-green-600 p-4">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
                                         <span class="text-2xl font-bold text-white">2</span>
                                     </div>
                                     <div>
@@ -255,31 +394,40 @@
                                         <p class="text-green-100 text-sm">Mei 2026</p>
                                     </div>
                                 </div>
-                                <i class="fas fa-calendar-check text-white text-2xl"></i>
+                                <i class="fas fa-calendar-check text-white text-2xl" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div class="p-4 space-y-2">
                             <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600 text-sm">Boarding Putra</span>
+                                <span class="text-gray-600 text-sm flex items-center gap-2">
+                                    <i class="fas fa-mars text-blue-500 text-xs" aria-hidden="true"></i>
+                                    Boarding Putra
+                                </span>
                                 <span class="font-bold text-green-700">Rp 367.500</span>
                             </div>
                             <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600 text-sm">Boarding Putri</span>
+                                <span class="text-gray-600 text-sm flex items-center gap-2">
+                                    <i class="fas fa-venus text-pink-500 text-xs" aria-hidden="true"></i>
+                                    Boarding Putri
+                                </span>
                                 <span class="font-bold text-green-700">Rp 406.000</span>
                             </div>
                             <div class="flex justify-between items-center py-2">
-                                <span class="text-gray-600 text-sm">Non-Boarding Putra</span>
+                                <span class="text-gray-600 text-sm flex items-center gap-2">
+                                    <i class="fas fa-mars text-blue-500 text-xs" aria-hidden="true"></i>
+                                    Non-Boarding Putra
+                                </span>
                                 <span class="font-bold text-green-700">Rp 331.000</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Angsuran 3 -->
-                    <div class="bg-white rounded-xl border-2 border-cyan-200 overflow-hidden card">
+                    <div class="bg-white rounded-xl border-2 border-cyan-200 overflow-hidden card shadow-md">
                         <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 p-4">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
                                         <span class="text-2xl font-bold text-white">3</span>
                                     </div>
                                     <div>
@@ -287,31 +435,40 @@
                                         <p class="text-cyan-100 text-sm">Juni 2026</p>
                                     </div>
                                 </div>
-                                <i class="fas fa-calendar-check text-white text-2xl"></i>
+                                <i class="fas fa-calendar-check text-white text-2xl" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div class="p-4 space-y-2">
                             <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600 text-sm">Boarding Putra</span>
+                                <span class="text-gray-600 text-sm flex items-center gap-2">
+                                    <i class="fas fa-mars text-blue-500 text-xs" aria-hidden="true"></i>
+                                    Boarding Putra
+                                </span>
                                 <span class="font-bold text-cyan-700">Rp 367.500</span>
                             </div>
                             <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600 text-sm">Boarding Putri</span>
+                                <span class="text-gray-600 text-sm flex items-center gap-2">
+                                    <i class="fas fa-venus text-pink-500 text-xs" aria-hidden="true"></i>
+                                    Boarding Putri
+                                </span>
                                 <span class="font-bold text-cyan-700">Rp 406.000</span>
                             </div>
                             <div class="flex justify-between items-center py-2">
-                                <span class="text-gray-600 text-sm">Non-Boarding Putra</span>
+                                <span class="text-gray-600 text-sm flex items-center gap-2">
+                                    <i class="fas fa-mars text-blue-500 text-xs" aria-hidden="true"></i>
+                                    Non-Boarding Putra
+                                </span>
                                 <span class="font-bold text-cyan-700">Rp 331.000</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Angsuran 4 -->
-                    <div class="bg-white rounded-xl border-2 border-teal-200 overflow-hidden card">
+                    <div class="bg-white rounded-xl border-2 border-teal-200 overflow-hidden card shadow-md">
                         <div class="bg-gradient-to-r from-teal-500 to-teal-600 p-4">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center">
+                                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
                                         <span class="text-2xl font-bold text-white">4</span>
                                     </div>
                                     <div>
@@ -319,54 +476,156 @@
                                         <p class="text-teal-100 text-sm">Juli 2026</p>
                                     </div>
                                 </div>
-                                <i class="fas fa-calendar-check text-white text-2xl"></i>
+                                <i class="fas fa-calendar-check text-white text-2xl" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div class="p-4 space-y-2">
                             <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600 text-sm">Boarding Putra</span>
+                                <span class="text-gray-600 text-sm flex items-center gap-2">
+                                    <i class="fas fa-mars text-blue-500 text-xs" aria-hidden="true"></i>
+                                    Boarding Putra
+                                </span>
                                 <span class="font-bold text-teal-700">Rp 367.500</span>
                             </div>
                             <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600 text-sm">Boarding Putri</span>
+                                <span class="text-gray-600 text-sm flex items-center gap-2">
+                                    <i class="fas fa-venus text-pink-500 text-xs" aria-hidden="true"></i>
+                                    Boarding Putri
+                                </span>
                                 <span class="font-bold text-teal-700">Rp 406.000</span>
                             </div>
                             <div class="flex justify-between items-center py-2">
-                                <span class="text-gray-600 text-sm">Non-Boarding Putra</span>
+                                <span class="text-gray-600 text-sm flex items-center gap-2">
+                                    <i class="fas fa-mars text-blue-500 text-xs" aria-hidden="true"></i>
+                                    Non-Boarding Putra
+                                </span>
                                 <span class="font-bold text-teal-700">Rp 331.000</span>
                             </div>
                         </div>
                     </div>
 
                 </div>
-            </div>
-        </div>
-
-        <!-- Contact Section -->
-        <div class="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl shadow-lg p-6 md:p-8">
-            <div class="text-center text-white">
-                <i class="fas fa-headset text-5xl mb-4 opacity-90"></i>
-                <h2 class="text-2xl md:text-3xl font-bold mb-2">Butuh Bantuan?</h2>
-                <p class="text-blue-100 mb-6">Untuk informasi lebih lanjut, silakan menghubungi bagian administrasi atau koperasi sekolah</p>
                 
-                <div class="inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm px-6 py-4 rounded-xl border border-white/30">
-                    <i class="fas fa-phone text-2xl"></i>
-                    <div class="text-left">
-                        <a href="https://wa.me/6282245344633">
-                            <p class="text-sm text-blue-100">Contact Person</p>
-                            <p class="text-lg font-bold">Muhammad Afrizal</p>
-                        </a>
+                <!-- Payment Methods Info -->
+                <div class="mt-6 bg-white rounded-xl p-5 border-2 border-blue-100">
+                    <h3 class="font-bold text-gray-800 mb-3 flex items-center gap-2">
+                        <i class="fas fa-money-bill-wave text-green-600" aria-hidden="true"></i>
+                        Metode Pembayaran
+                    </h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div class="flex items-center gap-2 text-sm text-gray-700">
+                            <i class="fas fa-money-bill text-green-500" aria-hidden="true"></i>
+                            <span>Tunai</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-gray-700">
+                            <i class="fas fa-university text-blue-500" aria-hidden="true"></i>
+                            <span>Transfer Bank</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-gray-700">
+                            <i class="fas fa-mobile-alt text-purple-500" aria-hidden="true"></i>
+                            <span>E-Wallet</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-sm text-gray-700">
+                            <i class="fas fa-qrcode text-cyan-500" aria-hidden="true"></i>
+                            <span>QRIS</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Contact Section -->
+        <div class="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl shadow-2xl p-6 md:p-8 no-print fade-in" style="animation-delay: 0.7s">
+            <div class="text-center text-white">
+                <div class="inline-block floating-animation">
+                    <i class="fas fa-headset text-5xl mb-4 opacity-90" aria-hidden="true"></i>
+                </div>
+                <h2 class="text-2xl md:text-3xl font-bold mb-2">Butuh Bantuan?</h2>
+                <p class="text-blue-100 mb-6 max-w-2xl mx-auto">Untuk informasi lebih lanjut tentang pembayaran atau detail perlengkapan, silakan menghubungi contact person kami</p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="https://wa.me/6282245344633" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm px-6 py-4 rounded-xl border-2 border-white/30 hover:bg-white/30 transition-all card">
+                        <i class="fas fa-phone text-2xl" aria-hidden="true"></i>
+                        <div class="text-left">
+                            <p class="text-sm text-blue-100">Contact Person</p>
+                            <p class="text-lg font-bold">Muhammad Afrizal</p>
+                        </div>
+                    </a>
+                    
+                    <a href="https://wa.me/6282245344633" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 px-6 py-4 rounded-xl border-2 border-green-400 transition-all card shadow-lg">
+                        <i class="fab fa-whatsapp text-2xl" aria-hidden="true"></i>
+                        <div class="text-left">
+                            <p class="text-sm text-green-100">Chat via</p>
+                            <p class="text-lg font-bold">WhatsApp</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
         <!-- Footer -->
-        <div class="text-center mt-6 text-white/80">
+        <div class="text-center mt-6 text-white/80 no-print">
             <p class="text-sm">© 2026 Koperasi Senyummu. All rights reserved.</p>
+            <p class="text-xs mt-2 text-white/60">Designed with <i class="fas fa-heart text-red-400" aria-hidden="true"></i> for better santri experience</p>
         </div>
         
     </div>
+
+    <script>
+        // Calculator functionality
+        const programSelect = document.getElementById('programType');
+        const totalAmount = document.getElementById('totalAmount');
+        const installmentAmount = document.getElementById('installmentAmount');
+        
+        function formatRupiah(number) {
+            return 'Rp ' + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+        
+        function calculateInstallment() {
+            const total = parseInt(programSelect.value);
+            const installment = Math.ceil(total / 4);
+            
+            totalAmount.textContent = formatRupiah(total);
+            installmentAmount.textContent = formatRupiah(installment);
+        }
+        
+        programSelect.addEventListener('change', calculateInstallment);
+        
+        // Fade in animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            observer.observe(el);
+        });
+        
+        // Smooth scroll for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
