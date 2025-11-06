@@ -10,116 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #2563eb 100%);
-            min-height: 100vh;
-        }
-        
-        .card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
-        
-        .floating-animation {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.6s ease-in;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .table-wrapper {
-            position: relative;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        .table-wrapper::-webkit-scrollbar {
-            height: 8px;
-        }
-        
-        .table-wrapper::-webkit-scrollbar-track {
-            background: #f1f5f9;
-            border-radius: 10px;
-        }
-        
-        .table-wrapper::-webkit-scrollbar-thumb {
-            background: #3b82f6;
-            border-radius: 10px;
-        }
-        
-        .table-wrapper::-webkit-scrollbar-thumb:hover {
-            background: #2563eb;
-        }
-        
-        .sticky-header {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            background: white;
-        }
-        
-        .calculator-input {
-            transition: all 0.3s ease;
-        }
-        
-        .calculator-input:focus {
-            transform: scale(1.02);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
-        }
-        
-        @media print {
-            body {
-                background: white;
-            }
-            .no-print {
-                display: none !important;
-            }
-            .card {
-                box-shadow: none;
-                border: 1px solid #e5e7eb;
-            }
-        }
-        
-        .pulse-animation {
-            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: .5; }
-        }
-        
-        .shimmer {
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            background-size: 200% 100%;
-            animation: shimmer 2s infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="min-h-screen p-4 md:p-8">
     
@@ -175,46 +66,8 @@
             </div>
         </div>
 
-        <!-- Calculator Section -->
-        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden mb-6 fade-in no-print" style="animation-delay: 0.4s">
-            <div class="bg-gradient-to-r from-purple-600 to-purple-700 p-5 md:p-6">
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-calculator text-white text-2xl" aria-hidden="true"></i>
-                    <div>
-                        <h2 class="text-xl md:text-2xl font-bold text-white">Kalkulator Cicilan</h2>
-                        <p class="text-purple-100 text-sm">Hitung jumlah cicilan yang harus dibayar</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="p-5 md:p-6">
-                <div class="max-w-md mx-auto">
-                    <label for="programType" class="block text-sm font-semibold text-gray-700 mb-2">Pilih Program:</label>
-                    <select id="programType" class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:border-purple-500 focus:outline-none calculator-input text-gray-800 font-medium">
-                        <option value="1470000">Boarding Putra - Rp 1.470.000</option>
-                        <option value="1625000">Boarding Putri - Rp 1.625.000</option>
-                        <option value="1327000">Non-Boarding Putra - Rp 1.327.000</option>
-                    </select>
-                    
-                    <div class="mt-6 p-6 bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl border-2 border-purple-200">
-                        <div class="space-y-3">
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-700 font-medium">Total Biaya:</span>
-                                <span id="totalAmount" class="text-2xl font-bold text-purple-700">Rp 1.470.000</span>
-                            </div>
-                            <div class="h-px bg-purple-300"></div>
-                            <div class="flex justify-between items-center">
-                                <span class="text-gray-700 font-medium">Per Cicilan (4x):</span>
-                                <span id="installmentAmount" class="text-2xl font-bold text-green-600">Rp 367.500</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Table Section -->
-        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden mb-6 fade-in" style="animation-delay: 0.5s">
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden mb-6 fade-in" style="animation-delay: 0.4s">
             <div class="bg-gradient-to-r from-blue-600 to-blue-700 p-5 md:p-6">
                 <div class="flex items-center gap-3">
                     <i class="fas fa-file-invoice-dollar text-white text-2xl" aria-hidden="true"></i>
@@ -260,6 +113,9 @@
                                 <div class="flex items-center gap-2">
                                     <i class="fas fa-tshirt text-blue-500" aria-hidden="true"></i>
                                     <span class="font-medium text-gray-800">Seragam</span>
+                                    <button onclick="openModal('seragam')" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors" title="Lihat detail">
+                                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                                    </button>
                                 </div>
                             </td>
                             <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap">Rp 960.000</td>
@@ -272,6 +128,9 @@
                                 <div class="flex items-center gap-2">
                                     <i class="fas fa-book text-cyan-500" aria-hidden="true"></i>
                                     <span class="font-medium text-gray-800">Buku Umum</span>
+                                    <button onclick="openModal('bukuUmum')" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors" title="Lihat detail">
+                                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                                    </button>
                                 </div>
                             </td>
                             <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap">Rp 120.000</td>
@@ -284,6 +143,9 @@
                                 <div class="flex items-center gap-2">
                                     <i class="fas fa-book-open text-green-500" aria-hidden="true"></i>
                                     <span class="font-medium text-gray-800">Buku Ismubaris</span>
+                                    <button onclick="openModal('bukuIsmubaris')" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors" title="Lihat detail">
+                                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                                    </button>
                                 </div>
                             </td>
                             <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap">Rp 120.000</td>
@@ -296,6 +158,9 @@
                                 <div class="flex items-center gap-2">
                                     <i class="fas fa-book-quran text-amber-500" aria-hidden="true"></i>
                                     <span class="font-medium text-gray-800">Kitab Pondok</span>
+                                    <button onclick="openModal('kitabPondok')" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors" title="Lihat detail">
+                                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                                    </button>
                                 </div>
                             </td>
                             <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap">Rp 270.000</td>
@@ -326,7 +191,7 @@
         </div>
 
         <!-- Installment Section -->
-        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden mb-6 fade-in" style="animation-delay: 0.6s">
+        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden mb-6 fade-in" style="animation-delay: 0.5s">
             <div class="bg-gradient-to-r from-green-600 to-green-700 p-5 md:p-6">
                 <div class="flex items-center gap-3">
                     <i class="fas fa-calendar-days text-white text-2xl" aria-hidden="true"></i>
@@ -535,28 +400,28 @@
         </div>
 
         <!-- Contact Section -->
-        <div class="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl shadow-2xl p-6 md:p-8 no-print fade-in" style="animation-delay: 0.7s">
+        <div class="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl shadow-2xl p-6 md:p-8 no-print fade-in" style="animation-delay: 0.6s">
             <div class="text-center text-white">
                 <div class="inline-block floating-animation">
                     <i class="fas fa-headset text-5xl mb-4 opacity-90" aria-hidden="true"></i>
                 </div>
                 <h2 class="text-2xl md:text-3xl font-bold mb-2">Butuh Bantuan?</h2>
-                <p class="text-blue-100 mb-6 max-w-2xl mx-auto">Untuk informasi lebih lanjut tentang pembayaran atau detail perlengkapan, silakan menghubungi contact person kami</p>
+                <p class="text-blue-100 mb-6 max-w-2xl mx-auto">Untuk informasi lebih lanjut tentang pembayaran atau detail perlengkapan, silakan menghubungi kami</p>
                 
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                    <a href="https://wa.me/6282245344633" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm px-6 py-4 rounded-xl border-2 border-white/30 hover:bg-white/30 transition-all card">
-                        <i class="fas fa-phone text-2xl" aria-hidden="true"></i>
+                    <a href="https://wa.me/6282245344633" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 px-6 py-4 rounded-xl border-2 border-green-400 transition-all card shadow-lg">
+                        <i class="fab fa-whatsapp text-2xl" aria-hidden="true"></i>
                         <div class="text-left">
-                            <p class="text-sm text-blue-100">Contact Person</p>
+                            <p class="text-sm text-green-100">Chat via WhatsApp</p>
                             <p class="text-lg font-bold">Muhammad Afrizal</p>
                         </div>
                     </a>
                     
-                    <a href="https://wa.me/6282245344633" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 px-6 py-4 rounded-xl border-2 border-green-400 transition-all card shadow-lg">
-                        <i class="fab fa-whatsapp text-2xl" aria-hidden="true"></i>
+                    <a href="mailto:afrizal@senyummu.com" class="inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm px-6 py-4 rounded-xl border-2 border-white/30 hover:bg-white/30 transition-all card">
+                        <i class="fas fa-envelope text-2xl" aria-hidden="true"></i>
                         <div class="text-left">
-                            <p class="text-sm text-green-100">Chat via</p>
-                            <p class="text-lg font-bold">WhatsApp</p>
+                            <p class="text-sm text-blue-100">Email</p>
+                            <p class="text-lg font-bold">afrizal@senyummu.com</p>
                         </div>
                     </a>
                 </div>
@@ -571,61 +436,25 @@
         
     </div>
 
-    <script>
-        // Calculator functionality
-        const programSelect = document.getElementById('programType');
-        const totalAmount = document.getElementById('totalAmount');
-        const installmentAmount = document.getElementById('installmentAmount');
-        
-        function formatRupiah(number) {
-            return 'Rp ' + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-        }
-        
-        function calculateInstallment() {
-            const total = parseInt(programSelect.value);
-            const installment = Math.ceil(total / 4);
-            
-            totalAmount.textContent = formatRupiah(total);
-            installmentAmount.textContent = formatRupiah(installment);
-        }
-        
-        programSelect.addEventListener('change', calculateInstallment);
-        
-        // Fade in animations on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.fade-in').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            observer.observe(el);
-        });
-        
-        // Smooth scroll for better UX
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
+    <!-- Modal for Item Details -->
+    <div id="itemModal" class="fixed inset-0 bg-black/50 modal-backdrop z-50 hidden items-center justify-center p-4" onclick="closeModal(event)">
+        <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl animate-fade-in" onclick="event.stopPropagation()">
+            <div class="sticky top-0 bg-gradient-to-r from-blue-600 to-blue-700 p-5 flex items-center justify-between z-10">
+                <h3 id="modalTitle" class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-info-circle" aria-hidden="true"></i>
+                    Detail Item
+                </h3>
+                <button onclick="closeModal()" class="text-white hover:bg-white/20 w-10 h-10 rounded-lg transition-colors flex items-center justify-center">
+                    <i class="fas fa-times text-xl" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div id="modalContent" class="p-6">
+                <!-- Content will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 
 </body>
 </html>
