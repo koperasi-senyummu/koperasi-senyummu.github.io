@@ -68,11 +68,6 @@ const itemDetails = {
     }
 };
 
-// Format rupiah helper
-function formatRupiah(number) {
-    return 'Rp ' + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-}
-
 // Open modal function
 function openModal(itemType) {
     const modal = document.getElementById('itemModal');
@@ -85,6 +80,22 @@ function openModal(itemType) {
     modalTitle.innerHTML = `<i class="fas ${data.icon} mr-2" aria-hidden="true"></i>${data.title}`;
     
     let content = '<div class="space-y-4">';
+    
+    // Add design preview button for seragam
+    if (itemType === 'seragam') {
+        content += `
+            <div class="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-200 rounded-lg p-4">
+                <button onclick="openImageModal('seragam')" class="w-full flex items-center justify-center gap-3 bg-white hover:bg-green-50 p-4 rounded-lg border-2 border-green-300 transition-all group">
+                    <i class="fas fa-eye text-green-600 text-2xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
+                    <div class="text-left">
+                        <p class="font-bold text-gray-800">Lihat Desain Seragam</p>
+                        <p class="text-sm text-gray-600">Klik untuk melihat foto & sketsa desain</p>
+                    </div>
+                    <i class="fas fa-arrow-right text-green-600 ml-auto" aria-hidden="true"></i>
+                </button>
+            </div>
+        `;
+    }
     
     // Table
     content += `
@@ -160,6 +171,99 @@ function openModal(itemType) {
     modal.classList.add('flex');
     document.body.style.overflow = 'hidden';
 }
+
+// Image modal data
+const uniformImages = {
+    seragam: {
+        title: 'Desain Seragam',
+        images: [
+            {
+                url: './assets/seragam-koko-hijau.jpg',
+                caption: 'Seragam Koko Hijau Almamater',
+                description: 'Seragam resmi untuk acara formal dan kegiatan sekolah'
+            },
+            {
+                url: './assets/seragam-putih-biru.jpg', 
+                caption: 'Seragam Putih Biru',
+                description: 'Seragam harian santri'
+            },
+            {
+                url: './assets/seragam-batik.jpg',
+                caption: 'Seragam Batik',
+                description: 'Seragam untuk hari-hari tertentu'
+            }
+        ]
+    }
+};
+
+// Open image modal function
+function openImageModal(itemType) {
+    const modal = document.getElementById('imageModal');
+    const modalTitle = document.getElementById('imageModalTitle');
+    const modalContent = document.getElementById('imageModalContent');
+    
+    const data = uniformImages[itemType];
+    if (!data) return;
+    
+    modalTitle.innerHTML = `<i class="fas fa-images mr-2" aria-hidden="true"></i>${data.title}`;
+    
+    let content = '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">';
+    
+    data.images.forEach((img, index) => {
+        content += `
+            <div class="bg-gray-50 rounded-xl overflow-hidden border-2 border-gray-200 hover:shadow-lg transition-shadow">
+                <div class="aspect-square bg-white flex items-center justify-center p-4">
+                    <img src="${img.url}" alt="${img.caption}" class="max-w-full max-h-full object-contain" onerror="this.src='https://via.placeholder.com/400x400?text=Gambar+Tidak+Tersedia'">
+                </div>
+                <div class="p-4 bg-white">
+                    <h4 class="font-bold text-gray-800 mb-1">${img.caption}</h4>
+                    <p class="text-sm text-gray-600">${img.description}</p>
+                </div>
+            </div>
+        `;
+    });
+    
+    content += '</div>';
+    
+    content += `
+        <div class="mt-6 bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
+            <div class="flex items-start gap-2 text-blue-800">
+                <i class="fas fa-info-circle mt-0.5 flex-shrink-0" aria-hidden="true"></i>
+                <p class="text-sm"><strong>Catatan:</strong> Desain seragam dapat berubah sesuai kebijakan sekolah. Gambar di atas hanya sebagai referensi.</p>
+            </div>
+        </div>
+    `;
+    
+    modalContent.innerHTML = content;
+    
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close image modal function
+function closeImageModal(event) {
+    if (event && event.target.id !== 'imageModal') return;
+    
+    const modal = document.getElementById('imageModal');
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = 'auto';
+}
+
+// Update escape key handler
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeModal();
+        closeImageModal();
+    }
+});
+
+// Format rupiah helper
+function formatRupiah(number) {
+    return 'Rp ' + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
 
 // Close modal function
 function closeModal(event) {

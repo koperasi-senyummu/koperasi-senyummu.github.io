@@ -108,19 +108,21 @@
                     </thead>
                     <tbody class="divide-y divide-gray-200">
                         <tr class="hover:bg-blue-50 transition-colors">
-                            <td class="px-4 py-4 text-center text-gray-700 font-medium">1</td>
-                            <td class="px-4 py-4">
+                            <td class="px-4 py-4 text-center text-gray-700 font-medium border border-gray-300">1</td>
+                            <td class="px-4 py-4 border border-gray-300">
                                 <div class="flex items-center gap-2">
                                     <i class="fas fa-tshirt text-blue-500" aria-hidden="true"></i>
                                     <span class="font-medium text-gray-800">Seragam</span>
-                                    <button onclick="openModal('seragam')" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors" title="Lihat detail">
-                                        <i class="fas fa-info-circle" aria-hidden="true"></i>
-                                    </button>
+                                    <div class="flex gap-1 ml-2">
+                                        <button onclick="openModal('seragam')" class="text-blue-600 hover:text-blue-800 transition-colors" title="Lihat detail harga">
+                                            <i class="fas fa-info-circle" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </td>
-                            <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap">Rp 960.000</td>
-                            <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap">Rp 1.115.000</td>
-                            <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap">Rp 960.000</td>
+                            <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap border border-gray-300">Rp 960.000</td>
+                            <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap border border-gray-300">Rp 1.115.000</td>
+                            <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap border border-gray-300">Rp 960.000</td>
                         </tr>
                         <tr class="hover:bg-blue-50 transition-colors">
                             <td class="px-4 py-4 text-center text-gray-700 font-medium">2</td>
@@ -455,6 +457,24 @@
             </div>
             <div id="modalContent" class="p-6">
                 <!-- Content will be inserted here by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Image Preview -->
+    <div id="imageModal" class="fixed inset-0 bg-black/80 modal-backdrop z-50 hidden items-center justify-center p-4" onclick="closeImageModal(event)">
+        <div class="bg-white rounded-2xl max-w-5xl w-full max-h-[95vh] overflow-y-auto shadow-2xl animate-fade-in" onclick="event.stopPropagation()">
+            <div class="sticky top-0 bg-gradient-to-r from-green-600 to-green-700 p-5 flex items-center justify-between z-10">
+                <h3 id="imageModalTitle" class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-images" aria-hidden="true"></i>
+                    Desain Seragam
+                </h3>
+                <button onclick="closeImageModal()" class="text-white hover:bg-white/20 w-10 h-10 rounded-lg transition-colors flex items-center justify-center">
+                    <i class="fas fa-times text-xl" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div id="imageModalContent" class="p-6">
+                <!-- Image will be inserted here -->
             </div>
         </div>
     </div>
