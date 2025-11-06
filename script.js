@@ -5,11 +5,11 @@ const itemDetails = {
         icon: 'fa-tshirt',
         color: 'blue',
         items: [
-            { name: 'Kain Atasan Putih dan Bawahan Biru', boarding_putra: 125000, boarding_putri: 150000, non_boarding: 125000 },
-            { name: 'Kain Atasan IPM dan Bawahan IPM', boarding_putra: 125000, boarding_putri: 150000, non_boarding: 125000 },
-            { name: 'Kain Atasan Batik dan Bawahan Batik', boarding_putra: 135000, boarding_putri: 160000, non_boarding: 135000 },
+            { name: 'Kain Seragam Putih Biru', boarding_putra: 125000, boarding_putri: 150000, non_boarding: 125000 },
+            { name: 'Kain Seragam IPM', boarding_putra: 125000, boarding_putri: 150000, non_boarding: 125000 },
+            { name: 'Kain Seragam Batik', boarding_putra: 135000, boarding_putri: 160000, non_boarding: 135000 },
             { name: '1 Setel Koko Hijau Almamater', boarding_putra: 210000, boarding_putri: 230000, non_boarding: 210000 },
-            { name: 'Kain Atasan HW dan Bawahan HW', boarding_putra: 105000, boarding_putri: 130000, non_boarding: 105000 },
+            { name: 'Kain Seragam HW', boarding_putra: 105000, boarding_putri: 130000, non_boarding: 105000 },
             { name: 'Jas Almamater Hijau', boarding_putra: 165000, boarding_putri: 165000, non_boarding: 165000 },
             { name: '1 Setel Kaos Olahraga', boarding_putra: 95000, boarding_putri: 130000, non_boarding: 95000 },
         ]
