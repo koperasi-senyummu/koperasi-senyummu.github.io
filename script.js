@@ -19,12 +19,16 @@ const itemDetails = {
         icon: 'fa-book',
         color: 'cyan',
         items: [
-            { name: 'Buku Paket Matematika', boarding_putra: 25000, boarding_putri: 25000, non_boarding: 25000 },
-            { name: 'Buku Paket Bahasa Indonesia', boarding_putra: 20000, boarding_putri: 20000, non_boarding: 20000 },
-            { name: 'Buku Paket Bahasa Inggris', boarding_putra: 20000, boarding_putri: 20000, non_boarding: 20000 },
-            { name: 'Buku Paket IPA', boarding_putra: 25000, boarding_putri: 25000, non_boarding: 25000 },
-            { name: 'Buku Paket IPS', boarding_putra: 20000, boarding_putri: 20000, non_boarding: 20000 },
-            { name: 'LKS (Lembar Kerja Siswa)', boarding_putra: 10000, boarding_putri: 10000, non_boarding: 10000 }
+            { name: 'Bahasa Indonesia', boarding_putra: 10000, boarding_putri: 10000, non_boarding: 10000 },
+            { name: 'Matematika', boarding_putra: 10000, boarding_putri: 10000, non_boarding: 10000 },
+            { name: 'Bahasa Inggris', boarding_putra: 10000, boarding_putri: 10000, non_boarding: 10000 },
+            { name: 'IPA', boarding_putra: 20000, boarding_putri: 20000, non_boarding: 20000 },
+            { name: 'IPS', boarding_putra: 20000, boarding_putri: 20000, non_boarding: 20000 },
+            { name: 'PKN', boarding_putra: 10000, boarding_putri: 10000, non_boarding: 10000 },
+            { name: 'PJOK', boarding_putra: 10000, boarding_putri: 10000, non_boarding: 10000 },
+            { name: 'TIK', boarding_putra: 10000, boarding_putri: 10000, non_boarding: 10000 },
+            { name: 'Seni Rupa/SBK', boarding_putra: 10000, boarding_putri: 10000, non_boarding: 10000 },
+            { name: 'Bahasa Jawa', boarding_putra: 10000, boarding_putri: 10000, non_boarding: 10000 }
         ]
     },
     bukuIsmubaris: {
@@ -34,15 +38,16 @@ const itemDetails = {
         items: [
             // Boarding items
             { name: 'Buku Kemuhammadiyahan', boarding_putra: 30000, boarding_putri: 30000, non_boarding: 30000 },
-            { name: 'Buku Bahasa Arab', boarding_putra: 20000, boarding_putri: 15000, non_boarding: 15000 },
-            { name: 'Al-Quran metode Wafa', boarding_putra: 40000, boarding_putri: 30000, non_boarding: 30000 },
-            
+            { name: 'Buku Bahasa Arab', boarding_putra: 27000, boarding_putri: 27000, non_boarding: 0 },
+            { name: 'Al-Quran metode Wafa (TTG)', boarding_putra: 43000, boarding_putri: 43000, non_boarding: 43000 },
+            { name: 'Al-Quran metode Wafa (Menulis)', boarding_putra: 20000, boarding_putri: 20000, non_boarding: 20000 },
+
             // Non-Boarding additional items
-            { name: 'Buku Al Islam', boarding_putra: 0, boarding_putri: 0, non_boarding: 25000 },
-            { name: 'Buku Al Ashri', boarding_putra: 0, boarding_putri: 0, non_boarding: 25000 },
-            { name: 'Buku Dzikir Pagi Petang', boarding_putra: 0, boarding_putri: 0, non_boarding: 20000 },
-            { name: 'Buku Tahfidz', boarding_putra: 0, boarding_putri: 0, non_boarding: 35000 },
-            { name: 'Buku Prestasi', boarding_putra: 0, boarding_putri: 0, non_boarding: 25000 }
+            { name: 'Buku Al Islam', boarding_putra: 0, boarding_putri: 0, non_boarding: 60000 },
+            { name: 'Buku Al Ashri', boarding_putra: 0, boarding_putri: 0, non_boarding: 54000 },
+            { name: 'Buku Tahfidz', boarding_putra: 0, boarding_putri: 0, non_boarding: 20000 },
+            { name: 'Buku Dzikir Pagi Petang', boarding_putra: 0, boarding_putri: 0, non_boarding: 7500 },
+            { name: 'Buku Prestasi', boarding_putra: 0, boarding_putri: 0, non_boarding: 12500 }
         ]
     },
     kitabPondok: {
@@ -50,13 +55,15 @@ const itemDetails = {
         icon: 'fa-book-quran',
         color: 'amber',
         items: [
-            { name: 'Kitab Aqidatul Awam', boarding_putra: 25000, boarding_putri: 25000, non_boarding: null },
-            { name: 'Kitab Safinatun Najah', boarding_putra: 30000, boarding_putri: 30000, non_boarding: null },
-            { name: 'Kitab Sulam Taufiq', boarding_putra: 35000, boarding_putri: 35000, non_boarding: null },
-            { name: 'Kitab Jurumiyah', boarding_putra: 40000, boarding_putri: 40000, non_boarding: null },
-            { name: 'Kitab Imriti', boarding_putra: 35000, boarding_putri: 35000, non_boarding: null },
-            { name: 'Kitab Alfiyah', boarding_putra: 45000, boarding_putri: 45000, non_boarding: null },
-            { name: 'Kitab Tafsir Jalalain', boarding_putra: 60000, boarding_putri: 60000, non_boarding: null }
+            { name: 'Aqidah', boarding_putra: 40000, boarding_putri: 40000, non_boarding: null },
+            { name: 'Akhlak', boarding_putra: 40000, boarding_putri: 40000, non_boarding: null },
+            { name: 'Fiqih', boarding_putra: 37000, boarding_putri: 37000, non_boarding: null },
+            { name: 'SKI', boarding_putra: 40000, boarding_putri: 40000, non_boarding: null },
+            { name: 'Tuhfah', boarding_putra: 35000, boarding_putri: 35000, non_boarding: null },
+            { name: 'Hadist', boarding_putra: 38000, boarding_putri: 38000, non_boarding: null },
+            { name: 'Buku Tahfidz', boarding_putra: 20000, boarding_putri: 20000, non_boarding: null },
+            { name: 'Buku Dzikir Pagi Petang', boarding_putra: 7500, boarding_putri: 7500, non_boarding: null },
+            { name: 'Buku Prestasi', boarding_putra: 12500, boarding_putri: 12500, non_boarding: null }
         ]
     }
 };
@@ -104,8 +111,8 @@ function openModal(itemType) {
         content += `
             <tr class="${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-${data.color}-50 transition-colors">
                 <td class="px-4 py-3 text-gray-800 font-medium">${item.name}</td>
-                <td class="px-4 py-3 text-center text-gray-700 font-semibold whitespace-nowrap">${formatRupiah(item.boarding_putra)}</td>
-                <td class="px-4 py-3 text-center text-gray-700 font-semibold whitespace-nowrap">${formatRupiah(item.boarding_putri)}</td>
+                <td class="px-4 py-3 text-center text-gray-700 font-semibold whitespace-nowrap">${item.boarding_putra ? formatRupiah(item.boarding_putra) : '—'}</td>
+                <td class="px-4 py-3 text-center text-gray-700 font-semibold whitespace-nowrap">${item.boarding_putri ? formatRupiah(item.boarding_putri) : '—'}</td>
                 <td class="px-4 py-3 text-center text-gray-700 font-semibold whitespace-nowrap">${item.non_boarding ? formatRupiah(item.non_boarding) : '—'}</td>
             </tr>
         `;
