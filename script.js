@@ -381,7 +381,7 @@ function debounce(func, wait) {
     };
 }
 
-// Floating Button Functionality - IMPROVED VERSION
+// Floating Button - FAST & SIMPLE VERSION
 function initFloatingButton() {
     const mainBtn = document.getElementById('floatingMainBtn');
     const subButtons = document.getElementById('floatingSubButtons');
@@ -390,51 +390,50 @@ function initFloatingButton() {
 
     let isOpen = false;
 
-    // Toggle sub buttons
+    // Fast click handler
     mainBtn.addEventListener('click', function(e) {
         e.stopPropagation();
         
-        isOpen = !isOpen;
-        
-        if (isOpen) {
-            // Show sub buttons
+        if (!isOpen) {
+            // OPEN - Show sub buttons immediately
             subButtons.classList.remove('hidden');
             subButtons.classList.add('show');
             mainBtn.innerHTML = '<i class="fas fa-times text-xl" aria-hidden="true"></i>';
-            mainBtn.classList.remove('from-blue-600', 'to-blue-700');
-            mainBtn.classList.add('from-red-500', 'to-red-600');
-            mainBtn.classList.add('rotate-plus');
+            mainBtn.classList.remove('bg-blue-600');
+            mainBtn.classList.add('bg-red-500');
+            isOpen = true;
         } else {
-            // Hide sub buttons
+            // CLOSE - Hide sub buttons immediately  
             subButtons.classList.remove('show');
-            setTimeout(() => {
-                subButtons.classList.add('hidden');
-            }, 300);
-            mainBtn.innerHTML = '<i class="fas fa-plus text-xl" aria-hidden="true"></i>';
-            mainBtn.classList.remove('from-red-500', 'to-red-600', 'rotate-plus');
-            mainBtn.classList.add('from-blue-600', 'to-blue-700');
+            subButtons.classList.add('hidden');
+            mainBtn.innerHTML = '<i class="fas fa-bars text-xl" aria-hidden="true"></i>';
+            mainBtn.classList.remove('bg-red-500');
+            mainBtn.classList.add('bg-blue-600');
+            isOpen = false;
         }
     });
 
-    // Close when clicking outside
+    // Fast close when clicking outside
     document.addEventListener('click', function(e) {
         if (isOpen && !e.target.closest('#floatingMainBtn') && !e.target.closest('#floatingSubButtons')) {
-            isOpen = false;
             subButtons.classList.remove('show');
-            setTimeout(() => {
-                subButtons.classList.add('hidden');
-            }, 300);
-            mainBtn.innerHTML = '<i class="fas fa-plus text-xl" aria-hidden="true"></i>';
-            mainBtn.classList.remove('from-red-500', 'to-red-600', 'rotate-plus');
-            mainBtn.classList.add('from-blue-600', 'to-blue-700');
+            subButtons.classList.add('hidden');
+            mainBtn.innerHTML = '<i class="fas fa-bars text-xl" aria-hidden="true"></i>';
+            mainBtn.classList.remove('bg-red-500');
+            mainBtn.classList.add('bg-blue-600');
+            isOpen = false;
         }
     });
 
-    // Prevent sub buttons from closing when clicking on them
+    // Fast click on sub buttons
     subButtons.addEventListener('click', function(e) {
         e.stopPropagation();
     });
 }
 
-// Initialize when page loads
-document.addEventListener('DOMContentLoaded', initFloatingButton);
+// Initialize immediately
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFloatingButton);
+} else {
+    initFloatingButton();
+}
