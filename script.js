@@ -222,20 +222,27 @@ function openImageModal(itemType) {
     const data = uniformImages[itemType];
     if (!data) return;
     
-    modalTitle.innerHTML = `<i class="fas fa-images mr-2" aria-hidden="true"></i>${data.title}`;
-    
-    let content = `
-        <!-- Back Button -->
-        <div class="mb-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl p-4">
+    // Update modal header dengan tombol back di kiri dan close di kanan
+    modalTitle.innerHTML = `
+        <div class="flex items-center justify-between w-full">
             <button onclick="closeImageModalAndBackToDetail('${itemType}')" 
-                    class="w-full flex items-center justify-center gap-3 bg-white hover:bg-blue-50 text-blue-700 font-semibold py-3 px-4 rounded-lg border-2 border-blue-300 transition-all group shadow-sm">
-                <i class="fas fa-arrow-left text-blue-600 group-hover:-translate-x-1 transition-transform" aria-hidden="true"></i>
-                <span>Kembali ke Detail Harga Seragam</span>
+                    class="flex items-center gap-2 text-white hover:bg-white/20 px-3 py-2 rounded-lg transition-colors group">
+                <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform" aria-hidden="true"></i>
+                <span class="font-medium">Kembali</span>
+            </button>
+            
+            <div class="flex items-center gap-2">
+                <i class="fas fa-images mr-2" aria-hidden="true"></i>
+                <span>${data.title}</span>
+            </div>
+            
+            <button onclick="closeImageModal()" class="text-white hover:bg-white/20 w-10 h-10 rounded-lg transition-colors flex items-center justify-center">
+                <i class="fas fa-times text-xl" aria-hidden="true"></i>
             </button>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     `;
+    
+    let content = '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
     
     data.images.forEach((img, index) => {
         content += `
