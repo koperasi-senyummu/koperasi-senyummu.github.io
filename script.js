@@ -408,7 +408,7 @@ function initFloatingButton() {
             subButtons.classList.add('hidden');
             mainBtn.innerHTML = '<i class="fas fa-bars text-xl" aria-hidden="true"></i>';
             mainBtn.classList.remove('bg-red-500');
-            mainBtn.classList.add('bg-blue-600');
+            mainBtn.classList.add('bg-green-600');
             isOpen = false;
         }
     });
@@ -420,7 +420,7 @@ function initFloatingButton() {
             subButtons.classList.add('hidden');
             mainBtn.innerHTML = '<i class="fas fa-bars text-xl" aria-hidden="true"></i>';
             mainBtn.classList.remove('bg-red-500');
-            mainBtn.classList.add('bg-blue-600');
+            mainBtn.classList.add('bg-green-600');
             isOpen = false;
         }
     });
