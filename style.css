@@ -1,5 +1,7 @@
 * {
     font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -112,20 +114,169 @@ body {
     backdrop-filter: blur(4px);
 }
 
-/* Modal scrollbar styling */
-#itemModal .bg-white::-webkit-scrollbar {
-    width: 8px;
+/* OPTIMIZED MODAL SCROLL PERFORMANCE */
+#itemModal > div > div:last-child,
+#imageModal > div > div:last-child {
+    scrollbar-width: thin;
+    scrollbar-color: #3b82f6 #f1f5f9;
+    /* FIX: Optimized scroll performance */
+    scroll-behavior: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
 }
 
-#itemModal .bg-white::-webkit-scrollbar-track {
+#itemModal > div > div:last-child::-webkit-scrollbar,
+#imageModal > div > div:last-child::-webkit-scrollbar {
+    width: 8px; /* Reduced from 10px */
+}
+
+#itemModal > div > div:last-child::-webkit-scrollbar-track,
+#imageModal > div > div:last-child::-webkit-scrollbar-track {
     background: #f1f5f9;
+    border-radius: 8px;
+    margin: 4px 0; /* Reduced margin */
 }
 
-#itemModal .bg-white::-webkit-scrollbar-thumb {
+#itemModal > div > div:last-child::-webkit-scrollbar-thumb,
+#imageModal > div > div:last-child::-webkit-scrollbar-thumb {
     background: #3b82f6;
-    border-radius: 10px;
+    border-radius: 8px;
+    border: 2px solid #f1f5f9;
 }
 
-#itemModal .bg-white::-webkit-scrollbar-thumb:hover {
+#itemModal > div > div:last-child::-webkit-scrollbar-thumb:hover,
+#imageModal > div > div:last-child::-webkit-scrollbar-thumb:hover {
     background: #2563eb;
+}
+
+/* FIX: Better GPU acceleration for modals */
+#itemModal,
+#imageModal {
+    transform: translate3d(0, 0, 0); /* Better than translateZ(0) */
+    backface-visibility: hidden;
+    perspective: 1000;
+}
+
+#itemModal > div,
+#imageModal > div {
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+}
+
+/* FIX: Specific optimization for image modal */
+#imageModal > div > div:last-child {
+    /* Force GPU layer for smooth scrolling */
+    transform: translate3d(0, 0, 0);
+    /* Optimize scrolling performance */
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+    /* Prevent layout shifts */
+    contain: layout style paint;
+}
+
+/* FIX: Optimize images in modal */
+#imageModal img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+    /* Prevent image loading from affecting scroll */
+    content-visibility: auto;
+}
+
+/* FIX: Simplify grid layout in image modal */
+#imageModal .grid {
+    display: grid;
+    gap: 1rem; /* Reduced from larger gap */
+    transform: translate3d(0, 0, 0);
+}
+
+/* FIX: Remove complex transitions during scroll */
+#imageModal .grid > div {
+    transition: none; /* Disable transitions during scroll */
+    transform: translate3d(0, 0, 0);
+}
+
+/* FIX: Optimize card transitions */
+.card,
+.floating-animation,
+button,
+a {
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+}
+
+/* FIX: Reduce motion for better performance */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* FIX: Optimize transitions */
+.transition-colors,
+.transition-shadow,
+.transition-all,
+.transition-transform {
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translate3d(0, 0, 0);
+}
+
+/* FIX: Prevent layout thrashing */
+#imageModal .aspect-square {
+    position: relative;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0);
+}
+
+#imageModal .aspect-square img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform: translate3d(0, 0, 0);
+}
+
+/* FIX: Mobile optimization */
+@media (max-width: 768px) {
+    #imageModal > div {
+        margin: 1rem;
+        width: calc(100% - 2rem);
+    }
+    
+    #imageModal > div > div:last-child {
+        -webkit-overflow-scrolling: touch;
+        overflow-scrolling: touch;
+    }
+    
+    #imageModal .grid {
+        gap: 0.75rem; /* Even smaller gap on mobile */
+    }
+}
+
+/* FIX: Hide scrollbar when not needed for better performance */
+#imageModal > div > div:last-child::-webkit-scrollbar {
+    display: none;
+}
+
+#imageModal > div > div:last-child {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+/* Show scrollbar only on hover for desktop */
+@media (hover: hover) {
+    #imageModal > div > div:last-child:hover::-webkit-scrollbar {
+        display: block;
+    }
 }

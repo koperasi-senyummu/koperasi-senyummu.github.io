@@ -178,12 +178,12 @@ const uniformImages = {
         title: 'Desain Seragam',
         images: [
             {
-                url: './assets/seragam-koko-hijau.jpg',
+                url: 'https://imgs.search.brave.com/AivwWYVdVJcQyFAuxGUexwdAl70b35TQhc_HZiVVw9o/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2Q3L2Nh/LzUwL2Q3Y2E1MGJh/N2JkOTUyYjFlMTg2/ODAxMjZiOTNhY2Yx/LmpwZw',
                 caption: 'Seragam Koko Hijau Almamater',
                 description: 'Seragam resmi untuk acara formal dan kegiatan sekolah'
             },
             {
-                url: './assets/seragam-putih-biru.jpg', 
+                url: 'https://imgs.search.brave.com/UxkRvn3D47ZRQLYWkJUhJIfoKYiUbEC2ArolweemtzQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzljLzQ2/L2ZjLzljNDZmYzVm/ZGVmN2NkNjUyNjYx/YjZmMjQzNTRjMzli/LmpwZw', 
                 caption: 'Seragam Putih Biru',
                 description: 'Seragam harian santri'
             },
@@ -207,17 +207,23 @@ function openImageModal(itemType) {
     
     modalTitle.innerHTML = `<i class="fas fa-images mr-2" aria-hidden="true"></i>${data.title}`;
     
-    let content = '<div class="grid grid-cols-1 md:grid-cols-2 gap-6">';
+    let content = '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">'; // Reduced gap
     
     data.images.forEach((img, index) => {
         content += `
-            <div class="bg-gray-50 rounded-xl overflow-hidden border-2 border-gray-200 hover:shadow-lg transition-shadow">
-                <div class="aspect-square bg-white flex items-center justify-center p-4">
-                    <img src="${img.url}" alt="${img.caption}" class="max-w-full max-h-full object-contain" onerror="this.src='https://via.placeholder.com/400x400?text=Gambar+Tidak+Tersedia'">
+            <div class="bg-gray-50 rounded-lg overflow-hidden border border-gray-200"> <!-- Simplified styling -->
+                <div class="aspect-square bg-gray-100 flex items-center justify-center p-2"> <!-- Lighter background -->
+                    <img src="${img.url}" 
+                         alt="${img.caption}" 
+                         class="max-w-full max-h-full object-contain transition-opacity duration-300"
+                         loading="lazy"
+                         onload="this.style.opacity='1'"
+                         onerror="this.src='https://via.placeholder.com/400x400?text=Gambar+Tidak+Tersedia';this.style.opacity='1'"
+                         style="opacity:0"> <!-- Initial opacity 0 for smooth loading -->
                 </div>
-                <div class="p-4 bg-white">
-                    <h4 class="font-bold text-gray-800 mb-1">${img.caption}</h4>
-                    <p class="text-sm text-gray-600">${img.description}</p>
+                <div class="p-3 bg-white"> <!-- Reduced padding -->
+                    <h4 class="font-semibold text-gray-800 text-sm mb-1">${img.caption}</h4> <!-- Smaller text -->
+                    <p class="text-xs text-gray-600">${img.description}</p>
                 </div>
             </div>
         `;
@@ -226,19 +232,24 @@ function openImageModal(itemType) {
     content += '</div>';
     
     content += `
-        <div class="mt-6 bg-blue-50 border-2 border-blue-200 rounded-lg p-4">
+        <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm"> <!-- Smaller note -->
             <div class="flex items-start gap-2 text-blue-800">
                 <i class="fas fa-info-circle mt-0.5 flex-shrink-0" aria-hidden="true"></i>
-                <p class="text-sm"><strong>Catatan:</strong> Desain seragam dapat berubah sesuai kebijakan sekolah. Gambar di atas hanya sebagai referensi.</p>
+                <p><strong>Catatan:</strong> Desain seragam dapat berubah sesuai kebijakan sekolah.</p>
             </div>
         </div>
     `;
     
     modalContent.innerHTML = content;
     
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    document.body.style.overflow = 'hidden';
+    // Force layout calculation before showing modal
+    modal.offsetHeight;
+    
+    requestAnimationFrame(() => {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        document.body.style.overflow = 'hidden';
+    });
 }
 
 // Close image modal function
@@ -285,14 +296,19 @@ document.addEventListener('keydown', (e) => {
 // Fade in animations on scroll
 const observerOptions = {
     threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    rootMargin: '0px 0px -100px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            // Use requestAnimationFrame for smoother animation
+            requestAnimationFrame(() => {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            });
+            // Stop observing after animation to improve performance
+            observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
@@ -300,6 +316,7 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.fade-in').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease-in, transform 0.6s ease-in';
     observer.observe(el);
 });
 
@@ -316,3 +333,15 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
