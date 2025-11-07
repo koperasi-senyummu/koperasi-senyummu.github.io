@@ -179,18 +179,38 @@ const uniformImages = {
         images: [
             {
                 url: 'https://imgs.search.brave.com/AivwWYVdVJcQyFAuxGUexwdAl70b35TQhc_HZiVVw9o/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2Q3L2Nh/LzUwL2Q3Y2E1MGJh/N2JkOTUyYjFlMTg2/ODAxMjZiOTNhY2Yx/LmpwZw',
-                caption: 'Seragam Koko Hijau Almamater',
-                description: 'Seragam resmi untuk acara formal dan kegiatan sekolah'
+                caption: 'Seragam Putih Biru',
+                description: 'Seragam untuk hari Senin'
             },
             {
                 url: 'https://imgs.search.brave.com/UxkRvn3D47ZRQLYWkJUhJIfoKYiUbEC2ArolweemtzQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzljLzQ2/L2ZjLzljNDZmYzVm/ZGVmN2NkNjUyNjYx/YjZmMjQzNTRjMzli/LmpwZw', 
-                caption: 'Seragam Putih Biru',
-                description: 'Seragam harian santri'
+                caption: 'Seragam IPM',
+                description: 'Seragam untuk hari Selasa'
             },
             {
                 url: './assets/seragam-batik.jpg',
                 caption: 'Seragam Batik',
-                description: 'Seragam untuk hari-hari tertentu'
+                description: 'Seragam untuk hari Rabu'
+            },
+            {
+                url: './assets/seragam-batik.jpg',
+                caption: 'Seragam Almamater',
+                description: 'Seragam untuk hari Kamis'
+            },
+            {
+                url: './assets/seragam-batik.jpg',
+                caption: 'Seragam Hizbul Wathan',
+                description: "Seragam untuk Jum'at"
+            },
+            {
+                url: './assets/seragam-batik.jpg',
+                caption: 'Jas Almamater',
+                description: 'Seragam yang digunakan untuk hari-hari tertentu'
+            },
+            {
+                url: './assets/seragam-batik.jpg',
+                caption: 'Seragam Olahraga',
+                description: 'Seragam yang digunakan sesuai dengan jadwal olahraga'
             }
         ]
     }
