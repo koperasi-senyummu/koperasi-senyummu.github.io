@@ -200,39 +200,63 @@ body {
     transform: translate3d(0, 0, 0);
 }
 
-/* Floating Button Styles */
+/* Floating Button Improved Styles */
 #floatingSubButtons {
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #floatingSubButtons.show {
     display: flex !important;
-    animation: fadeInUp 0.3s ease;
+    animation: slideUpFade 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes fadeInUp {
+@keyframes slideUpFade {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(20px) scale(0.9);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
     }
 }
 
-/* Pulse animation for main button */
-@keyframes pulse-glow {
-    0%, 100% { 
-        box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7);
-    }
-    50% { 
-        box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
-    }
+/* Rotate animation for main button */
+#floatingMainBtn.rotate-plus i {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.pulse-glow {
-    animation: pulse-glow 2s infinite;
+#floatingMainBtn.rotate-plus i {
+    transform: rotate(45deg);
+}
+
+/* Tooltip styles */
+.floating-tooltip {
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    margin-right: 0.75rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 50;
+}
+
+.floating-tooltip::after {
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0.3rem solid transparent;
+    border-left-color: rgba(0, 0, 0, 0.9);
 }
 
 /* FIX: Optimize card transitions */
