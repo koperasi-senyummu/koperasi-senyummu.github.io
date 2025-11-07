@@ -83,7 +83,7 @@ function openModal(itemType) {
         content += `
             <div class="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-200 rounded-lg p-4">
                 <button onclick="openImageModal('seragam')" class="w-full flex items-center justify-center gap-3 bg-white hover:bg-green-50 p-4 rounded-lg border-2 border-green-300 transition-all group">
-                    <i class="fas fa-eye text-green-600 text-2xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
+                    <i class="fas fa-images text-green-600 text-2xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
                     <div class="text-left">
                         <p class="font-bold text-gray-800">Lihat Desain Seragam</p>
                         <p class="text-sm text-gray-600">Klik untuk melihat foto & sketsa desain</p>
