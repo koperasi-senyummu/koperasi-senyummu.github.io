@@ -380,3 +380,76 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
+
+// Floating Button Functionality - SIMPLE VERSION
+function initFloatingButton() {
+    const mainBtn = document.getElementById('floatingMainBtn');
+    const subButtons = document.getElementById('floatingSubButtons');
+    
+    console.log('Floating button elements:', { mainBtn, subButtons }); // Debug
+    
+    if (!mainBtn || !subButtons) {
+        console.error('Floating button elements not found!');
+        return;
+    }
+
+    let isOpen = false;
+
+    // Toggle sub buttons
+    mainBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        console.log('Main button clicked, current state:', isOpen); // Debug
+        
+        isOpen = !isOpen;
+        
+        if (isOpen) {
+            // Show sub buttons
+            subButtons.classList.remove('hidden');
+            subButtons.classList.add('show');
+            mainBtn.innerHTML = '<i class="fas fa-times text-xl" aria-hidden="true"></i>';
+            mainBtn.classList.remove('from-blue-600', 'to-blue-700');
+            mainBtn.classList.add('from-red-500', 'to-red-600');
+        } else {
+            // Hide sub buttons
+            subButtons.classList.remove('show');
+            subButtons.classList.add('hidden');
+            mainBtn.innerHTML = '<i class="fas fa-school text-xl" aria-hidden="true"></i>';
+            mainBtn.classList.remove('from-red-500', 'to-red-600');
+            mainBtn.classList.add('from-blue-600', 'to-blue-700');
+        }
+        
+        console.log('New state:', isOpen); // Debug
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', function(e) {
+        if (isOpen && !e.target.closest('#floatingMainBtn') && !e.target.closest('#floatingSubButtons')) {
+            console.log('Click outside, closing sub buttons'); // Debug
+            
+            isOpen = false;
+            subButtons.classList.remove('show');
+            subButtons.classList.add('hidden');
+            mainBtn.innerHTML = '<i class="fas fa-school text-xl" aria-hidden="true"></i>';
+            mainBtn.classList.remove('from-red-500', 'to-red-600');
+            mainBtn.classList.add('from-blue-600', 'to-blue-700');
+        }
+    });
+
+    // Prevent sub buttons from closing when clicking on them
+    subButtons.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+}
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, initializing floating button...'); // Debug
+    initFloatingButton();
+});
+
+// Juga initialize jika DOM sudah loaded (untuk jaga-jaga)
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFloatingButton);
+} else {
+    initFloatingButton();
+}
