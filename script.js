@@ -36,13 +36,10 @@ const itemDetails = {
         icon: 'fa-book-open',
         color: 'green',
         items: [
-            // Boarding items
             { name: 'Buku Kemuhammadiyahan', boarding_putra: 30000, boarding_putri: 30000, non_boarding: 30000 },
             { name: 'Buku Bahasa Arab', boarding_putra: 27000, boarding_putri: 27000, non_boarding: 0 },
             { name: 'Al-Quran metode Wafa (TTG)', boarding_putra: 43000, boarding_putri: 43000, non_boarding: 43000 },
             { name: 'Al-Quran metode Wafa (Menulis)', boarding_putra: 20000, boarding_putri: 20000, non_boarding: 20000 },
-
-            // Non-Boarding additional items
             { name: 'Buku Al Islam', boarding_putra: 0, boarding_putri: 0, non_boarding: 60000 },
             { name: 'Buku Al Ashri', boarding_putra: 0, boarding_putri: 0, non_boarding: 54000 },
             { name: 'Buku Tahfidz', boarding_putra: 0, boarding_putri: 0, non_boarding: 20000 },
@@ -227,22 +224,33 @@ function openImageModal(itemType) {
     
     modalTitle.innerHTML = `<i class="fas fa-images mr-2" aria-hidden="true"></i>${data.title}`;
     
-    let content = '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">'; // Reduced gap
+    let content = `
+        <!-- Back Button -->
+        <div class="mb-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl p-4">
+            <button onclick="closeImageModalAndBackToDetail('${itemType}')" 
+                    class="w-full flex items-center justify-center gap-3 bg-white hover:bg-blue-50 text-blue-700 font-semibold py-3 px-4 rounded-lg border-2 border-blue-300 transition-all group shadow-sm">
+                <i class="fas fa-arrow-left text-blue-600 group-hover:-translate-x-1 transition-transform" aria-hidden="true"></i>
+                <span>Kembali ke Detail Harga Seragam</span>
+            </button>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    `;
     
     data.images.forEach((img, index) => {
         content += `
-            <div class="bg-gray-50 rounded-lg overflow-hidden border border-gray-200"> <!-- Simplified styling -->
-                <div class="aspect-square bg-gray-100 flex items-center justify-center p-2"> <!-- Lighter background -->
+            <div class="bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
+                <div class="aspect-square bg-gray-100 flex items-center justify-center p-2">
                     <img src="${img.url}" 
                          alt="${img.caption}" 
                          class="max-w-full max-h-full object-contain transition-opacity duration-300"
                          loading="lazy"
                          onload="this.style.opacity='1'"
                          onerror="this.src='https://via.placeholder.com/400x400?text=Gambar+Tidak+Tersedia';this.style.opacity='1'"
-                         style="opacity:0"> <!-- Initial opacity 0 for smooth loading -->
+                         style="opacity:0">
                 </div>
-                <div class="p-3 bg-white"> <!-- Reduced padding -->
-                    <h4 class="font-semibold text-gray-800 text-sm mb-1">${img.caption}</h4> <!-- Smaller text -->
+                <div class="p-3 bg-white">
+                    <h4 class="font-semibold text-gray-800 text-sm mb-1">${img.caption}</h4>
                     <p class="text-xs text-gray-600">${img.description}</p>
                 </div>
             </div>
@@ -252,7 +260,7 @@ function openImageModal(itemType) {
     content += '</div>';
     
     content += `
-        <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm"> <!-- Smaller note -->
+        <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm">
             <div class="flex items-start gap-2 text-blue-800">
                 <i class="fas fa-info-circle mt-0.5 flex-shrink-0" aria-hidden="true"></i>
                 <p><strong>Catatan:</strong> Desain seragam dapat berubah sesuai kebijakan sekolah.</p>
@@ -262,6 +270,9 @@ function openImageModal(itemType) {
     
     modalContent.innerHTML = content;
     
+    // Tutup modal detail seragam terlebih dahulu untuk mengurangi beban
+    closeModal();
+    
     // Force layout calculation before showing modal
     modal.offsetHeight;
     
@@ -270,6 +281,20 @@ function openImageModal(itemType) {
         modal.classList.add('flex');
         document.body.style.overflow = 'hidden';
     });
+}
+
+// Fungsi baru untuk kembali ke modal detail
+function closeImageModalAndBackToDetail(itemType) {
+    const imageModal = document.getElementById('imageModal');
+    
+    // Tutup modal gambar dulu
+    imageModal.classList.add('hidden');
+    imageModal.classList.remove('flex');
+    
+    // Buka kembali modal detail setelah delay kecil
+    setTimeout(() => {
+        openModal(itemType);
+    }, 50);
 }
 
 // Close image modal function
@@ -282,20 +307,6 @@ function closeImageModal(event) {
     document.body.style.overflow = 'auto';
 }
 
-// Update escape key handler
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeModal();
-        closeImageModal();
-    }
-});
-
-// Format rupiah helper
-function formatRupiah(number) {
-    return 'Rp ' + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-}
-
-
 // Close modal function
 function closeModal(event) {
     if (event && event.target.id !== 'itemModal') return;
@@ -306,12 +317,24 @@ function closeModal(event) {
     document.body.style.overflow = 'auto';
 }
 
-// Close modal with Escape key
+// Update escape key handler untuk handle kedua modal
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        closeModal();
+        const imageModal = document.getElementById('imageModal');
+        const itemModal = document.getElementById('itemModal');
+        
+        if (!imageModal.classList.contains('hidden')) {
+            closeImageModal();
+        } else if (!itemModal.classList.contains('hidden')) {
+            closeModal();
+        }
     }
 });
+
+// Format rupiah helper
+function formatRupiah(number) {
+    return 'Rp ' + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
 // Fade in animations on scroll
 const observerOptions = {
@@ -322,12 +345,10 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            // Use requestAnimationFrame for smoother animation
             requestAnimationFrame(() => {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
             });
-            // Stop observing after animation to improve performance
             observer.unobserve(entry.target);
         }
     });
