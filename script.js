@@ -222,20 +222,22 @@ function openImageModal(itemType) {
     const data = uniformImages[itemType];
     if (!data) return;
     
-    // Update modal header dengan tombol back di kiri dan close di kanan
+    // Header yang benar: tombol back di kiri, judul di tengah, X di kanan
     modalTitle.innerHTML = `
         <div class="flex items-center justify-between w-full">
+            <!-- Tombol Back Kiri -->
             <button onclick="closeImageModalAndBackToDetail('${itemType}')" 
                     class="flex items-center gap-2 text-white hover:bg-white/20 px-3 py-2 rounded-lg transition-colors group">
                 <i class="fas fa-arrow-left group-hover:-translate-x-1 transition-transform" aria-hidden="true"></i>
-                <span class="font-medium">Kembali</span>
             </button>
             
+            <!-- Judul Tengah -->
             <div class="flex items-center gap-2">
                 <i class="fas fa-images mr-2" aria-hidden="true"></i>
-                <span>${data.title}</span>
+                <span class="font-bold">${data.title}</span>
             </div>
             
+            <!-- Tombol Close Kanan -->
             <button onclick="closeImageModal()" class="text-white hover:bg-white/20 w-10 h-10 rounded-lg transition-colors flex items-center justify-center">
                 <i class="fas fa-times text-xl" aria-hidden="true"></i>
             </button>
