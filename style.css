@@ -200,6 +200,43 @@ body {
     transform: translate3d(0, 0, 0);
 }
 
+/* Floating Button Styles */
+#floatingSubButtons.show {
+    opacity: 1;
+    scale: 1;
+}
+
+.floating-tooltip {
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    margin-right: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.floating-tooltip::after {
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0.4rem solid transparent;
+    border-left-color: rgba(0, 0, 0, 0.8);
+}
+
+.group:hover .floating-tooltip {
+    opacity: 1;
+}
+
 /* FIX: Optimize card transitions */
 .card,
 .floating-animation,

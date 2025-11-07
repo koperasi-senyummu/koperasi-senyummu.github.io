@@ -488,6 +488,41 @@
         </div>
     </div>
 
+    <!-- Floating Action Button -->
+    <div class="fixed bottom-6 right-6 z-40 no-print">
+        <div class="flex flex-col items-end gap-3">
+            <!-- Main Floating Button -->
+            <button id="floatingMainBtn" 
+                    class="w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full shadow-2xl flex items-center justify-center text-white hover:scale-110 transition-all duration-300 group floating-animation">
+                <i class="fas fa-school text-xl group-hover:rotate-12 transition-transform" aria-hidden="true"></i>
+            </button>
+            
+            <!-- Sub Buttons (hidden by default) -->
+            <div id="floatingSubButtons" class="flex flex-col gap-2 opacity-0 scale-95 transition-all duration-300 transform origin-bottom-right">
+                <!-- SPMB Button -->
+                <a href="https://sites.google.com/guru.smp.belajar.id/spmbmbstanggul/beranda" 
+                target="_blank" rel="noopener noreferrer"
+                class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full shadow-lg flex items-center justify-center text-white hover:scale-110 transition-all duration-300 group">
+                    <i class="fas fa-user-graduate text-lg group-hover:rotate-12 transition-transform" aria-hidden="true"></i>
+                </a>
+                
+                <!-- Profile Button -->
+                <a href="https://smpmuh4tanggul.sch.id/" 
+                target="_blank" rel="noopener noreferrer"
+                class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full shadow-lg flex items-center justify-center text-white hover:scale-110 transition-all duration-300 group">
+                    <i class="fas fa-globe text-lg group-hover:rotate-12 transition-transform" aria-hidden="true"></i>
+                </a>
+                
+                <!-- WhatsApp Button -->
+                <a href="https://wa.me/6282245344633" 
+                target="_blank" rel="noopener noreferrer"
+                class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full shadow-lg flex items-center justify-center text-white hover:scale-110 transition-all duration-300 group">
+                    <i class="fab fa-whatsapp text-lg group-hover:rotate-12 transition-transform" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 
 </body>
