@@ -77,19 +77,6 @@ body {
     background: white;
 }
 
-@media print {
-    body {
-        background: white;
-    }
-    .no-print {
-        display: none !important;
-    }
-    .card {
-        box-shadow: none;
-        border: 1px solid #e5e7eb;
-    }
-}
-
 .pulse-animation {
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
@@ -130,14 +117,14 @@ body {
 
 #itemModal > div > div:last-child::-webkit-scrollbar,
 #imageModal > div > div:last-child::-webkit-scrollbar {
-    width: 8px; /* Reduced from 10px */
+    width: 8px;
 }
 
 #itemModal > div > div:last-child::-webkit-scrollbar-track,
 #imageModal > div > div:last-child::-webkit-scrollbar-track {
     background: #f1f5f9;
     border-radius: 8px;
-    margin: 4px 0; /* Reduced margin */
+    margin: 4px 0;
 }
 
 #itemModal > div > div:last-child::-webkit-scrollbar-thumb,
@@ -155,7 +142,7 @@ body {
 /* FIX: Better GPU acceleration for modals */
 #itemModal,
 #imageModal {
-    transform: translate3d(0, 0, 0); /* Better than translateZ(0) */
+    transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     perspective: 1000;
 }
@@ -190,13 +177,13 @@ body {
 /* FIX: Simplify grid layout in image modal */
 #imageModal .grid {
     display: grid;
-    gap: 1rem; /* Reduced from larger gap */
+    gap: 1rem;
     transform: translate3d(0, 0, 0);
 }
 
 /* FIX: Remove complex transitions during scroll */
 #imageModal .grid > div {
-    transition: none; /* Disable transitions during scroll */
+    transition: none;
     transform: translate3d(0, 0, 0);
 }
 
@@ -260,7 +247,7 @@ a {
     }
     
     #imageModal .grid {
-        gap: 0.75rem; /* Even smaller gap on mobile */
+        gap: 0.75rem;
     }
 }
 
@@ -278,5 +265,88 @@ a {
 @media (hover: hover) {
     #imageModal > div > div:last-child:hover::-webkit-scrollbar {
         display: block;
+    }
+}
+
+/* Toast Animation */
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-up {
+    animation: slide-up 0.3s ease-out;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+/* FAQ Animations */
+.faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.faq-icon {
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Print Styles Enhancement */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+    
+    .no-print {
+        display: none !important;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #e5e7eb;
+        page-break-inside: avoid;
+    }
+    
+    .bg-gradient-to-r,
+    .bg-gradient-to-br {
+        background: #f3f4f6 !important;
+        color: #1f2937 !important;
+    }
+    
+    h1, h2, h3 {
+        color: #1f2937 !important;
+    }
+    
+    table {
+        page-break-inside: auto;
+    }
+    
+    tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+    
+    .fade-in {
+        animation: none;
+    }
+    
+    /* Print-specific footer */
+    @page {
+        margin: 1cm;
+    }
+    
+    body::after {
+        content: "Dicetak dari Koperasi Senyummu";
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        font-size: 8pt;
+        color: #666;
     }
 }
