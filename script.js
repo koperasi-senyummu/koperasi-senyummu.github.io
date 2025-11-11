@@ -380,3 +380,78 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
+
+// FAQ Toggle Function
+function toggleFAQ(index) {
+    const faqItems = document.querySelectorAll('.faq-item');
+    const currentItem = faqItems[index];
+    const content = currentItem.querySelector('.faq-content');
+    const icon = currentItem.querySelector('.faq-icon');
+    
+    // Toggle current FAQ
+    const isHidden = content.classList.contains('hidden');
+    
+    if (isHidden) {
+        content.classList.remove('hidden');
+        icon.style.transform = 'rotate(180deg)';
+        // Smooth height animation
+        content.style.maxHeight = content.scrollHeight + 'px';
+    } else {
+        content.style.maxHeight = '0';
+        setTimeout(() => {
+            content.classList.add('hidden');
+        }, 300);
+        icon.style.transform = 'rotate(0deg)';
+    }
+}
+
+// Download PDF Function
+function downloadPDF() {
+    // Show loading toast
+    showToast('Menyiapkan PDF...', 'info');
+    
+    // Simple print to PDF approach
+    setTimeout(() => {
+        window.print();
+        showToast('Gunakan opsi "Save as PDF" di dialog print', 'success');
+    }, 500);
+}
+
+// Toast Notification Function
+function showToast(message, type = 'info') {
+    // Remove existing toast if any
+    const existingToast = document.querySelector('.toast-notification');
+    if (existingToast) {
+        existingToast.remove();
+    }
+    
+    const colors = {
+        success: 'bg-green-500',
+        error: 'bg-red-500',
+        info: 'bg-blue-500',
+        warning: 'bg-yellow-500'
+    };
+    
+    const icons = {
+        success: 'fa-check-circle',
+        error: 'fa-exclamation-circle',
+        info: 'fa-info-circle',
+        warning: 'fa-exclamation-triangle'
+    };
+    
+    const toast = document.createElement('div');
+    toast.className = `toast-notification fixed bottom-6 right-6 ${colors[type]} text-white px-6 py-4 rounded-lg shadow-2xl z-50 flex items-center gap-3 animate-slide-up`;
+    toast.innerHTML = `
+        <i class="fas ${icons[type]} text-xl" aria-hidden="true"></i>
+        <span class="font-medium">${message}</span>
+    `;
+    
+    document.body.appendChild(toast);
+    
+    // Auto remove after 3 seconds
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(20px)';
+        setTimeout(() => toast.remove(), 300);
+    }, 3000);
+}
