@@ -382,6 +382,7 @@ function debounce(func, wait) {
 }
 
 // FAQ Toggle Function
+// FAQ Toggle Function - OPTIMIZED
 function toggleFAQ(index) {
     const faqItems = document.querySelectorAll('.faq-item');
     const currentItem = faqItems[index];
@@ -389,20 +390,35 @@ function toggleFAQ(index) {
     const icon = currentItem.querySelector('.faq-icon');
     
     // Toggle current FAQ
-    const isHidden = content.classList.contains('hidden');
+    const isOpen = currentItem.classList.contains('faq-open');
     
-    if (isHidden) {
-        content.classList.remove('hidden');
-        icon.style.transform = 'rotate(180deg)';
-        // Smooth height animation
-        content.style.maxHeight = content.scrollHeight + 'px';
-    } else {
-        content.style.maxHeight = '0';
-        setTimeout(() => {
-            content.classList.add('hidden');
-        }, 300);
-        icon.style.transform = 'rotate(0deg)';
-    }
+    // Use requestAnimationFrame for smoother animation
+    requestAnimationFrame(() => {
+        if (!isOpen) {
+            // Opening
+            currentItem.classList.add('faq-open');
+            content.classList.remove('hidden');
+            icon.style.transform = 'rotate(180deg)';
+            
+            // Force reflow
+            content.offsetHeight;
+            
+            // Add active class for CSS transition
+            requestAnimationFrame(() => {
+                content.classList.add('faq-active');
+            });
+        } else {
+            // Closing
+            content.classList.remove('faq-active');
+            icon.style.transform = 'rotate(0deg)';
+            
+            // Wait for transition to complete
+            setTimeout(() => {
+                content.classList.add('hidden');
+                currentItem.classList.remove('faq-open');
+            }, 300);
+        }
+    });
 }
 
 // Download PDF Function

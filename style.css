@@ -285,15 +285,22 @@ a {
     transition: opacity 0.3s, transform 0.3s;
 }
 
-/* FAQ Animations */
+/* FAQ Animations - OPTIMIZED */
 .faq-content {
-    max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-content.faq-active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .faq-icon {
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Print Styles Enhancement */
