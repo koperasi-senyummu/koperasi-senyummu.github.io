@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <style>
+      .outline { fill: #ffffff; stroke: #000000; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .detail { fill: none; stroke: #000000; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
+      .text { font-family: sans-serif; font-size: 14px; fill: #000000; text-anchor: middle; font-weight: bold; }
+    </style>
+  </defs>
+  
+  <rect width="800" height="600" fill="#ffffff" />
+
+  <!-- SHIRT (FRONT) -->
+  <g transform="translate(100, 50)">
+    <!-- T-Shirt Shape -->
+    <path class="outline" d="M75,0 L175,0 L220,50 L250,20 L240,100 L200,125 L200,250 L50,250 L50,125 L10,100 L0,20 L30,50 Z" />
+    <!-- Crew Neck -->
+    <path class="outline" d="M85,0 Q125,20 165,0" fill="none" />
+    
+    <!-- Sporty Lines -->
+    <path class="detail" d="M0,20 L50,125" />
+    <path class="detail" d="M250,20 L200,125" />
+    
+    <text x="125" y="280" class="text">DEPAN</text>
+  </g>
+
+  <!-- SHIRT (BACK) -->
+  <g transform="translate(450, 50)">
+    <path class="outline" d="M75,0 L175,0 L220,50 L250,20 L240,100 L200,125 L200,250 L50,250 L50,125 L10,100 L0,20 L30,50 Z" />
+    <text x="125" y="280" class="text">BELAKANG</text>
+  </g>
+
+  <!-- TRAINING PANTS -->
+  <g transform="translate(150, 320)">
+    <path class="outline" d="M10,0 H140 L130,250 H90 L85,100 L75,250 H30 L20,250 L10,0 Z" />
+    <rect class="detail" x="10" y="0" width="130" height="5" /> <!-- Waistband -->
+    
+    <!-- Stripes -->
+    <line class="detail" x1="20" y1="0" x2="25" y2="250" />
+    <line class="detail" x1="130" y1="0" x2="125" y2="250" />
+  </g>
+
+  <g transform="translate(500, 320)">
+    <path class="outline" d="M10,0 H140 L130,250 H90 L85,100 L75,250 H30 L20,250 L10,0 Z" />
+  </g>
+
+</svg>

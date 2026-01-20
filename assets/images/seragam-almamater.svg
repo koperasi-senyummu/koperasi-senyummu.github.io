@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <style>
+      .outline { fill: #ffffff; stroke: #000000; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .detail { fill: none; stroke: #000000; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
+      .text { font-family: sans-serif; font-size: 14px; fill: #000000; text-anchor: middle; font-weight: bold; }
+    </style>
+  </defs>
+  
+  <rect width="800" height="600" fill="#ffffff" />
+
+  <!-- KOKO SHIRT (FRONT) -->
+  <g transform="translate(100, 50)">
+    <!-- Body -->
+    <path class="outline" d="M75,0 L125,5 L175,0 L210,40 L250,30 L230,120 L200,125 L200,280 L50,280 L50,125 L20,120 L0,30 L40,40 Z" />
+    <!-- Mandarin Collar -->
+    <path class="outline" d="M85,0 L125,5 L165,0 L165,-15 L85,-15 Z" />
+    
+    <line class="detail" x1="125" y1="5" x2="125" y2="150" /> <!-- Half placket usually -->
+    <rect class="detail" x="65" y="80" width="40" height="45" />
+    <rect class="detail" x="145" y="80" width="40" height="45" /> <!-- 2 pockets for koko/almamater usually -->
+
+    <text x="125" y="310" class="text">DEPAN (KOKO)</text>
+  </g>
+
+  <!-- KOKO SHIRT (BACK) -->
+  <g transform="translate(450, 50)">
+    <path class="outline" d="M75,0 L175,0 L210,40 L250,30 L230,120 L200,125 L200,280 L50,280 L50,125 L20,120 L0,30 L40,40 Z" />
+    <path class="detail" d="M40,50 L210,50" />
+    <text x="125" y="310" class="text">BELAKANG</text>
+  </g>
+
+</svg>

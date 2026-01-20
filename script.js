@@ -1,9 +1,16 @@
-// Modal data
+/**
+ * Koperasi Senyummu - Premium Website Script
+ * Features: Navbar scroll, Mobile menu, FAQ accordion, Modals, Animations
+ */
+
+// ========================================
+// MODAL DATA
+// ========================================
 const itemDetails = {
     seragam: {
         title: 'Detail Seragam',
         icon: 'fa-tshirt',
-        color: 'blue',
+        color: 'emerald',
         items: [
             { name: 'Kain Seragam Putih Biru', boarding_putra: 125000, boarding_putri: 150000, non_boarding: 125000 },
             { name: 'Kain Seragam IPM', boarding_putra: 125000, boarding_putri: 150000, non_boarding: 125000 },
@@ -65,147 +72,42 @@ const itemDetails = {
     }
 };
 
-// Open modal function
-function openModal(itemType) {
-    const modal = document.getElementById('itemModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalContent = document.getElementById('modalContent');
-    
-    const data = itemDetails[itemType];
-    if (!data) return;
-    
-    modalTitle.innerHTML = `<i class="fas ${data.icon} mr-2" aria-hidden="true"></i>${data.title}`;
-    
-    let content = '<div class="space-y-4">';
-    
-    // Add design preview button for seragam
-    if (itemType === 'seragam') {
-        content += `
-            <div class="bg-gradient-to-r from-green-50 to-blue-50 border-2 border-green-200 rounded-lg p-4">
-                <button onclick="openImageModal('seragam')" class="w-full flex items-center justify-center gap-3 bg-white hover:bg-green-50 p-4 rounded-lg border-2 border-green-300 transition-all group">
-                    <i class="fas fa-images text-green-600 text-2xl group-hover:scale-110 transition-transform" aria-hidden="true"></i>
-                    <div class="text-left">
-                        <p class="font-bold text-gray-800">Lihat Desain Seragam</p>
-                        <p class="text-sm text-gray-600">Klik untuk melihat foto & sketsa desain</p>
-                    </div>
-                    <i class="fas fa-arrow-right text-green-600 ml-auto" aria-hidden="true"></i>
-                </button>
-            </div>
-        `;
-    }
-    
-    // Table
-    content += `
-        <div class="overflow-x-auto rounded-lg border-2 border-${data.color}-100">
-            <table class="w-full text-sm">
-                <thead class="bg-${data.color}-50">
-                    <tr>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-700 border-b-2 border-${data.color}-200">Item</th>
-                        <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 border-b-2 border-${data.color}-200">
-                            <i class="fas fa-mars text-blue-600" aria-hidden="true"></i> Boarding Putra
-                        </th>
-                        <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 border-b-2 border-${data.color}-200">
-                            <i class="fas fa-venus text-pink-600" aria-hidden="true"></i> Boarding Putri
-                        </th>
-                        <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 border-b-2 border-${data.color}-200">
-                            <i class="fas fa-school text-gray-600" aria-hidden="true"></i> Non-Boarding
-                        </th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-200">
-    `;
-    
-    data.items.forEach((item, index) => {
-        content += `
-            <tr class="${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-${data.color}-50 transition-colors">
-                <td class="px-4 py-3 text-gray-800 font-medium">${item.name}</td>
-                <td class="px-4 py-3 text-center text-gray-700 font-semibold whitespace-nowrap">${item.boarding_putra ? formatRupiah(item.boarding_putra) : '—'}</td>
-                <td class="px-4 py-3 text-center text-gray-700 font-semibold whitespace-nowrap">${item.boarding_putri ? formatRupiah(item.boarding_putri) : '—'}</td>
-                <td class="px-4 py-3 text-center text-gray-700 font-semibold whitespace-nowrap">${item.non_boarding ? formatRupiah(item.non_boarding) : '—'}</td>
-            </tr>
-        `;
-    });
-    
-    // Calculate totals
-    let totalBoardingPutra = 0;
-    let totalBoardingPutri = 0;
-    let totalNonBoarding = 0;
-    
-    data.items.forEach(item => {
-        totalBoardingPutra += item.boarding_putra || 0;
-        totalBoardingPutri += item.boarding_putri || 0;
-        totalNonBoarding += item.non_boarding || 0;
-    });
-    
-    content += `
-                <tr class="bg-gradient-to-r from-${data.color}-100 to-${data.color}-200 font-bold">
-                    <td class="px-4 py-4 text-gray-900 text-base">TOTAL</td>
-                    <td class="px-4 py-4 text-center text-${data.color}-800 text-base whitespace-nowrap">${formatRupiah(totalBoardingPutra)}</td>
-                    <td class="px-4 py-4 text-center text-${data.color}-800 text-base whitespace-nowrap">${formatRupiah(totalBoardingPutri)}</td>
-                    <td class="px-4 py-4 text-center text-${data.color}-800 text-base whitespace-nowrap">${totalNonBoarding > 0 ? formatRupiah(totalNonBoarding) : '—'}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    `;
-    
-    // Add info note if needed
-    if (itemType === 'kitabPondok') {
-        content += `
-            <div class="bg-amber-50 border-2 border-amber-200 rounded-lg p-4">
-                <div class="flex items-start gap-2 text-amber-800">
-                    <i class="fas fa-info-circle mt-0.5 flex-shrink-0" aria-hidden="true"></i>
-                    <p class="text-sm"><strong>Catatan:</strong> Kitab Pondok hanya disediakan untuk santri program Boarding (Putra & Putri).</p>
-                </div>
-            </div>
-        `;
-    }
-    
-    content += '</div>';
-    modalContent.innerHTML = content;
-    
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    document.body.style.overflow = 'hidden';
-}
-
-// Image modal data
 const uniformImages = {
     seragam: {
         title: 'Desain Seragam',
         images: [
             {
-                url: 'https://imgs.search.brave.com/AivwWYVdVJcQyFAuxGUexwdAl70b35TQhc_HZiVVw9o/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2Q3L2Nh/LzUwL2Q3Y2E1MGJh/N2JkOTUyYjFlMTg2/ODAxMjZiOTNhY2Yx/LmpwZw',
+                url: './assets/images/seragam-putih-biru.svg',
                 caption: 'Seragam Putih Biru',
                 description: 'Seragam untuk hari Senin'
             },
             {
-                url: 'https://imgs.search.brave.com/UxkRvn3D47ZRQLYWkJUhJIfoKYiUbEC2ArolweemtzQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzLzljLzQ2/L2ZjLzljNDZmYzVm/ZGVmN2NkNjUyNjYx/YjZmMjQzNTRjMzli/LmpwZw', 
+                url: './assets/images/seragam-ipm.svg',
                 caption: 'Seragam IPM',
                 description: 'Seragam untuk hari Selasa'
             },
             {
-                url: './assets/seragam-batik.jpg',
+                url: './assets/images/seragam-batik.svg',
                 caption: 'Seragam Batik',
                 description: 'Seragam untuk hari Rabu'
             },
             {
-                url: './assets/seragam-batik.jpg',
+                url: './assets/images/seragam-almamater.svg',
                 caption: 'Seragam Almamater',
                 description: 'Seragam untuk hari Kamis'
             },
             {
-                url: './assets/seragam-batik.jpg',
+                url: './assets/images/seragam-hw.svg',
                 caption: 'Seragam Hizbul Wathan',
-                description: "Seragam untuk Jum'at"
+                description: "Seragam untuk hari Jum'at"
             },
             {
-                url: './assets/seragam-batik.jpg',
+                url: './assets/images/jas-almamater.svg',
                 caption: 'Jas Almamater',
                 description: 'Seragam yang digunakan untuk hari-hari tertentu'
             },
             {
-                url: './assets/seragam-batik.jpg',
+                url: './assets/images/seragam-olahraga.svg',
                 caption: 'Seragam Olahraga',
                 description: 'Seragam yang digunakan sesuai dengan jadwal olahraga'
             }
@@ -213,261 +115,437 @@ const uniformImages = {
     }
 };
 
-// Open image modal function
+// ========================================
+// INITIALIZATION
+// ========================================
+document.addEventListener('DOMContentLoaded', () => {
+    initNavbar();
+    initMobileMenu();
+    initScrollAnimations();
+    initSmoothScroll();
+});
+
+// ========================================
+// NAVBAR SCROLL EFFECT
+// ========================================
+function initNavbar() {
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return;
+
+    let lastScroll = 0;
+    const scrollThreshold = 50;
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+
+        if (currentScroll > scrollThreshold) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+
+        lastScroll = currentScroll;
+    }, { passive: true });
+}
+
+// ========================================
+// MOBILE MENU
+// ========================================
+function initMobileMenu() {
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.getElementById('navbarLinks');
+
+    if (!menuBtn || !navLinks) return;
+
+    menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const icon = menuBtn.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
+    });
+
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('.navbar-link').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.add('fa-bars');
+            icon.classList.remove('fa-times');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+            navLinks.classList.remove('active');
+            const icon = menuBtn.querySelector('i');
+            icon.classList.add('fa-bars');
+            icon.classList.remove('fa-times');
+        }
+    });
+}
+
+// ========================================
+// SCROLL ANIMATIONS
+// ========================================
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up').forEach(el => {
+        observer.observe(el);
+    });
+}
+
+// ========================================
+// SMOOTH SCROLL
+// ========================================
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
+
+            if (target) {
+                const navbarHeight = document.getElementById('navbar')?.offsetHeight || 0;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 20;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// ========================================
+// FAQ ACCORDION
+// ========================================
+function toggleFAQ(button) {
+    const faqItem = button.closest('.faq-item');
+    const isActive = faqItem.classList.contains('active');
+
+    // Close all other FAQs
+    document.querySelectorAll('.faq-item.active').forEach(item => {
+        if (item !== faqItem) {
+            item.classList.remove('active');
+        }
+    });
+
+    // Toggle current FAQ
+    faqItem.classList.toggle('active');
+}
+
+// ========================================
+// MODAL FUNCTIONS
+// ========================================
+function openModal(itemType) {
+    const modal = document.getElementById('itemModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalContent = document.getElementById('modalContent');
+
+    const data = itemDetails[itemType];
+    if (!data) return;
+
+    // Update title
+    modalTitle.innerHTML = `<i class="fas ${data.icon}"></i><span>${data.title}</span>`;
+
+    // Build content
+    let content = '';
+
+    // Add design preview button for seragam
+    if (itemType === 'seragam') {
+        content += `
+            <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1)); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 16px; padding: 1rem; margin-bottom: 1.5rem;">
+                <button onclick="openImageModal('seragam')" style="width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 12px; cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='var(--bg-card-hover)'" onmouseout="this.style.background='var(--glass-bg)'">
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <i class="fas fa-images" style="font-size: 1.5rem; color: var(--primary-400);"></i>
+                        <div style="text-align: left;">
+                            <p style="font-weight: 600; color: var(--text-primary); margin: 0;">Lihat Desain Seragam</p>
+                            <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Klik untuk melihat foto & sketsa desain</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-arrow-right" style="color: var(--primary-400);"></i>
+                </button>
+            </div>
+        `;
+    }
+
+    // Table
+    content += `
+        <div style="overflow-x: auto; border-radius: 12px; border: 1px solid var(--glass-border);">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.875rem;">
+                <thead style="background: rgba(16, 185, 129, 0.1);">
+                    <tr>
+                        <th style="padding: 0.875rem; text-align: left; font-weight: 600; color: var(--text-secondary); border-bottom: 1px solid var(--glass-border);">Item</th>
+                        <th style="padding: 0.875rem; text-align: center; font-weight: 600; color: var(--text-secondary); border-bottom: 1px solid var(--glass-border);">
+                            <i class="fas fa-mars" style="color: #3b82f6;"></i> Boarding Putra
+                        </th>
+                        <th style="padding: 0.875rem; text-align: center; font-weight: 600; color: var(--text-secondary); border-bottom: 1px solid var(--glass-border);">
+                            <i class="fas fa-venus" style="color: #ec4899;"></i> Boarding Putri
+                        </th>
+                        <th style="padding: 0.875rem; text-align: center; font-weight: 600; color: var(--text-secondary); border-bottom: 1px solid var(--glass-border);">
+                            <i class="fas fa-school" style="color: #06b6d4;"></i> Non-Boarding
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+    `;
+
+    data.items.forEach((item, index) => {
+        const bgColor = index % 2 === 0 ? 'transparent' : 'rgba(255, 255, 255, 0.02)';
+        content += `
+            <tr style="background: ${bgColor}; border-bottom: 1px solid rgba(255, 255, 255, 0.05);">
+                <td style="padding: 0.75rem; color: var(--text-primary);">${item.name}</td>
+                <td style="padding: 0.75rem; text-align: center; color: var(--primary-300); font-weight: 500;">${item.boarding_putra ? formatRupiah(item.boarding_putra) : '—'}</td>
+                <td style="padding: 0.75rem; text-align: center; color: var(--primary-300); font-weight: 500;">${item.boarding_putri ? formatRupiah(item.boarding_putri) : '—'}</td>
+                <td style="padding: 0.75rem; text-align: center; color: var(--primary-300); font-weight: 500;">${item.non_boarding ? formatRupiah(item.non_boarding) : '—'}</td>
+            </tr>
+        `;
+    });
+
+    // Calculate totals
+    let totalBoardingPutra = 0;
+    let totalBoardingPutri = 0;
+    let totalNonBoarding = 0;
+
+    data.items.forEach(item => {
+        totalBoardingPutra += item.boarding_putra || 0;
+        totalBoardingPutri += item.boarding_putri || 0;
+        totalNonBoarding += item.non_boarding || 0;
+    });
+
+    content += `
+                <tr style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(245, 158, 11, 0.1));">
+                    <td style="padding: 1rem; font-weight: 700; color: var(--text-primary);">TOTAL</td>
+                    <td style="padding: 1rem; text-align: center; font-weight: 700; color: var(--primary-300);">${formatRupiah(totalBoardingPutra)}</td>
+                    <td style="padding: 1rem; text-align: center; font-weight: 700; color: var(--primary-300);">${formatRupiah(totalBoardingPutri)}</td>
+                    <td style="padding: 1rem; text-align: center; font-weight: 700; color: var(--primary-300);">${totalNonBoarding > 0 ? formatRupiah(totalNonBoarding) : '—'}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    `;
+
+    // Add info note if needed
+    if (itemType === 'kitabPondok') {
+        content += `
+            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 12px; padding: 1rem; margin-top: 1rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+                <i class="fas fa-info-circle" style="color: var(--accent-400); margin-top: 2px;"></i>
+                <p style="font-size: 0.875rem; color: var(--accent-300); margin: 0;"><strong>Catatan:</strong> Kitab Pondok hanya disediakan untuk santri program Boarding (Putra & Putri).</p>
+            </div>
+        `;
+    }
+
+    modalContent.innerHTML = content;
+
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    const modal = document.getElementById('itemModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
+// ========================================
+// IMAGE MODAL FUNCTIONS
+// ========================================
 function openImageModal(itemType) {
     const modal = document.getElementById('imageModal');
     const modalTitle = document.getElementById('imageModalTitle');
     const modalContent = document.getElementById('imageModalContent');
-    
+
     const data = uniformImages[itemType];
     if (!data) return;
-    
-    // Update judul modal
-    modalTitle.textContent = data.title;
-    
-    // Update tombol back dengan itemType yang benar
-    const backButton = modal.querySelector('button[onclick*="closeImageModalAndBackToDetail"]');
-    backButton.setAttribute('onclick', `closeImageModalAndBackToDetail('${itemType}')`);
-    
-    let content = '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">';
-    
-    data.images.forEach((img, index) => {
+
+    modalTitle.innerHTML = `<i class="fas fa-images"></i><span>${data.title}</span>`;
+
+    let content = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">';
+
+    data.images.forEach((img) => {
         content += `
-            <div class="bg-gray-50 rounded-lg overflow-hidden border border-gray-200">
-                <div class="aspect-square bg-gray-100 flex items-center justify-center p-2">
+            <div style="background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; overflow: hidden;">
+                <div style="aspect-ratio: 1; background: rgba(255, 255, 255, 0.02); display: flex; align-items: center; justify-content: center; padding: 0.5rem;">
                     <img src="${img.url}" 
                          alt="${img.caption}" 
-                         class="max-w-full max-h-full object-contain transition-opacity duration-300"
+                         style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px;"
                          loading="lazy"
-                         onload="this.style.opacity='1'"
-                         onerror="this.src='https://via.placeholder.com/400x400?text=Gambar+Tidak+Tersedia';this.style.opacity='1'"
-                         style="opacity:0">
+                         onerror="this.src='https://via.placeholder.com/400x400/1e293b/64748b?text=Gambar+Tidak+Tersedia'">
                 </div>
-                <div class="p-3 bg-white">
-                    <h4 class="font-semibold text-gray-800 text-sm mb-1">${img.caption}</h4>
-                    <p class="text-xs text-gray-600">${img.description}</p>
+                <div style="padding: 1rem; border-top: 1px solid var(--glass-border);">
+                    <h4 style="font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin: 0 0 0.25rem 0;">${img.caption}</h4>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">${img.description}</p>
                 </div>
             </div>
         `;
     });
-    
+
     content += '</div>';
-    
+
     content += `
-        <div class="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm">
-            <div class="flex items-start gap-2 text-blue-800">
-                <i class="fas fa-info-circle mt-0.5 flex-shrink-0" aria-hidden="true"></i>
-                <p><strong>Catatan:</strong> Desain seragam dapat berubah sesuai kebijakan sekolah.</p>
-            </div>
+        <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 12px; padding: 1rem; margin-top: 1rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+            <i class="fas fa-info-circle" style="color: #60a5fa; margin-top: 2px;"></i>
+            <p style="font-size: 0.875rem; color: #93c5fd; margin: 0;"><strong>Catatan:</strong> Desain seragam dapat berubah sesuai kebijakan sekolah.</p>
         </div>
     `;
-    
+
     modalContent.innerHTML = content;
-    
-    // Tutup modal detail seragam terlebih dahulu untuk mengurangi beban
+
+    // Close item modal first
     closeModal();
-    
-    // Force layout calculation before showing modal
-    modal.offsetHeight;
-    
-    requestAnimationFrame(() => {
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
+
+    // Show image modal
+    setTimeout(() => {
+        modal.classList.add('active');
         document.body.style.overflow = 'hidden';
-    });
+    }, 100);
 }
 
-// Fungsi baru untuk kembali ke modal detail
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
+
 function closeImageModalAndBackToDetail(itemType) {
-    const imageModal = document.getElementById('imageModal');
-    
-    // Tutup modal gambar dulu
-    imageModal.classList.add('hidden');
-    imageModal.classList.remove('flex');
-    
-    // Buka kembali modal detail setelah delay kecil
+    closeImageModal();
     setTimeout(() => {
         openModal(itemType);
-    }, 50);
+    }, 100);
 }
 
-// Close image modal function
-function closeImageModal(event) {
-    if (event && event.target.id !== 'imageModal') return;
-    
-    const modal = document.getElementById('imageModal');
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-    document.body.style.overflow = 'auto';
-}
-
-// Close modal function
-function closeModal(event) {
-    if (event && event.target.id !== 'itemModal') return;
-    
-    const modal = document.getElementById('itemModal');
-    modal.classList.add('hidden');
-    modal.classList.remove('flex');
-    document.body.style.overflow = 'auto';
-}
-
-// Update escape key handler untuk handle kedua modal
+// Close modals with Escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         const imageModal = document.getElementById('imageModal');
         const itemModal = document.getElementById('itemModal');
-        
-        if (!imageModal.classList.contains('hidden')) {
+
+        if (imageModal.classList.contains('active')) {
             closeImageModal();
-        } else if (!itemModal.classList.contains('hidden')) {
+        } else if (itemModal.classList.contains('active')) {
             closeModal();
         }
     }
 });
 
-// Format rupiah helper
+// Close modals when clicking overlay
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+});
+
+// ========================================
+// HELPER FUNCTIONS
+// ========================================
 function formatRupiah(number) {
     return 'Rp ' + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-// Fade in animations on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            requestAnimationFrame(() => {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            });
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.fade-in').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease-in, transform 0.6s ease-in';
-    observer.observe(el);
-});
-
-// Smooth scroll for better UX
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// FAQ Toggle Function
-// FAQ Toggle Function - OPTIMIZED
-function toggleFAQ(index) {
-    const faqItems = document.querySelectorAll('.faq-item');
-    const currentItem = faqItems[index];
-    const content = currentItem.querySelector('.faq-content');
-    const icon = currentItem.querySelector('.faq-icon');
-    
-    // Toggle current FAQ
-    const isOpen = currentItem.classList.contains('faq-open');
-    
-    // Use requestAnimationFrame for smoother animation
-    requestAnimationFrame(() => {
-        if (!isOpen) {
-            // Opening
-            currentItem.classList.add('faq-open');
-            content.classList.remove('hidden');
-            icon.style.transform = 'rotate(180deg)';
-            
-            // Force reflow
-            content.offsetHeight;
-            
-            // Add active class for CSS transition
-            requestAnimationFrame(() => {
-                content.classList.add('faq-active');
-            });
-        } else {
-            // Closing
-            content.classList.remove('faq-active');
-            icon.style.transform = 'rotate(0deg)';
-            
-            // Wait for transition to complete
-            setTimeout(() => {
-                content.classList.add('hidden');
-                currentItem.classList.remove('faq-open');
-            }, 300);
-        }
-    });
-}
-
-// Download PDF Function
+// ========================================
+// PDF DOWNLOAD
+// ========================================
 function downloadPDF() {
-    // Show loading toast
     showToast('Menyiapkan PDF...', 'info');
-    
-    // Simple print to PDF approach
+
     setTimeout(() => {
         window.print();
         showToast('Gunakan opsi "Save as PDF" di dialog print', 'success');
     }, 500);
 }
 
-// Toast Notification Function
+// ========================================
+// TOAST NOTIFICATIONS
+// ========================================
 function showToast(message, type = 'info') {
-    // Remove existing toast if any
+    // Remove existing toast
     const existingToast = document.querySelector('.toast-notification');
     if (existingToast) {
         existingToast.remove();
     }
-    
+
     const colors = {
-        success: 'bg-green-500',
-        error: 'bg-red-500',
-        info: 'bg-blue-500',
-        warning: 'bg-yellow-500'
+        success: '#10b981',
+        error: '#ef4444',
+        info: '#3b82f6',
+        warning: '#f59e0b'
     };
-    
+
     const icons = {
         success: 'fa-check-circle',
         error: 'fa-exclamation-circle',
         info: 'fa-info-circle',
         warning: 'fa-exclamation-triangle'
     };
-    
+
     const toast = document.createElement('div');
-    toast.className = `toast-notification fixed bottom-6 right-6 ${colors[type]} text-white px-6 py-4 rounded-lg shadow-2xl z-50 flex items-center gap-3 animate-slide-up`;
-    toast.innerHTML = `
-        <i class="fas ${icons[type]} text-xl" aria-hidden="true"></i>
-        <span class="font-medium">${message}</span>
+    toast.className = 'toast-notification';
+    toast.style.cssText = `
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        background: ${colors[type]};
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        z-index: 3000;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        animation: slideUp 0.3s ease;
     `;
-    
+
+    toast.innerHTML = `
+        <i class="fas ${icons[type]}" style="font-size: 1.25rem;"></i>
+        <span style="font-weight: 500;">${message}</span>
+    `;
+
+    // Add animation keyframes if not exists
+    if (!document.getElementById('toast-styles')) {
+        const style = document.createElement('style');
+        style.id = 'toast-styles';
+        style.textContent = `
+            @keyframes slideUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
     document.body.appendChild(toast);
-    
+
     // Auto remove after 3 seconds
     setTimeout(() => {
         toast.style.opacity = '0';
         toast.style.transform = 'translateY(20px)';
+        toast.style.transition = 'all 0.3s ease';
         setTimeout(() => toast.remove(), 300);
     }, 3000);
 }

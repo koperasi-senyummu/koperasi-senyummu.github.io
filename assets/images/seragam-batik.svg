@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <style>
+      .outline { fill: #ffffff; stroke: #000000; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .detail { fill: none; stroke: #000000; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
+      .text { font-family: sans-serif; font-size: 14px; fill: #000000; text-anchor: middle; font-weight: bold; }
+      .pattern { fill: none; stroke: #000000; stroke-width: 0.5; opacity: 0.3; }
+    </style>
+     <pattern id="batikLines" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+        <path d="M0,20 L20,0 M-5,5 L5,-5 M15,25 L25,15" stroke="#000000" stroke-width="0.5" opacity="0.3"/>
+    </pattern>
+  </defs>
+  
+  <rect width="800" height="600" fill="#ffffff" />
+
+  <!-- SHIRT (FRONT) -->
+  <g transform="translate(100, 50)">
+    <path class="outline" d="M75,0 L125,10 L175,0 L210,40 L250,30 L230,120 L200,125 L200,250 L50,250 L50,125 L20,120 L0,30 L40,40 Z" fill="url(#batikLines)" />
+    <!-- Collar (Plain) -->
+    <path class="outline" d="M75,0 L125,40 L175,0 L125,10 Z" fill="#ffffff"/>
+    
+    <line class="detail" x1="125" y1="40" x2="125" y2="250" />
+    <rect class="detail" x="65" y="80" width="40" height="45" fill="#ffffff" fill-opacity="0.8"/>
+    
+    <text x="125" y="280" class="text">DEPAN</text>
+  </g>
+
+  <!-- SHIRT (BACK) -->
+  <g transform="translate(450, 50)">
+    <path class="outline" d="M75,0 L175,0 L210,40 L250,30 L230,120 L200,125 L200,250 L50,250 L50,125 L20,120 L0,30 L40,40 Z" fill="url(#batikLines)"/>
+    <text x="125" y="280" class="text">BELAKANG</text>
+  </g>
+
+   <!-- PANTS (FRONT) -->
+  <g transform="translate(150, 320)">
+    <path class="outline" d="M0,0 H150 L140,250 H85 L85,60 L65,60 L65,250 H10 L0,0 Z" />
+    <path class="detail" d="M75,20 L75,100 C75,110 65,110 65,100" />
+    <path class="detail" d="M10,20 Q40,20 40,60" />
+    <path class="detail" d="M140,20 Q110,20 110,60" />
+  </g>
+
+  <!-- PANTS (BACK) -->
+  <g transform="translate(500, 320)">
+    <path class="outline" d="M0,0 H150 L140,250 H85 L85,60 L65,60 L65,250 H10 L0,0 Z" />
+    <path class="detail" d="M100,30 H140 V60 H100 Z" />
+  </g>
+</svg>

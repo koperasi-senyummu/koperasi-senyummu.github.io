@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <style>
+      .outline { fill: #ffffff; stroke: #000000; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .detail { fill: none; stroke: #000000; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
+      .text { font-family: sans-serif; font-size: 14px; fill: #000000; text-anchor: middle; font-weight: bold; }
+    </style>
+  </defs>
+  
+  <rect width="800" height="600" fill="#ffffff" />
+
+  <!-- BLAZER (FRONT) -->
+  <g transform="translate(100, 50)">
+    <path class="outline" d="M75,0 L125,20 L175,0 L210,40 L250,30 L240,180 L210,190 L200,125 L200,280 L50,280 L50,125 L40,190 L10,180 L0,30 L40,40 Z" />
+    
+    <!-- Lapels -->
+    <path class="outline" d="M75,0 L125,120 L75,100 L40,40 Z" />
+    <path class="outline" d="M175,0 L125,120 L175,100 L210,40 Z" />
+    
+    <!-- Pockets -->
+    <rect class="detail" x="50" y="200" width="50" height="40" />
+    <path class="detail" d="M50,200 L100,200 L100,210 L50,210 Z" /> <!-- Flap -->
+    
+    <rect class="detail" x="150" y="200" width="50" height="40" />
+     <path class="detail" d="M150,200 L200,200 L200,210 L150,210 Z" />
+     
+    <!-- Chest Pocket -->
+    <rect class="detail" x="150" y="80" width="40" height="10" />
+    <path class="detail" d="M150,80 L190,80 L190,95 L170,105 L150,95 Z" />
+
+    <text x="125" y="310" class="text">DEPAN</text>
+  </g>
+
+  <!-- BACK -->
+  <g transform="translate(450, 50)">
+    <path class="outline" d="M75,0 L175,0 L210,40 L250,30 L240,180 L210,190 L200,125 L200,280 L50,280 L50,125 L40,190 L10,180 L0,30 L40,40 Z" />
+    <path class="detail" d="M125,0 L125,280" /> <!-- Center seam -->
+    <text x="125" y="310" class="text">BELAKANG</text>
+  </g>
+
+</svg>

@@ -1,746 +1,796 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Koperasi Senyummu - Biaya Perlengkapan Santri 2026/2027</title>
-    <meta name="description" content="Informasi biaya perlengkapan santri dan jadwal pembayaran angsuran Koperasi Senyummu tahun ajaran 2026/2027. Sistem cicilan 4x tanpa bunga untuk Boarding dan Non-Boarding.">
-    <meta name="keywords" content="biaya santri, perlengkapan santri, koperasi sekolah, cicilan tanpa bunga, boarding, non-boarding">
-    
+    <meta name="description"
+        content="Informasi biaya perlengkapan santri dan jadwal pembayaran angsuran Koperasi Senyummu tahun ajaran 2026/2027. Sistem cicilan 4x tanpa bunga untuk Boarding dan Non-Boarding.">
+    <meta name="keywords"
+        content="biaya santri, perlengkapan santri, koperasi sekolah, cicilan tanpa bunga, boarding, non-boarding">
+
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Koperasi Senyummu - Biaya Perlengkapan Santri 2026/2027">
-    <meta property="og:description" content="Informasi lengkap biaya perlengkapan santri dengan sistem cicilan 4x tanpa bunga. Tersedia program Boarding dan Non-Boarding.">
+    <meta property="og:description"
+        content="Informasi lengkap biaya perlengkapan santri dengan sistem cicilan 4x tanpa bunga. Tersedia program Boarding dan Non-Boarding.">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://via.placeholder.com/1200x630/1e3a8a/ffffff?text=Koperasi+Senyummu">
-    <meta property="og:url" content="https://koperasi-senyummu.com">
-    
+    <meta property="og:image" content="https://koperasi-senyummu.github.io/assets/og-image.png">
+    <meta property="og:url" content="https://koperasi-senyummu.github.io">
+
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Koperasi Senyummu - Biaya Perlengkapan Santri">
-    <meta name="twitter:description" content="Sistem cicilan 4x tanpa bunga untuk perlengkapan santri tahun ajaran 2026/2027">
-    <meta name="twitter:image" content="https://via.placeholder.com/1200x630/1e3a8a/ffffff?text=Koperasi+Senyummu">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="twitter:description"
+        content="Sistem cicilan 4x tanpa bunga untuk perlengkapan santri tahun ajaran 2026/2027">
+    <meta name="twitter:image" content="https://koperasi-senyummu.github.io/assets/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23059669' rx='20' width='100' height='100'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white'>S</text></svg>">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="min-h-screen p-4 md:p-8">
-    
-    <div class="max-w-7xl mx-auto">
-        
-        <!-- Header -->
-        <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-8 mb-6 fade-in">
-            <div class="flex items-start gap-4">
-                <div class="flex-shrink-0 floating-animation">
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <i class="fas fa-school text-white text-2xl md:text-3xl" aria-hidden="true"></i>
-                    </div>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-mesh"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-brand">
+                <div class="navbar-logo">
+                    <span style="font-size: 1.5rem;">😊</span>
                 </div>
-                <div class="flex-1">
-                    <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">Biaya Perlengkapan Santri</h1>
-                    <p class="text-gray-600 text-sm md:text-base">Koperasi Senyummu - Tahun Ajaran 2026/2027</p>
-                    <div class="mt-3 inline-flex items-center gap-2 bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">
-                        <i class="fas fa-info-circle" aria-hidden="true"></i>
-                        <span>Sistem Cicilan 4x Tanpa Bunga</span>
-                    </div>
-                </div>
+                <span class="navbar-title">Koperasi Senyummu</span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <div class="navbar-links" id="navbarLinks">
+                <a href="#biaya" class="navbar-link">Biaya</a>
+                <a href="#angsuran" class="navbar-link">Angsuran</a>
+                <a href="#faq" class="navbar-link">FAQ</a>
+                <a href="#perbandingan" class="navbar-link">Perbandingan</a>
+                <a href="#kontak" class="navbar-link navbar-cta">
+                    <i class="fab fa-whatsapp"></i> Hubungi Kami
+                </a>
             </div>
         </div>
+    </nav>
 
-        <!-- Info Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-5 text-white shadow-lg card fade-in" style="animation-delay: 0.1s">
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-box-open text-3xl opacity-90" aria-hidden="true"></i>
-                    <div>
-                        <p class="text-sm opacity-90">Total Item</p>
-                        <p class="text-2xl font-bold">4 Perlengkapan</p>
-                    </div>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-container">
+            <div class="hero-badge fade-up">
+                <i class="fas fa-sparkles"></i>
+                <span>Tahun Ajaran 2026/2027</span>
+            </div>
+
+            <h1 class="hero-title fade-up stagger-1">
+                Biaya Perlengkapan<br>Santri Baru
+            </h1>
+
+            <p class="hero-subtitle fade-up stagger-2">
+                Informasi lengkap biaya perlengkapan santri dengan sistem cicilan
+                <strong>4x tanpa bunga</strong>. Mudah, transparan, dan terjangkau.
+            </p>
+
+            <div class="hero-stats fade-up stagger-3">
+                <div class="hero-stat">
+                    <span class="hero-stat-value" data-count="4">4</span>
+                    <span class="hero-stat-label">Perlengkapan</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value">4x</span>
+                    <span class="hero-stat-label">Cicilan</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value">0%</span>
+                    <span class="hero-stat-label">Bunga</span>
                 </div>
             </div>
-            <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-5 text-white shadow-lg card fade-in" style="animation-delay: 0.2s">
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-credit-card text-3xl opacity-90" aria-hidden="true"></i>
-                    <div>
-                        <p class="text-sm opacity-90">Sistem Pembayaran</p>
-                        <p class="text-2xl font-bold">4x Cicilan</p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl p-5 text-white shadow-lg card fade-in" style="animation-delay: 0.3s">
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-calendar-alt text-3xl opacity-90" aria-hidden="true"></i>
-                    <div>
-                        <p class="text-sm opacity-90">Periode Cicilan</p>
-                        <p class="text-2xl font-bold">Apr - Jul 2026</p>
-                    </div>
-                </div>
-            </div>
+
+            <a href="#biaya" class="hero-cta fade-up stagger-4">
+                <span>Lihat Rincian Biaya</span>
+                <i class="fas fa-arrow-down"></i>
+            </a>
         </div>
+    </section>
 
-        <!-- Table Section -->
-        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden mb-6 fade-in" style="animation-delay: 0.4s">
-            <div class="bg-gradient-to-r from-blue-600 to-blue-700 p-5 md:p-6">
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-file-invoice-dollar text-white text-2xl" aria-hidden="true"></i>
-                    <div>
-                        <h2 class="text-xl md:text-2xl font-bold text-white">Rincian Biaya Per Item</h2>
-                        <p class="text-blue-100 text-sm">Detail biaya setiap perlengkapan yang dibutuhkan</p>
+    <!-- Info Cards Section -->
+    <section class="section" id="biaya">
+        <div class="section-container">
+            <div class="info-cards">
+                <div class="info-card fade-up stagger-1">
+                    <div class="info-card-icon emerald">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <div class="info-card-content">
+                        <h3>Total Item</h3>
+                        <p>4 Perlengkapan</p>
+                    </div>
+                </div>
+
+                <div class="info-card fade-up stagger-2">
+                    <div class="info-card-icon amber">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <div class="info-card-content">
+                        <h3>Sistem Pembayaran</h3>
+                        <p>4x Cicilan</p>
+                    </div>
+                </div>
+
+                <div class="info-card fade-up stagger-3">
+                    <div class="info-card-icon cyan">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="info-card-content">
+                        <h3>Periode Cicilan</h3>
+                        <p>Apr - Jul 2026</p>
                     </div>
                 </div>
             </div>
-            
-            <div class="table-wrapper">
-                <table class="w-full" role="table">
-                    <thead class="bg-blue-50 sticky-header">
-                        <tr>
-                            <th rowspan="2" class="px-4 py-4 text-center text-xs font-semibold text-gray-700 uppercase border-b-2 border-blue-200" scope="col">No</th>
-                            <th rowspan="2" class="px-4 py-4 text-left text-xs font-semibold text-gray-700 uppercase border-b-2 border-blue-200" scope="col">Uraian</th>
-                            <th colspan="2" class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase" scope="colgroup">
-                                <div class="flex items-center justify-center gap-2">
-                                    <i class="fas fa-bed" aria-hidden="true"></i>
-                                    <span>Boarding</span>
-                                </div>
-                            </th>
-                            <th rowspan="2" class="px-4 py-4 text-center text-xs font-semibold text-gray-700 uppercase border-b-2 border-blue-200" scope="col">
-                                <div class="flex items-center justify-center gap-2">
-                                    <i class="fas fa-school" aria-hidden="true"></i>
-                                    <span>Non-Boarding</span>
-                                </div>
-                            </th>
-                        </tr>
-                        <tr>
-                            <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase border-b-2 border-blue-200" scope="col">
-                                <i class="fas fa-mars text-blue-600" aria-hidden="true"></i> Putra
-                            </th>
-                            <th class="px-4 py-3 text-center text-xs font-semibold text-gray-700 uppercase border-b-2 border-blue-200" scope="col">
-                                <i class="fas fa-venus text-pink-600" aria-hidden="true"></i> Putri
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        <tr class="hover:bg-blue-50 transition-colors">
-                            <td class="px-4 py-4 text-center text-gray-700 font-medium">1</td>
-                            <td class="px-4 py-4">
-                                <div class="flex items-center gap-2">
-                                    <i class="fas fa-tshirt text-blue-500" aria-hidden="true"></i>
-                                    <span class="font-medium text-gray-800">Seragam</span>
-                                    <div class="flex gap-1 ml-2">
-                                        <button onclick="openModal('seragam')" class="text-blue-600 hover:text-blue-800 transition-colors" title="Lihat detail harga">
-                                            <i class="fas fa-info-circle" aria-hidden="true"></i>
+
+            <!-- Price Table -->
+            <div class="table-card fade-up">
+                <div class="table-header">
+                    <div class="table-header-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <div class="table-header-content">
+                        <h2>Rincian Biaya Per Item</h2>
+                        <p>Detail biaya setiap perlengkapan yang dibutuhkan</p>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">No</th>
+                                <th rowspan="2">Uraian</th>
+                                <th colspan="2">
+                                    <i class="fas fa-bed"></i> Boarding
+                                </th>
+                                <th rowspan="2">
+                                    <i class="fas fa-school"></i> Non-Boarding
+                                </th>
+                            </tr>
+                            <tr>
+                                <th><i class="fas fa-mars" style="color: #3b82f6"></i> Putra</th>
+                                <th><i class="fas fa-venus" style="color: #ec4899"></i> Putri</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <div class="item-name">
+                                        <div class="item-icon" style="color: #3b82f6">
+                                            <i class="fas fa-tshirt"></i>
+                                        </div>
+                                        <span>Seragam</span>
+                                        <button onclick="openModal('seragam')" class="item-info-btn"
+                                            title="Lihat detail">
+                                            <i class="fas fa-info-circle"></i>
                                         </button>
                                     </div>
-                                </div>
-                            </td>
-                            <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap">Rp 960.000</td>
-                            <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap">Rp 1.115.000</td>
-                            <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap">Rp 960.000</td>
-                        </tr>
-                        <tr class="hover:bg-blue-50 transition-colors">
-                            <td class="px-4 py-4 text-center text-gray-700 font-medium">2</td>
-                            <td class="px-4 py-4">
-                                <div class="flex items-center gap-2">
-                                    <i class="fas fa-book text-cyan-500" aria-hidden="true"></i>
-                                    <span class="font-medium text-gray-800">Buku Umum</span>
-                                    <button onclick="openModal('bukuUmum')" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors" title="Lihat detail">
-                                        <i class="fas fa-info-circle" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </td>
-                            <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap">Rp 120.000</td>
-                            <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap">Rp 120.000</td>
-                            <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap">Rp 120.000</td>
-                        </tr>
-                        <tr class="hover:bg-blue-50 transition-colors">
-                            <td class="px-4 py-4 text-center text-gray-700 font-medium">3</td>
-                            <td class="px-4 py-4">
-                                <div class="flex items-center gap-2">
-                                    <i class="fas fa-book-open text-green-500" aria-hidden="true"></i>
-                                    <span class="font-medium text-gray-800">Buku Ismubaris</span>
-                                    <button onclick="openModal('bukuIsmubaris')" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors" title="Lihat detail">
-                                        <i class="fas fa-info-circle" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </td>
-                            <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap">Rp 120.000</td>
-                            <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap">Rp 120.000</td>
-                            <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap">Rp 247.000</td>
-                        </tr>
-                        <tr class="hover:bg-blue-50 transition-colors">
-                            <td class="px-4 py-4 text-center text-gray-700 font-medium">4</td>
-                            <td class="px-4 py-4">
-                                <div class="flex items-center gap-2">
-                                    <i class="fas fa-book-quran text-amber-500" aria-hidden="true"></i>
-                                    <span class="font-medium text-gray-800">Kitab Pondok</span>
-                                    <button onclick="openModal('kitabPondok')" class="ml-2 text-blue-600 hover:text-blue-800 transition-colors" title="Lihat detail">
-                                        <i class="fas fa-info-circle" aria-hidden="true"></i>
-                                    </button>
-                                </div>
-                            </td>
-                            <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap">Rp 270.000</td>
-                            <td class="px-4 py-4 text-center font-semibold text-blue-700 whitespace-nowrap">Rp 270.000</td>
-                            <td class="px-4 py-4 text-center text-gray-400">—</td>
-                        </tr>
-                        <tr class="bg-gradient-to-r from-blue-50 to-green-50 font-bold">
-                            <td colspan="2" class="px-10 py-5">
-                                <div class="flex items-center gap-2 text-gray-900">
-                                    <i class="fas fa-wallet text-blue-600" aria-hidden="true"></i>
-                                    <span class="text-base md:text-lg">TOTAL BIAYA</span>
-                                </div>
-                            </td>
-                            <td class="px-4 py-5 text-center text-blue-800 text-base md:text-lg whitespace-nowrap">Rp 1.470.000</td>
-                            <td class="px-4 py-5 text-center text-blue-800 text-base md:text-lg whitespace-nowrap">Rp 1.625.000</td>
-                            <td class="px-4 py-5 text-center text-blue-800 text-base md:text-lg whitespace-nowrap">Rp 1.327.000</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="p-4 bg-amber-50 border-t-2 border-amber-200">
-                <div class="flex items-start gap-2 text-amber-800">
-                    <i class="fas fa-info-circle mt-1 flex-shrink-0" aria-hidden="true"></i>
-                    <p class="text-sm"><strong>Catatan:</strong> Program Non-Boarding hanya tersedia untuk putra. Untuk santri putri, program yang tersedia adalah Boarding.</p>
+                                </td>
+                                <td class="price">Rp 960.000</td>
+                                <td class="price">Rp 1.115.000</td>
+                                <td class="price">Rp 960.000</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <div class="item-name">
+                                        <div class="item-icon" style="color: #06b6d4">
+                                            <i class="fas fa-book"></i>
+                                        </div>
+                                        <span>Buku Umum</span>
+                                        <button onclick="openModal('bukuUmum')" class="item-info-btn"
+                                            title="Lihat detail">
+                                            <i class="fas fa-info-circle"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="price">Rp 120.000</td>
+                                <td class="price">Rp 120.000</td>
+                                <td class="price">Rp 120.000</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>
+                                    <div class="item-name">
+                                        <div class="item-icon" style="color: #10b981">
+                                            <i class="fas fa-book-open"></i>
+                                        </div>
+                                        <span>Buku Ismubaris</span>
+                                        <button onclick="openModal('bukuIsmubaris')" class="item-info-btn"
+                                            title="Lihat detail">
+                                            <i class="fas fa-info-circle"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="price">Rp 120.000</td>
+                                <td class="price">Rp 120.000</td>
+                                <td class="price">Rp 247.000</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>
+                                    <div class="item-name">
+                                        <div class="item-icon" style="color: #f59e0b">
+                                            <i class="fas fa-book-quran"></i>
+                                        </div>
+                                        <span>Kitab Pondok</span>
+                                        <button onclick="openModal('kitabPondok')" class="item-info-btn"
+                                            title="Lihat detail">
+                                            <i class="fas fa-info-circle"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                                <td class="price">Rp 270.000</td>
+                                <td class="price">Rp 270.000</td>
+                                <td style="color: var(--text-muted)">—</td>
+                            </tr>
+                            <tr class="total-row">
+                                <td colspan="2">
+                                    <div class="item-name" style="justify-content: center;">
+                                        <i class="fas fa-wallet" style="color: var(--primary-400)"></i>
+                                        <strong>TOTAL BIAYA</strong>
+                                    </div>
+                                </td>
+                                <td class="price">Rp 1.470.000</td>
+                                <td class="price">Rp 1.625.000</td>
+                                <td class="price">Rp 1.327.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-note">
+                    <i class="fas fa-info-circle"></i>
+                    <p><strong>Catatan:</strong> Program Non-Boarding hanya tersedia untuk putra. Untuk santri putri,
+                        program yang tersedia adalah Boarding.</p>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Installment Section -->
-        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden mb-8 fade-in" style="animation-delay: 0.5s">
-            <div class="bg-gradient-to-r from-green-600 to-green-700 p-5 md:p-6">
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-calendar-days text-white text-2xl" aria-hidden="true"></i>
-                    <div>
-                        <h2 class="text-xl md:text-2xl font-bold text-white">Jadwal Pembayaran Angsuran</h2>
-                        <p class="text-green-100 text-sm">Cicilan dapat dibayarkan mulai bulan April hingga Juli 2026</p>
+    <!-- Installment Section -->
+    <section class="section" id="angsuran">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-badge">
+                    <i class="fas fa-calendar-days"></i>
+                    Jadwal Pembayaran
+                </span>
+                <h2 class="section-title">Angsuran Bulanan</h2>
+                <p class="section-subtitle">Cicilan dapat dibayarkan mulai bulan April hingga Juli 2026</p>
+            </div>
+
+            <div class="installment-grid">
+                <!-- Angsuran 1 -->
+                <div class="installment-card fade-up stagger-1">
+                    <div class="installment-header">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div class="installment-number month-1">1</div>
+                            <div class="installment-info">
+                                <h3>Angsuran 1</h3>
+                                <p>April 2026</p>
+                            </div>
+                        </div>
+                        <i class="fas fa-calendar-check installment-icon"></i>
+                    </div>
+                    <div class="installment-body">
+                        <div class="installment-item">
+                            <span class="installment-item-label">
+                                <i class="fas fa-mars" style="color: #3b82f6"></i>
+                                Boarding Putra
+                            </span>
+                            <span class="installment-item-value">Rp 367.500</span>
+                        </div>
+                        <div class="installment-item">
+                            <span class="installment-item-label">
+                                <i class="fas fa-venus" style="color: #ec4899"></i>
+                                Boarding Putri
+                            </span>
+                            <span class="installment-item-value">Rp 407.000</span>
+                        </div>
+                        <div class="installment-item">
+                            <span class="installment-item-label">
+                                <i class="fas fa-school" style="color: #06b6d4"></i>
+                                Non-Boarding
+                            </span>
+                            <span class="installment-item-value">Rp 332.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Angsuran 2 -->
+                <div class="installment-card fade-up stagger-2">
+                    <div class="installment-header">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div class="installment-number month-2">2</div>
+                            <div class="installment-info">
+                                <h3>Angsuran 2</h3>
+                                <p>Mei 2026</p>
+                            </div>
+                        </div>
+                        <i class="fas fa-calendar-check installment-icon"></i>
+                    </div>
+                    <div class="installment-body">
+                        <div class="installment-item">
+                            <span class="installment-item-label">
+                                <i class="fas fa-mars" style="color: #3b82f6"></i>
+                                Boarding Putra
+                            </span>
+                            <span class="installment-item-value">Rp 367.500</span>
+                        </div>
+                        <div class="installment-item">
+                            <span class="installment-item-label">
+                                <i class="fas fa-venus" style="color: #ec4899"></i>
+                                Boarding Putri
+                            </span>
+                            <span class="installment-item-value">Rp 406.000</span>
+                        </div>
+                        <div class="installment-item">
+                            <span class="installment-item-label">
+                                <i class="fas fa-school" style="color: #06b6d4"></i>
+                                Non-Boarding
+                            </span>
+                            <span class="installment-item-value">Rp 331.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Angsuran 3 -->
+                <div class="installment-card fade-up stagger-3">
+                    <div class="installment-header">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div class="installment-number month-3">3</div>
+                            <div class="installment-info">
+                                <h3>Angsuran 3</h3>
+                                <p>Juni 2026</p>
+                            </div>
+                        </div>
+                        <i class="fas fa-calendar-check installment-icon"></i>
+                    </div>
+                    <div class="installment-body">
+                        <div class="installment-item">
+                            <span class="installment-item-label">
+                                <i class="fas fa-mars" style="color: #3b82f6"></i>
+                                Boarding Putra
+                            </span>
+                            <span class="installment-item-value">Rp 367.500</span>
+                        </div>
+                        <div class="installment-item">
+                            <span class="installment-item-label">
+                                <i class="fas fa-venus" style="color: #ec4899"></i>
+                                Boarding Putri
+                            </span>
+                            <span class="installment-item-value">Rp 406.000</span>
+                        </div>
+                        <div class="installment-item">
+                            <span class="installment-item-label">
+                                <i class="fas fa-school" style="color: #06b6d4"></i>
+                                Non-Boarding
+                            </span>
+                            <span class="installment-item-value">Rp 331.000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Angsuran 4 -->
+                <div class="installment-card fade-up stagger-4">
+                    <div class="installment-header">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div class="installment-number month-4">4</div>
+                            <div class="installment-info">
+                                <h3>Angsuran 4</h3>
+                                <p>Juli 2026</p>
+                            </div>
+                        </div>
+                        <i class="fas fa-calendar-check installment-icon"></i>
+                    </div>
+                    <div class="installment-body">
+                        <div class="installment-item">
+                            <span class="installment-item-label">
+                                <i class="fas fa-mars" style="color: #3b82f6"></i>
+                                Boarding Putra
+                            </span>
+                            <span class="installment-item-value">Rp 367.500</span>
+                        </div>
+                        <div class="installment-item">
+                            <span class="installment-item-label">
+                                <i class="fas fa-venus" style="color: #ec4899"></i>
+                                Boarding Putri
+                            </span>
+                            <span class="installment-item-value">Rp 406.000</span>
+                        </div>
+                        <div class="installment-item">
+                            <span class="installment-item-label">
+                                <i class="fas fa-school" style="color: #06b6d4"></i>
+                                Non-Boarding
+                            </span>
+                            <span class="installment-item-value">Rp 331.000</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="p-5 md:p-6 bg-gradient-to-br from-gray-50 to-blue-50">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    
-                    <!-- Angsuran 1 -->
-                    <div class="bg-white rounded-xl border-2 border-blue-200 overflow-hidden card shadow-md">
-                        <div class="bg-gradient-to-r from-blue-500 to-blue-600 p-4">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
-                                        <span class="text-2xl font-bold text-white">1</span>
-                                    </div>
-                                    <div>
-                                        <p class="text-white font-bold text-lg">Angsuran 1</p>
-                                        <p class="text-blue-100 text-sm">April 2026</p>
-                                    </div>
-                                </div>
-                                <i class="fas fa-calendar-check text-white text-2xl" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                        <div class="p-4 space-y-2">
-                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600 text-sm flex items-center gap-2">
-                                    <i class="fas fa-mars text-blue-500 text-xs" aria-hidden="true"></i>
-                                    Boarding Putra
-                                </span>
-                                <span class="font-bold text-blue-700">Rp 367.500</span>
-                            </div>
-                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600 text-sm flex items-center gap-2">
-                                    <i class="fas fa-venus text-pink-500 text-xs" aria-hidden="true"></i>
-                                    Boarding Putri
-                                </span>
-                                <span class="font-bold text-blue-700">Rp 407.000</span>
-                            </div>
-                            <div class="flex justify-between items-center py-2">
-                                <span class="text-gray-600 text-sm flex items-center gap-2">
-                                    <i class="fas fa-mars text-blue-500 text-xs" aria-hidden="true"></i>
-                                    Non-Boarding Putra
-                                </span>
-                                <span class="font-bold text-blue-700">Rp 332.000</span>
-                            </div>
-                        </div>
+            <!-- Payment Methods -->
+            <div class="payment-methods fade-up">
+                <h3>
+                    <i class="fas fa-money-bill-wave"></i>
+                    Metode Pembayaran
+                </h3>
+                <div class="payment-grid">
+                    <div class="payment-item">
+                        <i class="fas fa-money-bill"></i>
+                        <span>Tunai</span>
                     </div>
-
-                    <!-- Angsuran 2 -->
-                    <div class="bg-white rounded-xl border-2 border-green-200 overflow-hidden card shadow-md">
-                        <div class="bg-gradient-to-r from-green-500 to-green-600 p-4">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
-                                        <span class="text-2xl font-bold text-white">2</span>
-                                    </div>
-                                    <div>
-                                        <p class="text-white font-bold text-lg">Angsuran 2</p>
-                                        <p class="text-green-100 text-sm">Mei 2026</p>
-                                    </div>
-                                </div>
-                                <i class="fas fa-calendar-check text-white text-2xl" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                        <div class="p-4 space-y-2">
-                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600 text-sm flex items-center gap-2">
-                                    <i class="fas fa-mars text-blue-500 text-xs" aria-hidden="true"></i>
-                                    Boarding Putra
-                                </span>
-                                <span class="font-bold text-green-700">Rp 367.500</span>
-                            </div>
-                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600 text-sm flex items-center gap-2">
-                                    <i class="fas fa-venus text-pink-500 text-xs" aria-hidden="true"></i>
-                                    Boarding Putri
-                                </span>
-                                <span class="font-bold text-green-700">Rp 406.000</span>
-                            </div>
-                            <div class="flex justify-between items-center py-2">
-                                <span class="text-gray-600 text-sm flex items-center gap-2">
-                                    <i class="fas fa-mars text-blue-500 text-xs" aria-hidden="true"></i>
-                                    Non-Boarding Putra
-                                </span>
-                                <span class="font-bold text-green-700">Rp 331.000</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Angsuran 3 -->
-                    <div class="bg-white rounded-xl border-2 border-cyan-200 overflow-hidden card shadow-md">
-                        <div class="bg-gradient-to-r from-cyan-500 to-cyan-600 p-4">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
-                                        <span class="text-2xl font-bold text-white">3</span>
-                                    </div>
-                                    <div>
-                                        <p class="text-white font-bold text-lg">Angsuran 3</p>
-                                        <p class="text-cyan-100 text-sm">Juni 2026</p>
-                                    </div>
-                                </div>
-                                <i class="fas fa-calendar-check text-white text-2xl" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                        <div class="p-4 space-y-2">
-                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600 text-sm flex items-center gap-2">
-                                    <i class="fas fa-mars text-blue-500 text-xs" aria-hidden="true"></i>
-                                    Boarding Putra
-                                </span>
-                                <span class="font-bold text-cyan-700">Rp 367.500</span>
-                            </div>
-                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600 text-sm flex items-center gap-2">
-                                    <i class="fas fa-venus text-pink-500 text-xs" aria-hidden="true"></i>
-                                    Boarding Putri
-                                </span>
-                                <span class="font-bold text-cyan-700">Rp 406.000</span>
-                            </div>
-                            <div class="flex justify-between items-center py-2">
-                                <span class="text-gray-600 text-sm flex items-center gap-2">
-                                    <i class="fas fa-mars text-blue-500 text-xs" aria-hidden="true"></i>
-                                    Non-Boarding Putra
-                                </span>
-                                <span class="font-bold text-cyan-700">Rp 331.000</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Angsuran 4 -->
-                    <div class="bg-white rounded-xl border-2 border-teal-200 overflow-hidden card shadow-md">
-                        <div class="bg-gradient-to-r from-teal-500 to-teal-600 p-4">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
-                                        <span class="text-2xl font-bold text-white">4</span>
-                                    </div>
-                                    <div>
-                                        <p class="text-white font-bold text-lg">Angsuran 4</p>
-                                        <p class="text-teal-100 text-sm">Juli 2026</p>
-                                    </div>
-                                </div>
-                                <i class="fas fa-calendar-check text-white text-2xl" aria-hidden="true"></i>
-                            </div>
-                        </div>
-                        <div class="p-4 space-y-2">
-                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600 text-sm flex items-center gap-2">
-                                    <i class="fas fa-mars text-blue-500 text-xs" aria-hidden="true"></i>
-                                    Boarding Putra
-                                </span>
-                                <span class="font-bold text-teal-700">Rp 367.500</span>
-                            </div>
-                            <div class="flex justify-between items-center py-2 border-b border-gray-200">
-                                <span class="text-gray-600 text-sm flex items-center gap-2">
-                                    <i class="fas fa-venus text-pink-500 text-xs" aria-hidden="true"></i>
-                                    Boarding Putri
-                                </span>
-                                <span class="font-bold text-teal-700">Rp 406.000</span>
-                            </div>
-                            <div class="flex justify-between items-center py-2">
-                                <span class="text-gray-600 text-sm flex items-center gap-2">
-                                    <i class="fas fa-mars text-blue-500 text-xs" aria-hidden="true"></i>
-                                    Non-Boarding Putra
-                                </span>
-                                <span class="font-bold text-teal-700">Rp 331.000</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                
-                <!-- Payment Methods Info -->
-                <div class="mt-6 bg-white rounded-xl p-5 border-2 border-blue-100">
-                    <h3 class="font-bold text-gray-800 mb-4 flex items-center gap-2">
-                        <i class="fas fa-money-bill-wave text-green-600" aria-hidden="true"></i>
-                        Metode Pembayaran
-                    </h3>
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-                        <!-- Tunai -->
-                        <div class="flex items-center justify-center gap-2 bg-green-50 p-3 rounded-lg border-2 border-green-200 hover:shadow-md transition-shadow">
-                            <i class="fas fa-money-bill text-green-600 text-xl" aria-hidden="true"></i>
-                            <span class="font-medium text-gray-700">Tunai</span>
-                        </div>
-                        <!-- Bank Muamalat -->
-                        <div class="flex items-center justify-center bg-purple-50 p-3 rounded-lg border-2 border-purple-200 hover:shadow-md transition-shadow">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Muamalat_Logo.png" alt="Bank Muamalat" class="h-6 w-auto object-contain">
-                        </div>
-                        <!-- Bank BRI -->
-                        <div class="flex items-center justify-center bg-blue-50 p-3 rounded-lg border-2 border-blue-200 hover:shadow-md transition-shadow">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6d/BRI_2025.png" alt="Bank BRI" class="h-6 w-auto object-contain">
-                        </div>
-                        <!-- Bank BNI -->
-                        <div class="flex items-center justify-center bg-orange-50 p-3 rounded-lg border-2 border-orange-200 hover:shadow-md transition-shadow">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Bank_Negara_Indonesia_logo_%282004%29.svg/1920px-Bank_Negara_Indonesia_logo_%282004%29.svg.png" alt="Bank BNI" class="h-6 w-auto object-contain">
-                        </div>
-                        <!-- Bank Mandiri -->
-                        <div class="flex items-center justify-center bg-yellow-50 p-3 rounded-lg border-2 border-yellow-200 hover:shadow-md transition-shadow">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bank_Mandiri_logo_2016.svg/1920px-Bank_Mandiri_logo_2016.svg.png" alt="Bank Mandiri" class="h-6 w-auto object-contain">
-                        </div>
+                    <div class="payment-item">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Bank_Mandiri_logo_2016.svg/1920px-Bank_Mandiri_logo_2016.svg.png"
+                            alt="Bank Mandiri">
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- FAQ Section -->
-        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden mb-8 fade-in" style="animation-delay: 0.55s">
-            <div class="bg-gradient-to-r from-purple-600 to-purple-700 p-5 md:p-6">
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-question-circle text-white text-2xl" aria-hidden="true"></i>
-                    <div>
-                        <h2 class="text-xl md:text-2xl font-bold text-white">Pertanyaan yang Sering Diajukan</h2>
-                        <p class="text-purple-100 text-sm">FAQ seputar pembayaran dan perlengkapan santri</p>
-                    </div>
-                </div>
+    <!-- FAQ Section -->
+    <section class="section" id="faq">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-badge">
+                    <i class="fas fa-question-circle"></i>
+                    Bantuan
+                </span>
+                <h2 class="section-title">Pertanyaan Umum</h2>
+                <p class="section-subtitle">FAQ seputar pembayaran dan perlengkapan santri</p>
             </div>
-            <div class="p-5 md:p-6 space-y-3">
-                <div class="faq-item border-2 border-gray-200 rounded-xl overflow-hidden">
-                    <button onclick="toggleFAQ(0)" class="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors text-left">
-                        <span class="font-semibold text-gray-800 flex items-center gap-2">
-                            <i class="fas fa-credit-card text-purple-600" aria-hidden="true"></i>
+
+            <div class="faq-list">
+                <div class="faq-item fade-up stagger-1">
+                    <button class="faq-button" onclick="toggleFAQ(this)">
+                        <span class="faq-question">
+                            <i class="fas fa-credit-card"></i>
                             Apakah pembayaran harus dicicil?
                         </span>
-                        <i class="fas fa-chevron-down transition-transform faq-icon" aria-hidden="true"></i>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </button>
-                    <div class="faq-content hidden p-4 bg-white border-t-2 border-gray-100">
-                        <p class="text-gray-600">Pembayaran dapat dilakukan secara cicilan (4x) atau lunas di awal. Sistem cicilan tanpa bunga berlaku untuk periode April - Juli 2026.</p>
+                    <div class="faq-content">
+                        <p class="faq-answer">Pembayaran dapat dilakukan secara cicilan (4x) atau lunas di awal. Sistem
+                            cicilan tanpa bunga berlaku untuk periode April - Juli 2026.</p>
                     </div>
                 </div>
 
-                <div class="faq-item border-2 border-gray-200 rounded-xl overflow-hidden">
-                    <button onclick="toggleFAQ(1)" class="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors text-left">
-                        <span class="font-semibold text-gray-800 flex items-center gap-2">
-                            <i class="fas fa-calendar-alt text-purple-600" aria-hidden="true"></i>
+                <div class="faq-item fade-up stagger-2">
+                    <button class="faq-button" onclick="toggleFAQ(this)">
+                        <span class="faq-question">
+                            <i class="fas fa-calendar-alt"></i>
                             Bagaimana jika terlambat membayar angsuran?
                         </span>
-                        <i class="fas fa-chevron-down transition-transform faq-icon" aria-hidden="true"></i>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </button>
-                    <div class="faq-content hidden p-4 bg-white border-t-2 border-gray-100">
-                        <p class="text-gray-600">Untuk informasi detail mengenai keterlambatan pembayaran, silakan hubungi bagian keuangan melalui kontak yang tersedia di bawah.</p>
+                    <div class="faq-content">
+                        <p class="faq-answer">Untuk informasi detail mengenai keterlambatan pembayaran, silakan hubungi
+                            bagian keuangan melalui kontak yang tersedia di bawah.</p>
                     </div>
                 </div>
 
-                <div class="faq-item border-2 border-gray-200 rounded-xl overflow-hidden">
-                    <button onclick="toggleFAQ(2)" class="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors text-left">
-                        <span class="font-semibold text-gray-800 flex items-center gap-2">
-                            <i class="fas fa-exchange-alt text-purple-600" aria-hidden="true"></i>
+                <div class="faq-item fade-up stagger-3">
+                    <button class="faq-button" onclick="toggleFAQ(this)">
+                        <span class="faq-question">
+                            <i class="fas fa-exchange-alt"></i>
                             Apakah bisa mengubah dari Non-Boarding ke Boarding?
                         </span>
-                        <i class="fas fa-chevron-down transition-transform faq-icon" aria-hidden="true"></i>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </button>
-                    <div class="faq-content hidden p-4 bg-white border-t-2 border-gray-100">
-                        <p class="text-gray-600">Perubahan program dapat dilakukan dengan menghubungi bagian administrasi. Penyesuaian biaya akan dihitung berdasarkan selisih program yang dipilih.</p>
+                    <div class="faq-content">
+                        <p class="faq-answer">Perubahan program dapat dilakukan dengan menghubungi bagian administrasi.
+                            Penyesuaian biaya akan dihitung berdasarkan selisih program yang dipilih.</p>
                     </div>
                 </div>
 
-                <div class="faq-item border-2 border-gray-200 rounded-xl overflow-hidden">
-                    <button onclick="toggleFAQ(3)" class="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors text-left">
-                        <span class="font-semibold text-gray-800 flex items-center gap-2">
-                            <i class="fas fa-shipping-fast text-purple-600" aria-hidden="true"></i>
+                <div class="faq-item fade-up stagger-4">
+                    <button class="faq-button" onclick="toggleFAQ(this)">
+                        <span class="faq-question">
+                            <i class="fas fa-shipping-fast"></i>
                             Kapan perlengkapan akan diterima?
                         </span>
-                        <i class="fas fa-chevron-down transition-transform faq-icon" aria-hidden="true"></i>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </button>
-                    <div class="faq-content hidden p-4 bg-white border-t-2 border-gray-100">
-                        <p class="text-gray-600">Perlengkapan akan disiapkan setelah pembayaran angsuran pertama lunas dan akan diserahkan sesuai jadwal yang ditentukan oleh pihak sekolah.</p>
+                    <div class="faq-content">
+                        <p class="faq-answer">Perlengkapan akan disiapkan setelah pembayaran angsuran pertama lunas dan
+                            akan diserahkan sesuai jadwal yang ditentukan oleh pihak sekolah.</p>
                     </div>
                 </div>
 
-                <div class="faq-item border-2 border-gray-200 rounded-xl overflow-hidden">
-                    <button onclick="toggleFAQ(4)" class="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors text-left">
-                        <span class="font-semibold text-gray-800 flex items-center gap-2">
-                            <i class="fas fa-money-check-alt text-purple-600" aria-hidden="true"></i>
+                <div class="faq-item fade-up">
+                    <button class="faq-button" onclick="toggleFAQ(this)">
+                        <span class="faq-question">
+                            <i class="fas fa-money-check-alt"></i>
                             Metode pembayaran apa saja yang tersedia?
                         </span>
-                        <i class="fas fa-chevron-down transition-transform faq-icon" aria-hidden="true"></i>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </button>
-                    <div class="faq-content hidden p-4 bg-white border-t-2 border-gray-100">
-                        <p class="text-gray-600">Pembayaran dapat dilakukan melalui: Tunai, Transfer Bank Muamalat, BRI, BNI, dan Mandiri. Pastikan menyertakan nomor referensi atau nama santri saat transfer.</p>
+                    <div class="faq-content">
+                        <p class="faq-answer">Pembayaran dapat dilakukan melalui: Tunai atau Transfer Bank Mandiri.
+                            Pastikan menyertakan nomor referensi atau nama santri saat transfer.</p>
                     </div>
                 </div>
 
-                <div class="faq-item border-2 border-gray-200 rounded-xl overflow-hidden">
-                    <button onclick="toggleFAQ(5)" class="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 transition-colors text-left">
-                        <span class="font-semibold text-gray-800 flex items-center gap-2">
-                            <i class="fas fa-tshirt text-purple-600" aria-hidden="true"></i>
+                <div class="faq-item fade-up">
+                    <button class="faq-button" onclick="toggleFAQ(this)">
+                        <span class="faq-question">
+                            <i class="fas fa-tshirt"></i>
                             Apakah ukuran seragam bisa disesuaikan?
                         </span>
-                        <i class="fas fa-chevron-down transition-transform faq-icon" aria-hidden="true"></i>
+                        <i class="fas fa-chevron-down faq-icon"></i>
                     </button>
-                    <div class="faq-content hidden p-4 bg-white border-t-2 border-gray-100">
-                        <p class="text-gray-600">Ya, pengukuran untuk seragam akan dilakukan saat pendaftaran atau sesuai jadwal yang ditentukan. Pastikan hadir untuk pengukuran agar seragam sesuai.</p>
+                    <div class="faq-content">
+                        <p class="faq-answer">Ya, pengukuran untuk seragam akan dilakukan saat pendaftaran atau sesuai
+                            jadwal yang ditentukan. Pastikan hadir untuk pengukuran agar seragam sesuai.</p>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Comparison Tool -->
-        <div class="bg-white rounded-2xl shadow-2xl overflow-hidden mb-8 fade-in" style="animation-delay: 0.6s">
-            <div class="bg-gradient-to-r from-orange-600 to-orange-700 p-5 md:p-6">
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-balance-scale text-white text-2xl" aria-hidden="true"></i>
-                    <div>
-                        <h2 class="text-xl md:text-2xl font-bold text-white">Perbandingan Program</h2>
-                        <p class="text-orange-100 text-sm">Bandingkan biaya antara program Boarding dan Non-Boarding</p>
-                    </div>
-                </div>
+    <!-- Comparison Section -->
+    <section class="section" id="perbandingan">
+        <div class="section-container">
+            <div class="section-header fade-up">
+                <span class="section-badge">
+                    <i class="fas fa-balance-scale"></i>
+                    Perbandingan
+                </span>
+                <h2 class="section-title">Pilih Program Terbaik</h2>
+                <p class="section-subtitle">Bandingkan biaya antara program Boarding dan Non-Boarding</p>
             </div>
-            <div class="p-5 md:p-6">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <!-- Boarding Putra -->
-                    <div class="border-2 border-blue-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
-                        <div class="bg-gradient-to-br from-blue-500 to-blue-600 p-4 text-white">
-                            <div class="flex items-center justify-center gap-2 mb-2">
-                                <i class="fas fa-mars text-2xl" aria-hidden="true"></i>
-                                <h3 class="text-xl font-bold">Boarding Putra</h3>
-                            </div>
-                            <p class="text-center text-3xl font-bold">Rp 1.470.000</p>
-                            <p class="text-center text-sm text-blue-100 mt-1">Total Biaya</p>
-                        </div>
-                        <div class="p-4 space-y-2">
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-600 mt-1" aria-hidden="true"></i>
-                                <span class="text-sm text-gray-700">Seragam lengkap (Rp 960.000)</span>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-600 mt-1" aria-hidden="true"></i>
-                                <span class="text-sm text-gray-700">Buku Umum (Rp 120.000)</span>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-600 mt-1" aria-hidden="true"></i>
-                                <span class="text-sm text-gray-700">Buku Ismubaris (Rp 120.000)</span>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-600 mt-1" aria-hidden="true"></i>
-                                <span class="text-sm text-gray-700">Kitab Pondok (Rp 270.000)</span>
-                            </div>
-                            <div class="pt-3 mt-3 border-t border-gray-200">
-                                <p class="text-xs text-gray-600 font-semibold">Cicilan per bulan:</p>
-                                <p class="text-lg font-bold text-blue-700">Rp 367.500</p>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Boarding Putri -->
-                    <div class="border-2 border-pink-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
-                        <div class="bg-gradient-to-br from-pink-500 to-pink-600 p-4 text-white">
-                            <div class="flex items-center justify-center gap-2 mb-2">
-                                <i class="fas fa-venus text-2xl" aria-hidden="true"></i>
-                                <h3 class="text-xl font-bold">Boarding Putri</h3>
-                            </div>
-                            <p class="text-center text-3xl font-bold">Rp 1.625.000</p>
-                            <p class="text-center text-sm text-pink-100 mt-1">Total Biaya</p>
+            <div class="comparison-grid">
+                <!-- Boarding Putra -->
+                <div class="comparison-card fade-up stagger-1">
+                    <div class="comparison-header">
+                        <div class="comparison-icon blue">
+                            <i class="fas fa-mars"></i>
                         </div>
-                        <div class="p-4 space-y-2">
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-600 mt-1" aria-hidden="true"></i>
-                                <span class="text-sm text-gray-700">Seragam lengkap (Rp 1.115.000)</span>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-600 mt-1" aria-hidden="true"></i>
-                                <span class="text-sm text-gray-700">Buku Umum (Rp 120.000)</span>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-600 mt-1" aria-hidden="true"></i>
-                                <span class="text-sm text-gray-700">Buku Ismubaris (Rp 120.000)</span>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-600 mt-1" aria-hidden="true"></i>
-                                <span class="text-sm text-gray-700">Kitab Pondok (Rp 270.000)</span>
-                            </div>
-                            <div class="pt-3 mt-3 border-t border-gray-200">
-                                <p class="text-xs text-gray-600 font-semibold">Cicilan per bulan:</p>
-                                <p class="text-lg font-bold text-pink-700">Rp 406.000</p>
-                            </div>
-                        </div>
+                        <h3 class="comparison-name">Boarding Putra</h3>
+                        <p class="comparison-price">Rp 1.470.000</p>
+                        <p class="comparison-period">Total Biaya</p>
                     </div>
-
-                    <!-- Non-Boarding Putra -->
-                    <div class="border-2 border-cyan-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow">
-                        <div class="bg-gradient-to-br from-cyan-500 to-cyan-600 p-4 text-white">
-                            <div class="flex items-center justify-center gap-2 mb-2">
-                                <i class="fas fa-school text-2xl" aria-hidden="true"></i>
-                                <h3 class="text-xl font-bold">Non-Boarding</h3>
-                            </div>
-                            <p class="text-center text-3xl font-bold">Rp 1.327.000</p>
-                            <p class="text-center text-sm text-cyan-100 mt-1">Total Biaya</p>
-                        </div>
-                        <div class="p-4 space-y-2">
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-600 mt-1" aria-hidden="true"></i>
-                                <span class="text-sm text-gray-700">Seragam lengkap (Rp 960.000)</span>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-600 mt-1" aria-hidden="true"></i>
-                                <span class="text-sm text-gray-700">Buku Umum (Rp 120.000)</span>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-check-circle text-green-600 mt-1" aria-hidden="true"></i>
-                                <span class="text-sm text-gray-700">Buku Ismubaris (Rp 247.000)</span>
-                            </div>
-                            <div class="flex items-start gap-2">
-                                <i class="fas fa-times-circle text-gray-400 mt-1" aria-hidden="true"></i>
-                                <span class="text-sm text-gray-400">Kitab Pondok (Tidak termasuk)</span>
-                            </div>
-                            <div class="pt-3 mt-3 border-t border-gray-200">
-                                <p class="text-xs text-gray-600 font-semibold">Cicilan per bulan:</p>
-                                <p class="text-lg font-bold text-cyan-700">Rp 331.750</p>
-                            </div>
+                    <div class="comparison-body">
+                        <ul class="comparison-features">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Seragam lengkap (Rp 960.000)</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Buku Umum (Rp 120.000)</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Buku Ismubaris (Rp 120.000)</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Kitab Pondok (Rp 270.000)</span>
+                            </li>
+                        </ul>
+                        <div class="comparison-installment">
+                            <p class="comparison-installment-label">Cicilan per bulan:</p>
+                            <p class="comparison-installment-value">Rp 367.500</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-6 bg-orange-50 border-2 border-orange-200 rounded-xl p-4">
-                    <div class="flex items-start gap-2 text-orange-800">
-                        <i class="fas fa-lightbulb mt-1 flex-shrink-0" aria-hidden="true"></i>
-                        <div>
-                            <p class="font-semibold mb-1">Perbedaan Utama:</p>
-                            <ul class="text-sm space-y-1">
-                                <li>• Seragam putri memiliki variasi lebih banyak sehingga biaya lebih tinggi</li>
-                                <li>• Program Non-Boarding tidak termasuk Kitab Pondok</li>
-                                <li>• Buku Ismubaris Non-Boarding lebih lengkap untuk pembelajaran mandiri</li>
-                                <li>• Semua program sudah termasuk buku dan seragam lengkap</li>
-                            </ul>
+                <!-- Boarding Putri -->
+                <div class="comparison-card fade-up stagger-2">
+                    <div class="comparison-header">
+                        <div class="comparison-icon pink">
+                            <i class="fas fa-venus"></i>
+                        </div>
+                        <h3 class="comparison-name">Boarding Putri</h3>
+                        <p class="comparison-price">Rp 1.625.000</p>
+                        <p class="comparison-period">Total Biaya</p>
+                    </div>
+                    <div class="comparison-body">
+                        <ul class="comparison-features">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Seragam lengkap (Rp 1.115.000)</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Buku Umum (Rp 120.000)</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Buku Ismubaris (Rp 120.000)</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Kitab Pondok (Rp 270.000)</span>
+                            </li>
+                        </ul>
+                        <div class="comparison-installment">
+                            <p class="comparison-installment-label">Cicilan per bulan:</p>
+                            <p class="comparison-installment-value">Rp 406.000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Non-Boarding -->
+                <div class="comparison-card fade-up stagger-3">
+                    <div class="comparison-header">
+                        <div class="comparison-icon cyan">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <h3 class="comparison-name">Non-Boarding</h3>
+                        <p class="comparison-price">Rp 1.327.000</p>
+                        <p class="comparison-period">Total Biaya</p>
+                    </div>
+                    <div class="comparison-body">
+                        <ul class="comparison-features">
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Seragam lengkap (Rp 960.000)</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Buku Umum (Rp 120.000)</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-check-circle"></i>
+                                <span>Buku Ismubaris (Rp 247.000)</span>
+                            </li>
+                            <li class="disabled">
+                                <i class="fas fa-times-circle"></i>
+                                <span>Kitab Pondok (Tidak termasuk)</span>
+                            </li>
+                        </ul>
+                        <div class="comparison-installment">
+                            <p class="comparison-installment-label">Cicilan per bulan:</p>
+                            <p class="comparison-installment-value">Rp 331.750</p>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="info-note fade-up">
+                <div class="info-note-header">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Perbedaan Utama</span>
+                </div>
+                <ul>
+                    <li>Seragam putri memiliki variasi lebih banyak sehingga biaya lebih tinggi</li>
+                    <li>Program Non-Boarding tidak termasuk Kitab Pondok</li>
+                    <li>Buku Ismubaris Non-Boarding lebih lengkap untuk pembelajaran mandiri</li>
+                    <li>Semua program sudah termasuk buku dan seragam lengkap</li>
+                </ul>
+            </div>
         </div>
+    </section>
 
-        <!-- Contact Section -->
-        <div class="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl shadow-2xl p-6 md:p-8 no-print fade-in" style="animation-delay: 0.65s">
-            <div class="text-center text-white">
-                <div class="inline-block floating-animation">
-                    <i class="fas fa-headset text-5xl mb-4 opacity-90" aria-hidden="true"></i>
-                </div>
-                <h2 class="text-2xl md:text-3xl font-bold mb-2">Butuh Bantuan?</h2>
-                <p class="text-blue-100 mb-6 max-w-2xl mx-auto">Untuk informasi lebih lanjut tentang pembayaran atau detail perlengkapan, silakan menghubungi kami</p>
-                
-                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-                    <a href="https://wa.me/6282245344633" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 px-6 py-4 rounded-xl border-2 border-green-400 transition-all card shadow-lg">
-                        <i class="fab fa-whatsapp text-2xl" aria-hidden="true"></i>
-                        <div class="text-left">
-                            <p class="text-sm text-green-100">Chat via WhatsApp</p>
-                            <p class="text-lg font-bold">Muhammad Afrizal</p>
-                        </div>
-                    </a>
-                    
-                    <a href="mailto:senyummu2024@gmail.com" class="inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm px-6 py-4 rounded-xl border-2 border-white/30 hover:bg-white/30 transition-all card">
-                        <i class="fas fa-envelope text-2xl" aria-hidden="true"></i>
-                        <div class="text-left">
-                            <p class="text-sm text-blue-100">Chat via Email</p>
-                            <p class="text-lg font-bold">Muhammad Afrizal</p>
-                        </div>
-                    </a>
-                </div>
+    <!-- Contact Section -->
+    <section class="section no-print" id="kontak">
+        <div class="section-container">
+            <div class="contact-section fade-up">
+                <div class="contact-content">
+                    <div class="contact-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h2 class="contact-title">Butuh Bantuan?</h2>
+                    <p class="contact-subtitle">
+                        Untuk informasi lebih lanjut tentang pembayaran atau detail perlengkapan, silakan menghubungi
+                        kami
+                    </p>
 
-                <!-- Download/Print Buttons -->
-                <div class="flex flex-col sm:flex-row gap-3 justify-center items-center pt-4 border-t-2 border-white/20">
-                    <button onclick="window.print()" class="inline-flex items-center gap-2 bg-white text-blue-700 hover:bg-blue-50 px-5 py-3 rounded-lg font-semibold transition-all shadow-md">
-                        <i class="fas fa-print" aria-hidden="true"></i>
-                        <span>Cetak Halaman</span>
-                    </button>
-                    <button onclick="downloadPDF()" class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 px-5 py-3 rounded-lg font-semibold transition-all border-2 border-white/30">
-                        <i class="fas fa-file-pdf" aria-hidden="true"></i>
-                        <span>Download PDF</span>
-                    </button>
+                    <div class="contact-buttons">
+                        <a href="https://wa.me/6282245344633" target="_blank" rel="noopener noreferrer"
+                            class="contact-btn whatsapp">
+                            <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i>
+                            <div class="contact-btn-info">
+                                <small>Chat via WhatsApp</small>
+                                <span>Muhammad Afrizal</span>
+                            </div>
+                        </a>
+
+                        <a href="mailto:senyummu2024@gmail.com" class="contact-btn email">
+                            <i class="fas fa-envelope" style="font-size: 1.25rem;"></i>
+                            <div class="contact-btn-info">
+                                <small>Kirim Email</small>
+                                <span>senyummu2024@gmail.com</span>
+                            </div>
+                        </a>
+                    </div>
+
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Footer -->
-        <div class="text-center mt-6 text-white/80 no-print">
-            <p class="text-sm">© 2026 Koperasi Senyummu. All rights reserved.</p>
-            <p class="text-xs mt-2 text-white/60">Designed with <i class="fas fa-heart text-red-400" aria-hidden="true"></i> for better experience</p>
+    <!-- Footer -->
+    <footer class="footer no-print">
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <span style="font-size: 1.25rem;">😊</span>
+            </div>
+            <span class="footer-name">Koperasi Senyummu</span>
         </div>
-        
-    </div>
+        <p class="footer-text">© 2026 Koperasi Senyummu. All rights reserved.</p>
+        <p class="footer-text">
+            Dibuat dengan <i class="fas fa-heart footer-heart"></i> untuk santri Indonesia
+        </p>
+    </footer>
 
     <!-- Modal for Item Details -->
-    <div id="itemModal" class="fixed inset-0 bg-black/50 modal-backdrop z-50 hidden items-center justify-center p-4" onclick="closeModal(event)">
-        <div class="bg-white rounded-2xl w-full max-w-3xl shadow-2xl animate-fade-in flex flex-col" onclick="event.stopPropagation()">
-            <div class="bg-gradient-to-r from-blue-600 to-blue-700 p-5 flex items-center justify-between rounded-t-2xl flex-shrink-0">
-                <h3 id="modalTitle" class="text-xl font-bold text-white flex items-center gap-2">
-                    <i class="fas fa-info-circle" aria-hidden="true"></i>
-                    Detail Item
+    <div class="modal-overlay" id="itemModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Detail Item</span>
                 </h3>
-                <button onclick="closeModal()" class="text-white hover:bg-white/20 w-10 h-10 rounded-lg transition-colors flex items-center justify-center">
-                    <i class="fas fa-times text-xl" aria-hidden="true"></i>
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div id="modalContent" class="p-6 overflow-y-auto" style="max-height: calc(90vh - 80px);">
+            <div class="modal-body" id="modalContent">
                 <!-- Content will be inserted here by JavaScript -->
             </div>
         </div>
     </div>
 
     <!-- Modal for Image Preview -->
-    <div id="imageModal" class="fixed inset-0 bg-black/80 modal-backdrop z-50 hidden items-center justify-center p-4" onclick="closeImageModal(event)">
-        <div class="bg-white rounded-2xl w-full max-w-5xl shadow-2xl animate-fade-in flex flex-col" onclick="event.stopPropagation()">
-            <div class="bg-gradient-to-r from-green-600 to-green-700 p-5 flex items-center justify-between rounded-t-2xl flex-shrink-0">
-                <!-- Tombol Back Kiri -->
-                <button onclick="closeImageModalAndBackToDetail('seragam')" 
-                        class="flex items-center gap-2 text-white hover:bg-white/20 px-3 py-2 rounded-lg transition-colors group">
-                    <i class="fas fa-arrow-left group-hover:scale-125 transition-transform" aria-hidden="true"></i>
+    <div class="modal-overlay" id="imageModal">
+        <div class="modal-container">
+            <div class="modal-header" style="background: linear-gradient(135deg, #059669, #047857);">
+                <button onclick="closeImageModalAndBackToDetail('seragam')"
+                    style="background: rgba(255,255,255,0.1); border: none; color: white; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas fa-arrow-left"></i>
                 </button>
-                
-                <!-- Judul Tengah -->
-                <div class="flex items-center justify-center gap-2 absolute left-1/2 transform -translate-x-1/2">
-                    <i class="fas fa-images mr-2 text-white" aria-hidden="true"></i>
-                    <span class="font-bold text-white" id="imageModalTitle">Desain Seragam</span>
-                </div>
-                
-                <!-- Tombol Close Kanan -->
-                <button onclick="closeImageModal()" class="text-white hover:bg-white/20 w-10 h-10 rounded-lg transition-colors flex items-center justify-center">
-                    <i class="fas fa-times text-xl" aria-hidden="true"></i>
+                <h3 class="modal-title" id="imageModalTitle">
+                    <i class="fas fa-images"></i>
+                    <span>Desain Seragam</span>
+                </h3>
+                <button class="modal-close" onclick="closeImageModal()">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div id="imageModalContent" class="p-6 overflow-y-auto" style="max-height: calc(90vh - 80px);">
+            <div class="modal-body" id="imageModalContent">
                 <!-- Image will be inserted here -->
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Toast Container -->
+    <div id="toastContainer"></div>
 
+    <script src="script.js"></script>
 </body>
+
 </html>

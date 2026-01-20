@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <style>
+      .outline { fill: #ffffff; stroke: #000000; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+      .detail { fill: none; stroke: #000000; stroke-width: 1; stroke-linecap: round; stroke-linejoin: round; }
+      .text { font-family: sans-serif; font-size: 14px; fill: #000000; text-anchor: middle; font-weight: bold; }
+    </style>
+  </defs>
+  
+  <rect width="800" height="600" fill="#ffffff" />
+
+  <!-- SHIRT (FRONT) -->
+  <g transform="translate(100, 50)">
+    <path class="outline" d="M75,0 L125,10 L175,0 L210,40 L250,30 L240,180 L210,190 L200,125 L200,250 L50,250 L50,125 L40,190 L10,180 L0,30 L40,40 Z" />
+    <path class="outline" d="M75,0 L125,40 L175,0 L125,10 Z" />
+    
+    <!-- Epaulets -->
+    <rect class="detail" x="40" y="30" width="30" height="10" transform="rotate(-15 40 30)" />
+    <rect class="detail" x="180" y="30" width="30" height="10" transform="rotate(15 180 30)" />
+
+    <!-- 2 Pockets with flaps -->
+    <rect class="outline" x="55" y="80" width="50" height="55" />
+    <path class="detail" d="M55,80 L80,90 L105,80" /> <!-- Flap -->
+    
+    <rect class="outline" x="145" y="80" width="50" height="55" />
+    <path class="detail" d="M145,80 L170,90 L195,80" /> <!-- Flap -->
+    
+    <line class="detail" x1="125" y1="40" x2="125" y2="250" />
+    
+    <text x="125" y="280" class="text">DEPAN</text>
+  </g>
+
+  <!-- BACK -->
+  <g transform="translate(450, 50)">
+    <path class="outline" d="M75,0 L175,0 L210,40 L250,30 L240,180 L210,190 L200,125 L200,250 L50,250 L50,125 L40,190 L10,180 L0,30 L40,40 Z" />
+    <path class="detail" d="M40,50 L210,50" />
+    <text x="125" y="280" class="text">BELAKANG</text>
+  </g>
+  
+   <!-- PANTS (FRONT) -->
+  <g transform="translate(150, 320)">
+    <!-- Cargo pockets usually for scouts/HW -->
+    <path class="outline" d="M0,0 H150 L140,250 H85 L85,60 L65,60 L65,250 H10 L0,0 Z" />
+    <path class="detail" d="M75,20 L75,100" />
+    <rect class="detail" x="-5" y="100" width="20" height="40" /> <!-- Side pocket hint -->
+    <rect class="detail" x="135" y="100" width="20" height="40" />
+  </g>
+  
+   <g transform="translate(500, 320)">
+    <path class="outline" d="M0,0 H150 L140,250 H85 L85,60 L65,60 L65,250 H10 L0,0 Z" />
+    <rect class="detail" x="20" y="30" width="40" height="40" />
+    <rect class="detail" x="90" y="30" width="40" height="40" />
+  </g>
+
+</svg>
