@@ -549,3 +549,48 @@ function showToast(message, type = 'info') {
         setTimeout(() => toast.remove(), 300);
     }, 3000);
 }
+
+// ========================================
+// THEME TOGGLE
+// ========================================
+function initThemeToggle() {
+    const toggleBtn = document.getElementById('themeToggle');
+    if (!toggleBtn) return;
+
+    const html = document.documentElement;
+    const icon = toggleBtn.querySelector('i');
+
+    function setTheme(theme) {
+        if (theme === 'light') {
+            html.setAttribute('data-theme', 'light');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+            localStorage.setItem('theme', 'light');
+        } else {
+            html.removeAttribute('data-theme');
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        setTheme(savedTheme);
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        setTheme(currentTheme === 'light' ? 'dark' : 'light');
+    });
+}
+
+// Initialize all functions
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof initNavbar === 'function') initNavbar();
+    if (typeof initMobileMenu === 'function') initMobileMenu();
+    if (typeof initScrollAnimations === 'function') initScrollAnimations();
+    if (typeof initSmoothScroll === 'function') initSmoothScroll();
+    initThemeToggle();
+});
