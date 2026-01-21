@@ -1524,6 +1524,17 @@ body {
     color: var(--accent-500);
 }
 
+[data-theme="light"] .info-note li {
+    color: var(--accent-600);
+    /* Darker amber for list text */
+}
+
+[data-theme="light"] .payment-item img {
+    filter: none !important;
+    /* Remove dark mode white filter */
+    opacity: 1 !important;
+}
+
 /* Animations */
 .fade-up {
     opacity: 0;
