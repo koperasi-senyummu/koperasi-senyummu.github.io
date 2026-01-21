@@ -1535,6 +1535,21 @@ body {
     opacity: 1 !important;
 }
 
+/* Rp Icon Styling */
+.rp-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+    color: white;
+    font-weight: 700;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+}
+
 /* Animations */
 .fade-up {
     opacity: 0;
