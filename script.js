@@ -134,17 +134,24 @@ function initNavbar() {
 
     let lastScroll = 0;
     const scrollThreshold = 50;
+    let ticking = false;
 
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
 
-        if (currentScroll > scrollThreshold) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                if (currentScroll > scrollThreshold) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                lastScroll = currentScroll;
+                ticking = false;
+            });
 
-        lastScroll = currentScroll;
+            ticking = true;
+        }
     }, { passive: true });
 }
 
