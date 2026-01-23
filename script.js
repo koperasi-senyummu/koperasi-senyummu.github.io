@@ -1,291 +1,23 @@
 /**
  * Koperasi Senyummu - Premium Website Script
  * Features: Navbar scroll, Mobile menu, FAQ accordion, Modals, Animations
- * Mobile Optimized: efficient DOM updates, passive listeners, reduced layout thrashing
  */
 
 // ========================================
 // INITIALIZATION
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
-    // Render Content First
-    renderPricingTable();
-    renderInstallments();
-    renderComparisons();
-    renderFAQ();
-
-    // Initialize UI Interactions
     initNavbar();
     initMobileMenu();
     initScrollAnimations();
     initSmoothScroll();
-    initScrollToTop();
-    initFAQSearch();
-    initThemeToggle();
-
-    // Check for reduced motion preference
     checkMotionPreference();
+    initThemeToggle();
 });
 
 // ========================================
-// DYNAMIC RENDERING FUNCTIONS
+// NAVBAR FUNCTIONS
 // ========================================
-
-/**
- * Render Main Pricing Table
- * Uses batched HTML string construction for performance
- */
-function renderPricingTable() {
-    const tbody = document.getElementById('pricingTableBody');
-    if (!tbody) return;
-
-    let html = '';
-    let totalBoardingPutra = 0;
-    let totalBoardingPutri = 0;
-    let totalNonBoarding = 0;
-
-    const items = window.DATA ? window.DATA.items : [];
-    items.forEach((item, index) => {
-        // Calculate totals
-        totalBoardingPutra += item.prices.boardingPutra || 0;
-        totalBoardingPutri += item.prices.boardingPutri || 0;
-        totalNonBoarding += item.prices.nonBoarding || 0;
-
-        html += `
-            <tr>
-                <td>${index + 1}</td>
-                <td>
-                    <div class="item-name">
-                        <div class="item-icon" style="color: ${item.iconColor}">
-                            <i class="fas ${item.icon}"></i>
-                        </div>
-                        <span>${item.name}</span>
-                        ${item.hasModal ? `
-                        <button onclick="openModal('${item.modalKey}')" class="item-info-btn" title="Lihat detail" aria-label="Lihat detail ${item.name}">
-                            <i class="fas fa-info-circle"></i>
-                        </button>` : ''}
-                    </div>
-                </td>
-                <td class="price">${formatRupiah(item.prices.boardingPutra)}</td>
-                <td class="price">${formatRupiah(item.prices.boardingPutri)}</td>
-                <td class="price" ${!item.prices.nonBoarding ? 'style="color: var(--text-muted)"' : ''}>
-                    ${item.prices.nonBoarding ? formatRupiah(item.prices.nonBoarding) : '—'}
-                </td>
-            </tr>
-        `;
-    });
-
-    // Total Row
-    html += `
-        <tr class="total-row">
-            <td colspan="2">
-                <div class="item-name" style="justify-content: center;">
-                    <i class="fas fa-wallet" style="color: var(--primary-400)"></i>
-                    <strong>TOTAL BIAYA</strong>
-                </div>
-            </td>
-            <td class="price">${formatRupiah(totalBoardingPutra)}</td>
-            <td class="price">${formatRupiah(totalBoardingPutri)}</td>
-            <td class="price">${formatRupiah(totalNonBoarding)}</td>
-        </tr>
-    `;
-
-    tbody.innerHTML = html;
-
-    // Store calculated totals globally for other functions to use
-    window.calculatedTotals = {
-        boardingPutra: totalBoardingPutra,
-        boardingPutri: totalBoardingPutri,
-        nonBoarding: totalNonBoarding
-    };
-}
-
-/**
- * Render Installment Cards
- * Calculates monthly payments dynamically
- */
-function renderInstallments() {
-    const grid = document.getElementById('installmentGrid');
-    if (!grid || !window.calculatedTotals) return;
-
-    const { boardingPutra, boardingPutri, nonBoarding } = window.calculatedTotals;
-    const months = window.DATA.installments.length;
-
-    // Calculate monthly installment (rounding up is usually safer, but standard division here)
-    const monthlyPutra = Math.ceil(boardingPutra / months);
-    const monthlyPutri = Math.ceil(boardingPutri / months);
-    const monthlyNonBoarding = Math.ceil(nonBoarding / months);
-
-    let html = '';
-
-    window.DATA.installments.forEach((inst, index) => {
-        html += `
-            <div class="installment-card fade-up stagger-${index + 1}">
-                <div class="installment-header">
-                    <div style="display: flex; align-items: center; gap: 1rem;">
-                        <div class="installment-number ${inst.colorClass}">${inst.month}</div>
-                        <div class="installment-info">
-                            <h3>${inst.name}</h3>
-                            <p>${DATA.config.installmentPeriod}</p>
-                        </div>
-                    </div>
-                    <i class="fas ${inst.icon} installment-icon"></i>
-                </div>
-                <div class="installment-body">
-                    <div class="installment-item">
-                        <span class="installment-item-label">
-                            <i class="fas fa-mars" style="color: #3b82f6"></i>
-                            Boarding Putra
-                        </span>
-                        <span class="installment-item-value">${formatRupiah(monthlyPutra)}</span>
-                    </div>
-                    <div class="installment-item">
-                        <span class="installment-item-label">
-                            <i class="fas fa-venus" style="color: #ec4899"></i>
-                            Boarding Putri
-                        </span>
-                        <span class="installment-item-value">${formatRupiah(monthlyPutri)}</span>
-                    </div>
-                    <div class="installment-item">
-                        <span class="installment-item-label">
-                            <i class="fas fa-school" style="color: #06b6d4"></i>
-                            Non-Boarding
-                        </span>
-                        <span class="installment-item-value">${formatRupiah(monthlyNonBoarding)}</span>
-                    </div>
-                </div>
-            </div>
-        `;
-    });
-
-    grid.innerHTML = html;
-}
-
-/**
- * Render Comparison Cards
- */
-function renderComparisons() {
-    const grid = document.getElementById('comparisonGrid');
-    if (!grid || !window.calculatedTotals) return;
-
-    const { boardingPutra, boardingPutri, nonBoarding } = window.calculatedTotals;
-    const months = window.DATA.installments.length;
-
-    // Helper to generate feature list based on data
-    // Ideally this could be more dynamic, but for now we map manually for layout control
-    const features = [
-        { name: 'Seragam lengkap', pricePutra: 960000, pricePutri: 1115000, priceNon: 960000 },
-        { name: 'Buku Umum', price: 120000 },
-        { name: 'Buku Ismubaris', price: 120000, priceNon: 247000 },
-        { name: 'Kitab Pondok', price: 270000, priceNon: null }
-    ];
-
-    const cards = [
-        {
-            title: "Boarding Putra",
-            total: boardingPutra,
-            monthly: Math.ceil(boardingPutra / months),
-            icon: "fa-mars",
-            colorClass: "blue",
-            items: features.map(f => ({
-                text: `${f.name} (${formatRupiah(f.pricePutra || f.price)})`,
-                active: true
-            }))
-        },
-        {
-            title: "Boarding Putri",
-            total: boardingPutri,
-            monthly: Math.ceil(boardingPutri / months),
-            icon: "fa-venus",
-            colorClass: "pink",
-            items: features.map(f => ({
-                text: `${f.name} (${formatRupiah(f.pricePutri || f.price)})`,
-                active: true
-            }))
-        },
-        {
-            title: "Non-Boarding",
-            total: nonBoarding,
-            monthly: Math.ceil(nonBoarding / months),
-            icon: "fa-school",
-            colorClass: "cyan",
-            items: features.map(f => {
-                const price = f.priceNon !== undefined ? f.priceNon : f.price;
-                if (price === null) {
-                    return { text: `${f.name} (Tidak termasuk)`, active: false };
-                }
-                return { text: `${f.name} (${formatRupiah(price)})`, active: true };
-            })
-        }
-    ];
-
-    let html = '';
-    cards.forEach((card, index) => {
-        html += `
-            <div class="comparison-card fade-up stagger-${index + 1}">
-                <div class="comparison-header">
-                    <div class="comparison-icon ${card.colorClass}">
-                        <i class="fas ${card.icon}"></i>
-                    </div>
-                    <h3 class="comparison-name">${card.title}</h3>
-                    <p class="comparison-price">${formatRupiah(card.total)}</p>
-                    <p class="comparison-period">Total Biaya</p>
-                </div>
-                <div class="comparison-body">
-                    <ul class="comparison-features">
-                        ${card.items.map(item => `
-                            <li class="${!item.active ? 'disabled' : ''}">
-                                <i class="fas ${item.active ? 'fa-check-circle' : 'fa-times-circle'}"></i>
-                                <span>${item.text}</span>
-                            </li>
-                        `).join('')}
-                    </ul>
-                    <div class="comparison-installment">
-                        <p class="comparison-installment-label">Cicilan per bulan:</p>
-                        <p class="comparison-installment-value">${formatRupiah(card.monthly)}</p>
-                    </div>
-                </div>
-            </div>
-        `;
-    });
-
-    grid.innerHTML = html;
-}
-
-/**
- * Render FAQ List
- */
-function renderFAQ() {
-    const container = document.getElementById('faqList');
-    if (!container) return;
-
-    let html = '';
-    const faqs = window.DATA ? window.DATA.faqs : [];
-    faqs.forEach((faq, index) => {
-        html += `
-            <div class="faq-item fade-up stagger-${(index % 4) + 1}" data-content="${faq.question.toLowerCase()} ${faq.answer.toLowerCase()}">
-                <button class="faq-button" onclick="toggleFAQ(this)" aria-expanded="false">
-                    <span class="faq-question">
-                        <i class="fas ${faq.icon}"></i>
-                        <span class="faq-text-highlight">${faq.question}</span>
-                    </span>
-                    <i class="fas fa-chevron-down faq-icon"></i>
-                </button>
-                <div class="faq-content">
-                    <p class="faq-answer">${faq.answer}</p>
-                </div>
-            </div>
-        `;
-    });
-
-    container.innerHTML = html;
-}
-
-// ========================================
-// UI INTERACTION FUNCTIONS
-// ========================================
-
-// Navbar Scroll Effect
 function initNavbar() {
     const navbar = document.getElementById('navbar');
     if (!navbar) return;
@@ -299,11 +31,13 @@ function initNavbar() {
 
         if (!ticking) {
             window.requestAnimationFrame(() => {
+                // Add/remove scrolled class based on scroll position
                 if (currentScroll > scrollThreshold) {
                     navbar.classList.add('scrolled');
                 } else {
                     navbar.classList.remove('scrolled');
                 }
+
                 lastScroll = currentScroll;
                 ticking = false;
             });
@@ -313,64 +47,24 @@ function initNavbar() {
     }, { passive: true });
 }
 
-// Scroll To Top
-function initScrollToTop() {
-    const btn = document.getElementById('scrollToTopBtn');
-    if (!btn) return;
-
-    // Show/Hide logic
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 500) {
-            btn.classList.add('visible');
-        } else {
-            btn.classList.remove('visible');
-        }
-    }, { passive: true });
-
-    // Click logic
-    btn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
-
-// FAQ Search
-function initFAQSearch() {
-    const input = document.getElementById('faqSearch');
-    if (!input) return;
-
-    input.addEventListener('input', debounce((e) => {
-        const term = e.target.value.toLowerCase();
-        const items = document.querySelectorAll('.faq-item');
-
-        items.forEach(item => {
-            const content = item.getAttribute('data-content');
-            if (content.includes(term)) {
-                item.style.display = 'block';
-                // Reset animation
-                item.style.opacity = '1';
-                item.style.transform = 'translateY(0)';
-            } else {
-                item.style.display = 'none';
-            }
-        });
-    }, 300));
-}
-
-// Mobile Menu
 function initMobileMenu() {
     const menuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.getElementById('navbarLinks');
 
     if (!menuBtn || !navLinks) return;
 
+    // Toggle menu
     menuBtn.addEventListener('click', () => {
         navLinks.classList.toggle('active');
         const icon = menuBtn.querySelector('i');
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-times');
+
+        if (navLinks.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
     });
 
     // Close menu when clicking a link
@@ -378,8 +72,8 @@ function initMobileMenu() {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
             const icon = menuBtn.querySelector('i');
-            icon.classList.add('fa-bars');
             icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
         });
     });
 
@@ -388,17 +82,16 @@ function initMobileMenu() {
         if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
             navLinks.classList.remove('active');
             const icon = menuBtn.querySelector('i');
-            icon.classList.add('fa-bars');
             icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
         }
     });
 }
 
-// Scroll Animations (Intersection Observer)
+// ========================================
+// SCROLL ANIMATIONS
+// ========================================
 function initScrollAnimations() {
-    // Only use IntersectionObserver if supported (it is in all modern browsers)
-    if (!('IntersectionObserver' in window)) return;
-
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -418,7 +111,6 @@ function initScrollAnimations() {
     });
 }
 
-// Smooth Scroll for Anchors
 function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -427,7 +119,7 @@ function initSmoothScroll() {
             const target = document.querySelector(targetId);
 
             if (target) {
-                const navbarHeight = document.getElementById('navbar')?.offsetHeight || 0;
+                const navbarHeight = document.getElementById('navbar').offsetHeight;
                 const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 20;
 
                 window.scrollTo({
@@ -439,73 +131,155 @@ function initSmoothScroll() {
     });
 }
 
-// FAQ Accordion
+// ========================================
+// FAQ INTERACTION
+// ========================================
 function toggleFAQ(button) {
     const faqItem = button.closest('.faq-item');
-    const isExpanded = button.getAttribute('aria-expanded') === 'true';
 
-    // Close all others
+    // Close all other active items
     document.querySelectorAll('.faq-item.active').forEach(item => {
         if (item !== faqItem) {
             item.classList.remove('active');
-            item.querySelector('.faq-button').setAttribute('aria-expanded', 'false');
         }
     });
 
-    // Toggle current
+    // Toggle current item
     faqItem.classList.toggle('active');
-    button.setAttribute('aria-expanded', !isExpanded);
-}
-
-// Theme Toggle
-function initThemeToggle() {
-    const toggleBtn = document.getElementById('themeToggle');
-    if (!toggleBtn) return;
-
-    const html = document.documentElement;
-    const icon = toggleBtn.querySelector('i');
-
-    function setTheme(theme) {
-        if (theme === 'light') {
-            html.setAttribute('data-theme', 'light');
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-            localStorage.setItem('theme', 'light');
-        } else {
-            html.removeAttribute('data-theme');
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
-            localStorage.setItem('theme', 'dark');
-        }
-    }
-
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        setTheme(savedTheme);
-    }
-
-    toggleBtn.addEventListener('click', () => {
-        const currentTheme = html.getAttribute('data-theme');
-        setTheme(currentTheme === 'light' ? 'dark' : 'light');
-    });
 }
 
 // ========================================
-// MODAL FUNCTIONS
+// MODAL & DATA HANDLING
 // ========================================
+
+// Uniform Images Data
+const UNIFORM_IMAGES = {
+    seragam: {
+        title: 'Desain Seragam',
+        images: [
+            {
+                url: './assets/images/seragam-putih-biru.svg',
+                caption: 'Seragam Putih Biru',
+                description: 'Seragam untuk hari Senin'
+            },
+            {
+                url: './assets/images/seragam-ipm.svg',
+                caption: 'Seragam IPM',
+                description: 'Seragam untuk hari Selasa'
+            },
+            {
+                url: './assets/images/seragam-batik.svg',
+                caption: 'Seragam Batik',
+                description: 'Seragam untuk hari Rabu'
+            },
+            {
+                url: './assets/images/seragam-almamater.svg',
+                caption: 'Seragam Almamater',
+                description: 'Seragam untuk hari Kamis'
+            },
+            {
+                url: './assets/images/seragam-hw.svg',
+                caption: 'Seragam Hizbul Wathan',
+                description: "Seragam untuk hari Jum'at"
+            },
+            {
+                url: './assets/images/jas-almamater.svg',
+                caption: 'Jas Almamater',
+                description: 'Seragam yang digunakan untuk hari-hari tertentu'
+            },
+            {
+                url: './assets/images/seragam-olahraga.svg',
+                caption: 'Seragam Olahraga',
+                description: 'Seragam yang digunakan sesuai dengan jadwal olahraga'
+            }
+        ]
+    }
+};
+
+// Item Details Data
+const itemDetails = {
+    seragam: {
+        title: 'Detail Seragam',
+        icon: 'fa-tshirt',
+        color: 'emerald',
+        items: [
+            { name: 'Kain Seragam Putih Biru', boarding_putra: 125000, boarding_putri: 150000, non_boarding: 125000 },
+            { name: 'Kain Seragam IPM', boarding_putra: 125000, boarding_putri: 150000, non_boarding: 125000 },
+            { name: 'Kain Seragam Batik', boarding_putra: 135000, boarding_putri: 160000, non_boarding: 135000 },
+            { name: '1 Setel Koko Hijau Almamater', boarding_putra: 210000, boarding_putri: 230000, non_boarding: 210000 },
+            { name: 'Kain Seragam HW', boarding_putra: 105000, boarding_putri: 130000, non_boarding: 105000 },
+            { name: 'Jas Almamater Hijau', boarding_putra: 165000, boarding_putri: 165000, non_boarding: 165000 },
+            { name: '1 Setel Kaos Olahraga', boarding_putra: 95000, boarding_putri: 130000, non_boarding: 95000 },
+        ]
+    },
+    bukuUmum: {
+        title: 'Detail Buku Umum',
+        icon: 'fa-book',
+        color: 'cyan',
+        items: [
+            { name: 'Bahasa Indonesia', boarding_putra: 10000, boarding_putri: 10000, non_boarding: 10000 },
+            { name: 'Matematika', boarding_putra: 10000, boarding_putri: 10000, non_boarding: 10000 },
+            { name: 'Bahasa Inggris', boarding_putra: 10000, boarding_putri: 10000, non_boarding: 10000 },
+            { name: 'IPA', boarding_putra: 20000, boarding_putri: 20000, non_boarding: 20000 },
+            { name: 'IPS', boarding_putra: 20000, boarding_putri: 20000, non_boarding: 20000 },
+            { name: 'PKN', boarding_putra: 10000, boarding_putri: 10000, non_boarding: 10000 },
+            { name: 'PJOK', boarding_putra: 10000, boarding_putri: 10000, non_boarding: 10000 },
+            { name: 'TIK', boarding_putra: 10000, boarding_putri: 10000, non_boarding: 10000 },
+            { name: 'Seni Rupa/SBK', boarding_putra: 10000, boarding_putri: 10000, non_boarding: 10000 },
+            { name: 'Bahasa Jawa', boarding_putra: 10000, boarding_putri: 10000, non_boarding: 10000 }
+        ]
+    },
+    bukuIsmubaris: {
+        title: 'Detail Buku Ismubaris',
+        icon: 'fa-book-open',
+        color: 'green',
+        items: [
+            { name: 'Buku Kemuhammadiyahan', boarding_putra: 30000, boarding_putri: 30000, non_boarding: 30000 },
+            { name: 'Buku Bahasa Arab', boarding_putra: 27000, boarding_putri: 27000, non_boarding: 0 },
+            { name: 'Al-Quran metode Wafa (TTG)', boarding_putra: 43000, boarding_putri: 43000, non_boarding: 43000 },
+            { name: 'Al-Quran metode Wafa (Menulis)', boarding_putra: 20000, boarding_putri: 20000, non_boarding: 20000 },
+            { name: 'Buku Al Islam', boarding_putra: 0, boarding_putri: 0, non_boarding: 60000 },
+            { name: 'Buku Al Ashri', boarding_putra: 0, boarding_putri: 0, non_boarding: 54000 },
+            { name: 'Buku Tahfidz', boarding_putra: 0, boarding_putri: 0, non_boarding: 20000 },
+            { name: 'Buku Dzikir Pagi Petang', boarding_putra: 0, boarding_putri: 0, non_boarding: 7500 },
+            { name: 'Buku Prestasi', boarding_putra: 0, boarding_putri: 0, non_boarding: 12500 }
+        ]
+    },
+    kitabPondok: {
+        title: 'Detail Kitab Pondok',
+        icon: 'fa-book-quran',
+        color: 'amber',
+        items: [
+            { name: 'Aqidah', boarding_putra: 40000, boarding_putri: 40000, non_boarding: null },
+            { name: 'Akhlak', boarding_putra: 40000, boarding_putri: 40000, non_boarding: null },
+            { name: 'Fiqih', boarding_putra: 37000, boarding_putri: 37000, non_boarding: null },
+            { name: 'SKI', boarding_putra: 40000, boarding_putri: 40000, non_boarding: null },
+            { name: 'Tuhfah', boarding_putra: 35000, boarding_putri: 35000, non_boarding: null },
+            { name: 'Hadist', boarding_putra: 38000, boarding_putri: 38000, non_boarding: null },
+            { name: 'Buku Tahfidz', boarding_putra: 20000, boarding_putri: 20000, non_boarding: null },
+            { name: 'Buku Dzikir Pagi Petang', boarding_putra: 7500, boarding_putri: 7500, non_boarding: null },
+            { name: 'Buku Prestasi', boarding_putra: 12500, boarding_putri: 12500, non_boarding: null }
+        ]
+    }
+};
+
+function formatRupiah(number) {
+    return 'Rp ' + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
 function openModal(itemType) {
     const modal = document.getElementById('itemModal');
     const modalTitle = document.getElementById('modalTitle');
     const modalContent = document.getElementById('modalContent');
 
-    const data = window.DATA.itemDetails[itemType];
+    const data = itemDetails[itemType];
     if (!data) return;
 
     modalTitle.innerHTML = `<i class="fas ${data.icon}"></i><span>${data.title}</span>`;
 
     let content = '';
 
-    // Seragam Design Link
+    // Add Seragam Design Link if it's 'seragam'
     if (itemType === 'seragam') {
         content += `
             <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1)); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 16px; padding: 1rem; margin-bottom: 1.5rem;">
@@ -523,7 +297,6 @@ function openModal(itemType) {
         `;
     }
 
-    // Modal Table Construction
     content += `
         <div style="overflow-x: auto; border-radius: 12px; border: 1px solid var(--glass-border);">
             <table style="width: 100%; border-collapse: collapse; font-size: 0.875rem;">
@@ -603,6 +376,16 @@ function closeModal() {
     document.body.style.overflow = 'auto';
 }
 
+// Close modal when clicking outside
+document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+});
+
 // ========================================
 // IMAGE MODAL FUNCTIONS
 // ========================================
@@ -611,7 +394,7 @@ function openImageModal(itemType) {
     const modalTitle = document.getElementById('imageModalTitle');
     const modalContent = document.getElementById('imageModalContent');
 
-    const data = window.DATA.uniformImages[itemType];
+    const data = UNIFORM_IMAGES[itemType];
     if (!data) return;
 
     modalTitle.innerHTML = `<i class="fas fa-images"></i><span>${data.title}</span>`;
@@ -663,27 +446,7 @@ function closeImageModalAndBackToDetail(itemType) {
     }, 100);
 }
 
-// ========================================
-// UTILITIES
-// ========================================
-
-function formatRupiah(number) {
-    return 'Rp ' + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-}
-
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Close modals listeners
+// Close on escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         const imageModal = document.getElementById('imageModal');
@@ -693,18 +456,42 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-document.querySelectorAll('.modal-overlay').forEach(overlay => {
-    overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) {
-            overlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
-});
-
+// Misc Utility
 function checkMotionPreference() {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (mediaQuery.matches) {
         // Disable JS animations if necessary, though CSS handles most of it
     }
+}
+
+function initThemeToggle() {
+    const toggleBtn = document.getElementById('themeToggle');
+    if (!toggleBtn) return;
+
+    const html = document.documentElement;
+    const icon = toggleBtn.querySelector('i');
+
+    function setTheme(theme) {
+        if (theme === 'light') {
+            html.setAttribute('data-theme', 'light');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+            localStorage.setItem('theme', 'light');
+        } else {
+            html.removeAttribute('data-theme');
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+            localStorage.setItem('theme', 'dark');
+        }
+    }
+
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        setTheme(savedTheme);
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        setTheme(currentTheme === 'light' ? 'dark' : 'light');
+    });
 }
