@@ -44,7 +44,8 @@ function renderPricingTable() {
     let totalBoardingPutri = 0;
     let totalNonBoarding = 0;
 
-    DATA.items.forEach((item, index) => {
+    const items = window.DATA ? window.DATA.items : [];
+    items.forEach((item, index) => {
         // Calculate totals
         totalBoardingPutra += item.prices.boardingPutra || 0;
         totalBoardingPutri += item.prices.boardingPutri || 0;
@@ -108,7 +109,7 @@ function renderInstallments() {
     if (!grid || !window.calculatedTotals) return;
 
     const { boardingPutra, boardingPutri, nonBoarding } = window.calculatedTotals;
-    const months = DATA.installments.length;
+    const months = window.DATA.installments.length;
 
     // Calculate monthly installment (rounding up is usually safer, but standard division here)
     const monthlyPutra = Math.ceil(boardingPutra / months);
@@ -117,7 +118,7 @@ function renderInstallments() {
 
     let html = '';
 
-    DATA.installments.forEach((inst, index) => {
+    window.DATA.installments.forEach((inst, index) => {
         html += `
             <div class="installment-card fade-up stagger-${index + 1}">
                 <div class="installment-header">
@@ -168,7 +169,7 @@ function renderComparisons() {
     if (!grid || !window.calculatedTotals) return;
 
     const { boardingPutra, boardingPutri, nonBoarding } = window.calculatedTotals;
-    const months = DATA.installments.length;
+    const months = window.DATA.installments.length;
 
     // Helper to generate feature list based on data
     // Ideally this could be more dynamic, but for now we map manually for layout control
@@ -259,7 +260,8 @@ function renderFAQ() {
     if (!container) return;
 
     let html = '';
-    DATA.faqs.forEach((faq, index) => {
+    const faqs = window.DATA ? window.DATA.faqs : [];
+    faqs.forEach((faq, index) => {
         html += `
             <div class="faq-item fade-up stagger-${(index % 4) + 1}" data-content="${faq.question.toLowerCase()} ${faq.answer.toLowerCase()}">
                 <button class="faq-button" onclick="toggleFAQ(this)" aria-expanded="false">
@@ -496,7 +498,7 @@ function openModal(itemType) {
     const modalTitle = document.getElementById('modalTitle');
     const modalContent = document.getElementById('modalContent');
 
-    const data = DATA.itemDetails[itemType];
+    const data = window.DATA.itemDetails[itemType];
     if (!data) return;
 
     modalTitle.innerHTML = `<i class="fas ${data.icon}"></i><span>${data.title}</span>`;
@@ -609,7 +611,7 @@ function openImageModal(itemType) {
     const modalTitle = document.getElementById('imageModalTitle');
     const modalContent = document.getElementById('imageModalContent');
 
-    const data = DATA.uniformImages[itemType];
+    const data = window.DATA.uniformImages[itemType];
     if (!data) return;
 
     modalTitle.innerHTML = `<i class="fas fa-images"></i><span>${data.title}</span>`;

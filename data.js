@@ -3,7 +3,7 @@
  * Centralized data for prices, items, and schedules
  */
 
-const DATA = {
+window.DATA = {
     // Configuration
     config: {
         academicYear: "2026/2027",
