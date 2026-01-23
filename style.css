@@ -194,7 +194,7 @@ body {
     right: 0;
     z-index: 1000;
     padding: 1rem 2rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background 0.3s, padding 0.3s, border-color 0.3s, backdrop-filter 0.3s;
 }
 
 .navbar.scrolled {
@@ -1583,9 +1583,96 @@ body {
     background-clip: text;
 }
 
-.no-print {
-    /* Will be hidden when printing */
+/* Scroll to Top Button */
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 3rem;
+    height: 3rem;
+    background: linear-gradient(135deg, var(--primary-500), var(--primary-600));
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    z-index: 900;
 }
+
+#scrollToTopBtn.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+#scrollToTopBtn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+}
+
+/* FAQ Search */
+.faq-search-container {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.faq-search-wrapper {
+    position: relative;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 100px;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.faq-search-wrapper:focus-within {
+    border-color: var(--primary-500);
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+    background: var(--bg-card-hover);
+}
+
+.search-icon {
+    position: absolute;
+    left: 1.25rem;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+#faqSearch {
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    padding: 1rem 1rem 1rem 3rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+#faqSearch::placeholder {
+    color: var(--text-muted);
+}
+
+.faq-text-highlight {
+    background: rgba(245, 158, 11, 0.2);
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
+
 
 /* Print Styles */
 @media print {
