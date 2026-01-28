@@ -1420,8 +1420,8 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    transform: scale(0.9) translateY(20px);
-    transition: transform 0.3s ease;
+    transform: scale(0.95) translateY(10px);
+    transition: transform 0.2s ease;
 }
 
 .modal-overlay.active .modal-container {
@@ -1487,8 +1487,22 @@ body {
 }
 
 [data-theme="light"] .info-note li {
-    color: var(--accent-600);
+    color: var(--accent-700);
     /* Darker amber for list text */
+}
+
+/* Light Mode Contrast Fixes for Table Note */
+[data-theme="light"] .table-note p {
+    color: var(--accent-700);
+}
+
+[data-theme="light"] .table-note i {
+    color: var(--accent-600);
+}
+
+[data-theme="light"] .table-note {
+    background: rgba(234, 179, 8, 0.15);
+    border-color: rgba(234, 179, 8, 0.3);
 }
 
 [data-theme="light"] .payment-item img {
@@ -1500,8 +1514,8 @@ body {
 /* Animations */
 .fade-up {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transform: translateY(15px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
     will-change: opacity, transform;
 }
 

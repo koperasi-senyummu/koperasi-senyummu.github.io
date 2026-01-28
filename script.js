@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 skeleton.remove();
             }, 500);
         }
-    }, 1500); // Simulate loading time or wait for resources
+    }, 600); // Fast load for better UX
 });
 
 // ========================================
@@ -371,9 +371,9 @@ function openModal(itemType) {
     // Note for Kitab Pondok
     if (itemType === 'kitabPondok') {
         content += `
-            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); border-radius: 12px; padding: 1rem; margin-top: 1rem; display: flex; align-items: flex-start; gap: 0.75rem;">
-                <i class="fas fa-info-circle" style="color: var(--accent-400); margin-top: 2px;"></i>
-                <p style="font-size: 0.875rem; color: var(--accent-300); margin: 0;"><strong>Catatan:</strong> Kitab Pondok hanya disediakan untuk santri program Boarding (Putra & Putri).</p>
+            <div style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 1rem; margin-top: 1rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+                <i class="fas fa-info-circle" style="color: var(--accent-600); margin-top: 2px;"></i>
+                <p style="font-size: 0.875rem; color: var(--accent-700); margin: 0;"><strong>Catatan:</strong> Kitab Pondok hanya disediakan untuk santri program Boarding (Putra & Putri).</p>
             </div>
         `;
     }
