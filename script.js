@@ -13,6 +13,17 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmoothScroll();
     checkMotionPreference();
     initThemeToggle();
+
+    // Skeleton Loading Handling
+    setTimeout(() => {
+        const skeleton = document.getElementById('skeleton-loader');
+        if (skeleton) {
+            skeleton.style.opacity = '0';
+            setTimeout(() => {
+                skeleton.remove();
+            }, 500);
+        }
+    }, 1500); // Simulate loading time or wait for resources
 });
 
 // ========================================
@@ -282,16 +293,18 @@ function openModal(itemType) {
     // Add Seragam Design Link if it's 'seragam'
     if (itemType === 'seragam') {
         content += `
-            <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1)); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 16px; padding: 1rem; margin-bottom: 1.5rem;">
-                <button onclick="openImageModal('seragam')" style="width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 12px; cursor: pointer; transition: all 0.2s ease;" onmouseover="this.style.background='var(--bg-card-hover)'" onmouseout="this.style.background='var(--glass-bg)'">
+            <div style="background: var(--primary-50); border: 1px solid var(--primary-200); border-radius: 16px; padding: 1rem; margin-bottom: 1.5rem;">
+                <button onclick="openImageModal('seragam')" style="width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 1rem; background: white; border: 1px solid var(--primary-100); border-radius: 12px; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 2px 4px rgba(0,0,0,0.05);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.1)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 4px rgba(0,0,0,0.05)'">
                     <div style="display: flex; align-items: center; gap: 0.75rem;">
-                        <i class="fas fa-images" style="font-size: 1.5rem; color: var(--primary-400);"></i>
+                        <div style="width: 40px; height: 40px; border-radius: 8px; background: var(--primary-100); display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-images" style="font-size: 1.25rem; color: var(--primary-600);"></i>
+                        </div>
                         <div style="text-align: left;">
-                            <p style="font-weight: 600; color: var(--text-primary); margin: 0;">Lihat Desain Seragam</p>
-                            <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">Klik untuk melihat foto & sketsa desain</p>
+                            <p style="font-weight: 600; color: var(--primary-900); margin: 0;">Lihat Desain Seragam</p>
+                            <p style="font-size: 0.75rem; color: var(--primary-600); margin: 0;">Klik untuk melihat foto & sketsa desain</p>
                         </div>
                     </div>
-                    <i class="fas fa-arrow-right" style="color: var(--primary-400);"></i>
+                    <i class="fas fa-arrow-right" style="color: var(--primary-500);"></i>
                 </button>
             </div>
         `;
@@ -399,30 +412,47 @@ function openImageModal(itemType) {
 
     modalTitle.innerHTML = `<i class="fas fa-images"></i><span>${data.title}</span>`;
 
-    // Using map to build string is cleaner
+    // Updated Card Design - Cleaner & Lighter
     const imagesHtml = data.images.map(img => `
-        <div style="background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 16px; overflow: hidden;">
-            <div style="aspect-ratio: 1; background: rgba(255, 255, 255, 0.02); display: flex; align-items: center; justify-content: center; padding: 0.5rem;">
+        <div style="
+            background: var(--bg-card); 
+            border: 1px solid var(--primary-200); 
+            border-radius: 12px; 
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        " class="uniform-card">
+            <div style="
+                aspect-ratio: 1; 
+                background: white; 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                padding: 1rem;
+                border-bottom: 1px solid var(--primary-100);
+            ">
                 <img src="${img.url}" 
                         alt="${img.caption}" 
-                        style="max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px;"
+                        style="max-width: 100%; max-height: 100%; object-fit: contain; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));"
                         loading="lazy"
-                        onerror="this.src='https://via.placeholder.com/400x400/1e293b/64748b?text=Gambar+Tidak+Tersedia'">
+                        onerror="this.src='https://via.placeholder.com/400x400/f1f5f9/334155?text=Gambar+Tidak+Tersedia'">
             </div>
-            <div style="padding: 1rem; border-top: 1px solid var(--glass-border);">
-                <h4 style="font-size: 0.875rem; font-weight: 600; color: var(--text-primary); margin: 0 0 0.25rem 0;">${img.caption}</h4>
-                <p style="font-size: 0.75rem; color: var(--text-muted); margin: 0;">${img.description}</p>
+            <div style="padding: 1rem;">
+                <h4 style="font-size: 1rem; font-weight: 600; color: var(--primary-600); margin: 0 0 0.5rem 0;">${img.caption}</h4>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0; line-height: 1.5;">${img.description}</p>
             </div>
         </div>
     `).join('');
 
     modalContent.innerHTML = `
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
             ${imagesHtml}
         </div>
-        <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 12px; padding: 1rem; margin-top: 1rem; display: flex; align-items: flex-start; gap: 0.75rem;">
-            <i class="fas fa-info-circle" style="color: #60a5fa; margin-top: 2px;"></i>
-            <p style="font-size: 0.875rem; color: #93c5fd; margin: 0;"><strong>Catatan:</strong> Desain seragam dapat berubah sesuai kebijakan sekolah.</p>
+        <div style="background: var(--primary-50); border: 1px solid var(--primary-200); border-radius: 12px; padding: 1rem; margin-top: 2rem; display: flex; align-items: center; gap: 0.75rem;">
+            <i class="fas fa-info-circle" style="color: var(--primary-500); font-size: 1.25rem;"></i>
+            <p style="font-size: 0.9rem; color: var(--primary-800); margin: 0;"><strong>Catatan:</strong> Desain seragam dapat berubah sesuai kebijakan sekolah.</p>
         </div>
     `;
 
