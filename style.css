@@ -177,28 +177,19 @@ body {
 }
 
 .navbar-logo {
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    /* Soft shape */
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.25rem;
-    color: white;
-    background: var(--primary-600);
-    /* Brand background */
-    border: 2px solid var(--accent-400);
-    /* Brand Border */
-    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
     overflow: hidden;
-    padding: 2px;
+    padding: 0;
 }
 
 .navbar-logo img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .navbar-title {
